@@ -1,13 +1,19 @@
+import type { Locale } from '~/data/site';
+import { SITE } from '~/data/site';
 import { t } from '~/helpers/i18n';
 import { T } from '~/helpers/T';
 
-export const SectionsBefore = () => (
+interface PageSectionsProps {
+    locale: Locale;
+}
+
+export const SectionsBefore = (_props: PageSectionsProps) => (
     <>
 
     </>
 );
 
-export const SectionsAfter = () => (
+export const SectionsAfter = ({ locale }: PageSectionsProps) => (
     <>
 
 
@@ -35,7 +41,7 @@ export const SectionsAfter = () => (
                 <div className="card-body">
                     <div className="card-text">
                         <p><T k='simple-qrcode/bookmarklet/drag-to-bookmarks' /></p>
-                        <a className="btn btn-outline-primary" href="javascript:document.location='https://feather-tools.com/simple-qrcode?url='+encodeURIComponent(document.location.href);"><T k='simple-qrcode/name' /></a>
+                        <a className="btn btn-outline-primary" href={`javascript:document.location='${SITE.baseUrl}/${locale}/simple-qrcode?url='+encodeURIComponent(document.location.href);`}><T k='simple-qrcode/name' /></a>
                         <div className="mt-3 text-muted small">
                             <i className="bi bi-info-circle me-1"></i>
                             <T k='simple-qrcode/bookmarklet/info-text' />

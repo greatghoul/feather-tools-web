@@ -1,13 +1,19 @@
+import type { Locale } from '~/data/site';
+import { SITE } from '~/data/site';
 import { t } from '~/helpers/i18n';
 import { T } from '~/helpers/T';
 
-export const SectionsBefore = () => (
+interface PageSectionsProps {
+    locale: Locale;
+}
+
+export const SectionsBefore = (_props: PageSectionsProps) => (
     <>
 
     </>
 );
 
-export const SectionsAfter = () => (
+export const SectionsAfter = ({ locale }: PageSectionsProps) => (
     <>
 
 
@@ -35,7 +41,11 @@ export const SectionsAfter = () => (
                 </div>
                 <div className="card-body">
                     <p><T k='rich-qrcode/bookmarklet/drag-to-bookmarks' /></p>
-                    <a className="btn btn-outline-primary" href="javascript:(function(){window.open('https://feather-tools.com/rich-qrcode?url='+encodeURIComponent(location.href),'_blank');})();" draggable="true">
+                    <a
+                        className="btn btn-outline-primary"
+                        href={`javascript:(function(){window.open('${SITE.baseUrl}/${locale}/rich-qrcode?url='+encodeURIComponent(location.href),'_blank');})();`}
+                        draggable="true"
+                    >
                         <T k='rich-qrcode/name' />
                     </a>
                     <div className="mt-3 text-muted small">

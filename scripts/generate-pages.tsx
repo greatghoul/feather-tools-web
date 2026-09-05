@@ -76,8 +76,8 @@ const migratedTools = Object.keys(bundleMap)
 // Per-tool static sections (how-to-use / features cards converted from the old
 // Jinja templates) and extra asset tags (global scripts, tool CSS).
 interface PageSectionsModule {
-    SectionsBefore?: () => ReactElement;
-    SectionsAfter?: () => ReactElement;
+    SectionsBefore?: (props: { locale: Locale }) => ReactElement;
+    SectionsAfter?: (props: { locale: Locale }) => ReactElement;
 }
 const sections: Record<string, PageSectionsModule> = {};
 for (const slug of migratedTools) {
@@ -198,8 +198,8 @@ for (const locale of LOCALES) {
                     slug={slug}
                     locale={locale}
                     suggested={pickSuggested(slug)}
-                    before={Before ? <Before /> : undefined}
-                    after={After ? <After /> : undefined}
+                    before={Before ? <Before locale={locale} /> : undefined}
+                    after={After ? <After locale={locale} /> : undefined}
                 />
             </Layout>
         );

@@ -97,9 +97,7 @@ const ResultCard = ({ images = [] as any[], setting, processingKey = 0 }) => {
         const savedIcon = result.sizeChange > 0 ? 'bi-arrow-down' : 'bi-arrow-up';
 
         return (
-<>
-
-            <div className={`card-body ${index % 2 === 0 ? '' : 'bg-light'}`}>
+            <div key={index} className={`card-body ${index % 2 === 0 ? '' : 'bg-light'}`}>
                 <div className="row align-items-center">
                     <div className="col-md-6 text-center mb-3 mb-md-0">
                         <img src={result.url} className={`${styles.imageStyle}`} />
@@ -130,9 +128,7 @@ const ResultCard = ({ images = [] as any[], setting, processingKey = 0 }) => {
                     </div>
                 </div>
             </div>
-        
-</>
-);
+        );
     };
 
     return (

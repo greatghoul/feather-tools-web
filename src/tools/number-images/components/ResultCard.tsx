@@ -88,14 +88,10 @@ const ResultCard = ({
         ].join(' ');
 
         return (
-<>
-
             <div key={image.id} className={className}>
                 <img src={image.processedUrl || image.url} alt={image.name} className="w-100" />
             </div>
-        
-</>
-);
+        );
     }
 
     const renderGenerateButton = () => {

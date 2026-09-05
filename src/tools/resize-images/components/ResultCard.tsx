@@ -87,15 +87,11 @@ const ResultCard = ({ images = [] as any[], settings = [] as any[] }) => {
 
     const renderResizedImage = (resized, index) => {
         return (
-<>
-
-            <div className={`card-body text-center ${index % 2 === 0 ? '' : 'bg-light'}`}>
+            <div key={index} className={`card-body text-center ${index % 2 === 0 ? '' : 'bg-light'}`}>
                 <img src={resized.url} className={`mb-2 d-inline-block ${styles.imageStyle}`} />
                 <p className="card-text"><span className="badge bg-primary">{resized.width}x{resized.height}</span></p>
             </div>
-        
-</>
-);
+        );
     }
 
     return (

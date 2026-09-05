@@ -100,18 +100,14 @@ const ResultCard = ({ images = [] as any[], setting, autoProcess = false, proces
             : `${rounded.radius}px`;
         
         return (
-<>
-
-            <div className={`card-body text-center ${index % 2 === 0 ? '' : 'bg-light'}`}>
+            <div key={index} className={`card-body text-center ${index % 2 === 0 ? '' : 'bg-light'}`}>
                 <img src={rounded.url} className={`mb-2 d-inline-block ${styles.imageStyle}`} style={{ borderRadius: borderRadiusStyle }} />
                 <button className="btn btn-sm btn-outline-primary" onClick={() => handleDownloadSingle(rounded, index)}>
                     <i className="bi bi-download me-1"></i>
                     {t('image-round-corner/result/download')}
                 </button>
             </div>
-        
-</>
-);
+        );
     }
 
     return (

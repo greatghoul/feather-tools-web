@@ -104,18 +104,14 @@ const ResultCard = ({ images = [] as any[] }) => {
 
     const renderResult = (result, index) => {
         return (
-<>
-
-            <div className={`card-body text-center ${index % 2 === 0 ? '' : 'bg-light'}`}>
+            <div key={index} className={`card-body text-center ${index % 2 === 0 ? '' : 'bg-light'}`}>
                 <img src={result.url} className={`mb-2 d-inline-block ${styles.imageStyle}`} />
                 <button className="btn btn-sm btn-outline-primary mt-2" onClick={() => handleDownloadSingle(result, index)}>
                     <i className="bi bi-download me-1"></i>
                     {t('image-grayscale/result/download')}
                 </button>
             </div>
-        
-</>
-);
+        );
     };
 
     return (

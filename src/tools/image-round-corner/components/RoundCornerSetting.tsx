@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { t } from '~/helpers/i18n';
 
 const CornerMode = {
@@ -69,7 +69,7 @@ const RoundCornerSetting = ({ setting, onChange }) => {
                             <span className="visually-hidden">Toggle Dropdown</span>
                         </button>
                         <ul className="dropdown-menu dropdown-menu-end">
-                            {QuickValues.map(renderQuickOption)}
+                            {QuickValues.map((val, i) => <Fragment key={i}>{renderQuickOption(val)}</Fragment>)}
                         </ul>
                     </div>
                 </div>

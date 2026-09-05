@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, Fragment } from 'react';
 import { t } from '~/helpers/i18n';
 
 // Date type enum
@@ -104,11 +104,11 @@ const SettingCard = ({ onGenerate, onReset }: { onGenerate: any; onReset?: any }
         <div className="row">
           <div className="col-md-6 mb-3">
             <label className="form-label mb-2 d-block">{t('blood-pressure-tracker/settings/date_range')}</label>
-            {dateTypeOptions.map(renderDateTypeOption)}
+            {dateTypeOptions.map((option, i) => <Fragment key={i}>{renderDateTypeOption(option)}</Fragment>)}
           </div>
           <div className="col-md-6 mb-3">
             <label className="form-label mb-2 d-block">{t('blood-pressure-tracker/settings/start_of_week')}</label>
-            {weekStartOptions.map(option => renderWeekStartOption(option, dateType === DateType.MONTHLY))}
+            {weekStartOptions.map((option, i) => <Fragment key={i}>{renderWeekStartOption(option, dateType === DateType.MONTHLY)}</Fragment>)}
           </div>
         </div>
 

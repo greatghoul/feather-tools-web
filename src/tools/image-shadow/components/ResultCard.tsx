@@ -89,18 +89,14 @@ const ResultCard = ({ images = [], setting, autoProcess = false, processingKey =
 
     const renderShadowedImage = (shadowed, index) => {
         return (
-<>
-
-            <div className={`card-body text-center ${index % 2 === 0 ? '' : 'bg-light'}`}>
+            <div key={index} className={`card-body text-center ${index % 2 === 0 ? '' : 'bg-light'}`}>
                 <img src={shadowed.url} className={`mb-2 d-inline-block ${styles.imageStyle}`} />
                 <button className="btn btn-sm btn-outline-primary mt-2" onClick={() => handleDownloadSingle(shadowed, index)}>
                     <i className="bi bi-download me-1"></i>
                     {t('image-shadow/result/download')}
                 </button>
             </div>
-        
-</>
-);
+        );
     }
 
     return (

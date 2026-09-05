@@ -44,12 +44,8 @@ const InputCard = ({ images, settings, onImagesChange, onSettingsChange }) => {
     };
 
     const renderResizeSetting = (setting, index) => (
-<>
-
-        <ResizeSetting setting={setting} index={index} onChange={handleUpdateSetting} onRemove={handleRemoveSetting} canRemove={!isSingleSetting} />
-    
-</>
-);
+        <ResizeSetting key={index} setting={setting} index={index} onChange={handleUpdateSetting} onRemove={handleRemoveSetting} canRemove={!isSingleSetting} />
+    );
 
     const renderTabContent = () => {
         if (activeTab === 'images') {

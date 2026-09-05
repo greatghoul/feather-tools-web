@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import SequenceNumber from '../services/SequenceNumber';
 import { t } from '~/helpers/i18n';
 
@@ -152,7 +152,7 @@ const SettingForm = ({ settings, onChange }) => {
         {/* Number type */}
         <div className="mb-3">
             <label className="form-label">{t('number-images/settings/number_type')}</label>
-            {Object.values(getNumberTypes()).map(renderRadioOption)}
+            {Object.values(getNumberTypes()).map((type, i) => <Fragment key={i}>{renderRadioOption(type)}</Fragment>)}
         </div>
         
         {/* Number start */}
@@ -184,7 +184,7 @@ const SettingForm = ({ settings, onChange }) => {
         <div className="mb-3">
             <label className="form-label">{t('number-images/settings/position')}</label>
             <div className="row g-1">
-                {Object.values(getPositionTypes()).map(renderPositionOption)}
+                {Object.values(getPositionTypes()).map((position, i) => <Fragment key={i}>{renderPositionOption(position)}</Fragment>)}
             </div>
         </div>
 

@@ -1,0 +1,310 @@
+{
+    "simple-qrcode": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "rich-qrcode": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "batch-qrcode": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "number-images": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "resize-images": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "image-round-corner": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "image-shadow": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "image-torn-edge": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "shape-image": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "merge-images": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "pixelate-images": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "image-rotation": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "image-batch-crop": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "image-split": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "image-watermark": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "image-adjust": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "image-grayscale": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "image-compress": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "image-palette": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "image-placeholder": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "qrcode-decode": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "image-convert": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "image-annotation": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "gif-cut": {
+        "scripts": [
+            "/static/libs/gif.js"
+        ],
+        "cssLinks": [
+            "/static/gif-cut/gif-cut.css"
+        ]
+    },
+    "gif-frames": {
+        "scripts": [],
+        "cssLinks": [
+            "/static/gif-frames/gif-frames.css"
+        ]
+    },
+    "gif-maker": {
+        "scripts": [
+            "/static/libs/gif.js"
+        ],
+        "cssLinks": [
+            "/static/gif-maker/gif-maker.css"
+        ]
+    },
+    "blood-pressure-tracker": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "weight-tracker": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "habit-tracker": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "todo-paper": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "sleep-chart": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "monthly-planner": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "meal-planner": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "reading-log": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "clean-urls": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "remove-whitespaces": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "text-dedup": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "text-sort": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "text-case-convert": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "text-to-speech": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "text-ascii-art": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "text-line-numbers": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "text-frequency": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "text-truncate": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "text-column-extractor": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "text-bubble": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "text-redact": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "csv-redact": {
+        "scripts": [],
+        "cssLinks": [
+            "/static/csv-redact/csv-redact.css"
+        ]
+    },
+    "csv-sample": {
+        "scripts": [],
+        "cssLinks": [
+            "/static/csv-sample/csv-sample.css"
+        ]
+    },
+    "text-extract": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "line-paper": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "hanzi-paper": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "sudoku-generator": {
+        "scripts": [
+            "/static/libs/sudoku.js"
+        ],
+        "cssLinks": []
+    },
+    "video-cut": {
+        "scripts": [],
+        "cssLinks": [
+            "/static/video-cut/video-cut.css"
+        ]
+    },
+    "video-to-mp3": {
+        "scripts": [
+            "https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js"
+        ],
+        "cssLinks": [
+            "/static/video-to-mp3/video-to-mp3.css"
+        ]
+    },
+    "video-flip": {
+        "scripts": [],
+        "cssLinks": [
+            "/static/video-flip/video-flip.css"
+        ]
+    },
+    "video-frames": {
+        "scripts": [],
+        "cssLinks": [
+            "/static/video-frames/video-frames.css"
+        ]
+    },
+    "video-to-gif": {
+        "scripts": [
+            "/static/libs/gif.js"
+        ],
+        "cssLinks": [
+            "/static/video-to-gif/video-to-gif.css"
+        ]
+    },
+    "video-crop": {
+        "scripts": [],
+        "cssLinks": [
+            "/static/video-crop/video-crop.css"
+        ]
+    },
+    "video-speed": {
+        "scripts": [],
+        "cssLinks": [
+            "/static/video-speed/video-speed.css"
+        ]
+    },
+    "video-volume": {
+        "scripts": [],
+        "cssLinks": [
+            "/static/video-volume/video-volume.css"
+        ]
+    },
+    "emoji-picker": {
+        "scripts": [],
+        "cssLinks": [
+            "/static/emoji-picker/emoji-picker.css"
+        ]
+    },
+    "long-post-splitter": {
+        "scripts": [],
+        "cssLinks": [
+            "/static/long-post-splitter/long-post-splitter.css"
+        ]
+    },
+    "habitica-batch-tasks": {
+        "scripts": [],
+        "cssLinks": []
+    },
+    "habitica-egg-hatcher": {
+        "scripts": [],
+        "cssLinks": [
+            "/static/habitica-egg-hatcher/habitica-egg-hatcher.css"
+        ]
+    },
+    "minecraft-shape-calculator": {
+        "scripts": [],
+        "cssLinks": [
+            "/static/minecraft-shape-calculator/minecraft-shape-calculator.css"
+        ]
+    }
+}

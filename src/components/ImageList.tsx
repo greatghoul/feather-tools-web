@@ -249,12 +249,8 @@ const ImageList = ({ images, disabled, sortable = true, onChange, resizedImages 
     const renderImageListItem = (image, index) => {
         const badgeText = itemBadge ? itemBadge(image, index) : undefined;
         return (
-<>
-
-            <ImageListItem image={image} index={index} draggedIndex={draggedIndex} disabled={disabled} sortable={sortable} onRemove={handleRemove} onDragStart={handleDragStart} resizedImages={resizedImages.find(r => r.original.id === image.id)?.resized || []} badgeText={badgeText} />
-        
-</>
-);
+            <ImageListItem key={index} image={image} index={index} draggedIndex={draggedIndex} disabled={disabled} sortable={sortable} onRemove={handleRemove} onDragStart={handleDragStart} resizedImages={resizedImages.find(r => r.original.id === image.id)?.resized || []} badgeText={badgeText} />
+        );
     }
 
     const renderListFooter = (showNoImages = false) => (

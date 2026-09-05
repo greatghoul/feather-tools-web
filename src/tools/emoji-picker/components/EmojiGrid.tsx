@@ -93,12 +93,8 @@ const EmojiGrid = ({ onCollect, onCollectRecent, onUse, recentEmojis }) => {
                         <div className="text-muted small mb-2">{t('emoji-picker/recent/title')}</div>
                         <div className="emoji-picker-recent-list">
                             {visibleRecent.map((emoji) => (
-<>
-
                                 <button key={emoji.char} className="emoji-picker-emoji-btn" title={getEmojiName(emoji)} onClick={(e) => handleEmojiAction(e, emoji, onCollectRecent)}><span className="emoji-picker-emoji-glyph">{emoji.char}</span></button>
-                            
-</>
-))}
+                            ))}
                         </div>
                     </div>
                 
@@ -110,12 +106,8 @@ const EmojiGrid = ({ onCollect, onCollectRecent, onUse, recentEmojis }) => {
 
                     <div className="emoji-picker-categories mb-3">
                         {CATEGORIES.map((category) => (
-<>
-
                             <button key={category.id} className={`btn btn-sm emoji-picker-category-btn ${activeCategory === category.id ? 'btn-primary' : 'btn-outline-secondary'}`} onClick={() => setActiveCategory(category.id)}>{t(category.key)}</button>
-                        
-</>
-))}
+                        ))}
                     </div>
                 
 </>
@@ -137,11 +129,7 @@ const EmojiGrid = ({ onCollect, onCollectRecent, onUse, recentEmojis }) => {
                     
 </>
 ) : displayedEmojis.map((emoji) => (
-<>
-
                         <button key={emoji.char + emoji.name} className="emoji-picker-emoji-btn" title={getEmojiName(emoji)} onClick={(e) => handleEmojiAction(e, emoji, onCollect, onUse)}><span className="emoji-picker-emoji-glyph">{emoji.char}</span></button>
-                    
-</>
 ))}
                 </div>
             </div>

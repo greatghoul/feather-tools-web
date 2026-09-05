@@ -69,25 +69,17 @@ const PreviewPanel = ({ title, taskPerGroup, effectiveMinorCount, density }) => 
                         </header>
                         <div className={`groups-panel ${density === 'compact' ? 'compact' : ''}`}>
                             {Array.from({ length: config.groupCount }).map((_, index) => (
-<>
-
                                 <div className="group-card" key={index}>
                                     {Array.from({ length: taskPerGroup }).map((_, taskIndex) => {
                                         const isMinor = effectiveMinorCount > 0 && taskIndex >= taskPerGroup - effectiveMinorCount;
                                         return (
-<>
-
-                                            <div className={`task-item ${isMinor ? 'minor' : ''}`}>
+                                            <div className={`task-item ${isMinor ? 'minor' : ''}`} key={taskIndex}>
                                                 <div className="task-box"></div>
                                                 <div className="task-text"></div>
                                             </div>
-                                        
-</>
 );
                                     })}
                                 </div>
-                            
-</>
 ))}
                         </div>
                     </div>

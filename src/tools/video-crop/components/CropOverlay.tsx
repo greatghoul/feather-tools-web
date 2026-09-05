@@ -285,8 +285,6 @@ const CropOverlay = ({ videoRef, videoWidth, videoHeight, crop, aspect, onCropCh
                 }} onMouseDown={(e) => startDrag(e, 'move')} onTouchStart={(e) => startDrag(e, 'move')}>
                 <div className="crop-rule-thirds"></div>
                 {HANDLES.map((h) => (
-<>
-
                     <div key={h.name} className="crop-handle" style={{
                             position: 'absolute',
                             left: `calc(${h.x}% - 6px)`,
@@ -295,8 +293,6 @@ const CropOverlay = ({ videoRef, videoWidth, videoHeight, crop, aspect, onCropCh
                             height: '12px',
                             cursor: disabled ? 'default' : h.cursor,
                         }} onMouseDown={(e) => startDrag(e, 'resize', h.name)} onTouchStart={(e) => startDrag(e, 'resize', h.name)}></div>
-                
-</>
 ))}
             </div>
         </div>

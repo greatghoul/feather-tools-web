@@ -112,20 +112,14 @@ const PreviewPanel = ({ month, year, startOfWeek, lineCount, title }) => {
                                 {calendarData.weeks.flat().map((cell, idx) => {
                                     const cls = ['day-cell', cell.isOtherMonth ? 'other-month' : '', cell.isWeekend ? 'weekend' : ''].filter(Boolean).join(' ');
                                     return (
-<>
-
                                         <div className={cls} key={idx} style={{ '--cell-height': `${cellMinHeight}px` } as any}>
                                             <div className="day-number">{cell.day}</div>
                                             <div className="day-lines">
                                                 {Array.from({ length: lineCount }, (_, li) => (
-<>
-<div className="line" key={li}></div>
-</>
+                                                    <div className="line" key={li}></div>
 ))}
                                             </div>
                                         </div>
-                                    
-</>
 );
                                 })}
                             </div>

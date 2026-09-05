@@ -50,14 +50,10 @@ const ExtractionSettings = ({
                         </label>
                         <div className="btn-group w-100" role="group">
                             {MODES.map((m) => (
-<>
-
                                 <button key={m.value} type="button" className={`btn btn-sm ${mode === m.value ? 'btn-primary' : 'btn-outline-primary'}`} onClick={() => onModeChange(m.value)} disabled={isExtracting}>
                                     {t(m.labelKey)}
                                 </button>
-                            
-</>
-))}
+                            ))}
                         </div>
                     </div>
 

@@ -70,14 +70,10 @@ const VolumeControls = ({ volume, onVolumeChange, disabled }) => {
             <label className="form-label fw-bold mb-2">{t('video-volume/settings/volume')}</label>
             <div className="d-flex flex-wrap gap-1 mb-3">
                 {VOLUME_PRESETS.map((preset) => (
-<>
-
                     <button key={preset.value} type="button" className={`btn btn-sm ${volume === preset.value ? 'btn-primary' : 'btn-outline-secondary'}`} onClick={() => handlePresetClick(preset.value)} disabled={disabled}>
                         {preset.labelKey ? t(preset.labelKey) : preset.label}
                     </button>
-                
-</>
-))}
+                ))}
             </div>
             <div className="d-flex align-items-center gap-3 mb-2">
                 <i className="bi bi-volume-mute-fill text-muted"></i>

@@ -29,8 +29,6 @@ const AnnotationList = ({
 )}
             <div style={{ overflowY: 'auto', height: 'calc(100% - 25px)' }}>
                 {annotations.map((ann, idx) => (
-<>
-
                     <div key={ann.id} className="d-flex align-items-center justify-content-between gap-1 p-1 m-1 rounded annotation-item" style={{ cursor: 'pointer', background: '#f8f9fa', border: '1px solid #dee2e6', fontSize: '0.8rem', transition: 'background-color 0.15s', flexShrink: '0' }} onClick={() => onSelect(ann.id)}>
                         <span className="text-truncate">
                             {t(getAnnotationKey(ann.type))} {idx + 1}
@@ -40,9 +38,7 @@ const AnnotationList = ({
                                 onDelete(ann.id);
                             }}></i>
                     </div>
-                
-</>
-))}
+                ))}
             </div>
         </div>
         <style>{`${styles.listStyle}`}</style>

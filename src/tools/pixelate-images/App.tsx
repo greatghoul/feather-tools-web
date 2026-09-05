@@ -26,11 +26,7 @@ const App = () => {
 <>
 
                 {images.map(image => (
-<>
-
                     <EditorCard key={image.id} image={image} settings={settings} onDownload={handleDownload} />
-                
-</>
 ))}
             
 </>

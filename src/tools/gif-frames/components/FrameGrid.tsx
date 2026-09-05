@@ -54,8 +54,6 @@ const FrameGrid = ({
             <div className="card-body">
                 <div className="frame-grid">
                     {frames.map((frame) => (
-<>
-
                         <div key={frame.index} className={`frame-card ${selectedIndices.has(frame.index) ? 'selected' : ''}`}>
                             <div className="frame-thumbnail" onClick={() => onToggleSelect(frame.index)}>
                                 <img className="frame-image" src={frame.url} alt={`Frame ${frame.index + 1}`} />
@@ -86,9 +84,7 @@ const FrameGrid = ({
                                 </div>
                             </div>
                         </div>
-                    
-</>
-))}
+                    ))}
                 </div>
             </div>
         </div>

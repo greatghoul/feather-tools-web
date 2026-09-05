@@ -37,14 +37,10 @@ const Toolbar = ({
                         ? 'image-annotation/toolbar/select'
                         : TOOL_LABELS[tKey]?.key || '';
                     return (
-<>
-
                         <button key={tKey} className={`btn btn-sm ${btnClass}`} onClick={() => onToolChange(tKey)} title={t(titleKey)} style={{ padding: '0.2rem 0.4rem' }}>
                             <i className={`bi ${icon}`}></i>
                         </button>
-                    
-</>
-);
+                    );
                 })}
             </div>
             <div className="d-flex flex-column gap-2">

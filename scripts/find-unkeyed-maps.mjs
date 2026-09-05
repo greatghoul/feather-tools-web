@@ -71,12 +71,33 @@ for (const dir of SCAN_DIRS) {
             }
             // Slice from after the opening '(' to the closing ')'.
             const body = src.slice(m + 5, close);
-            // Heuristic: the map body renders JSX (contains a '<') and has no key.
+            // Heuristic classification:
+            // - A map that returns a shorthand fragment <>...</> is ALWAYS wrong:
+            //   the fragment is what React keys, and <> cannot take a key — even
+            //   when a key sits on an element inside the fragment, React warns.
+            // - A JSX-returning map with no key anywhere is wrong.
+            // - A bare function reference (arr.map(renderFn)) needs the render
+            //   fn to key its own output — report it separately for review.
+            const returnsFragment = /<>[\s\S]*<\/>/.test(body);
             const looksJsx = /<[A-Za-z]/.test(body);
             const hasKey = /\bkey\s*[=:]/.test(body);
-            if (looksJsx && !hasKey) {
+            const isFunctionRef = /^[a-zA-Z_$][\w$]*$/.test(body.trim());
+            if (returnsFragment || (looksJsx && !hasKey)) {
                 const line = src.slice(0, m).split('\n').length;
-                results.push({ file, line, snippet: body.trim().slice(0, 60).replace(/\s+/g, ' ') });
+                results.push({
+                    kind: 'FIX',
+                    file,
+                    line,
+                    snippet: body.trim().slice(0, 60).replace(/\s+/g, ' '),
+                });
+            } else if (isFunctionRef && looksJsx === false) {
+                const line = src.slice(0, m).split('\n').length;
+                results.push({
+                    kind: 'VERIFY',
+                    file,
+                    line,
+                    snippet: body.trim().slice(0, 60).replace(/\s+/g, ' '),
+                });
             }
             searchFrom = close + 1;
         }

@@ -39,13 +39,9 @@ const CropControls = ({
                         </label>
                         <div className="btn-group w-100" role="group">
                             {ASPECTS.map((a) => (
-<>
-
                                 <button key={a.value} type="button" className={`btn btn-sm ${aspect === a.value ? 'btn-primary' : 'btn-outline-primary'}`} onClick={() => onAspectChange(a.value)} disabled={isProcessing}>
                                     {t(a.labelKey)}
                                 </button>
-                            
-</>
 ))}
                         </div>
                     </div>

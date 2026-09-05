@@ -12,15 +12,11 @@ const FlipControls = ({ flipMode, onChange, disabled }) => {
 
         <div className="btn-group w-100" role="group" aria-label="flip mode">
             {MODES.map((mode) => (
-<>
-
                 <button key={mode.value} type="button" className={`btn ${flipMode === mode.value ? 'btn-primary' : 'btn-outline-secondary'}`} onClick={() => onChange(mode.value)} disabled={disabled}>
                     <i className={`bi ${mode.icon} me-1`}></i>
                     {t(mode.labelKey)}
                 </button>
-            
-</>
-))}
+            ))}
         </div>
     
 </>

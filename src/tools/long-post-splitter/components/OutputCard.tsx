@@ -38,11 +38,7 @@ const OutputCard = ({ segments, limit }) => {
             <div className="card-body">
                 <div className="d-flex flex-column gap-3">
                     {segments.map((seg) => (
-<>
-
                         <SegmentCard key={seg.index} segment={seg} limit={limit} />
-                    
-</>
 ))}
                 </div>
             </div>

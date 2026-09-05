@@ -17,11 +17,7 @@ const SettingsForm = ({ settings, onChange }) => {
 <>
 
         {formSettings.map((setting, index) => (
-<>
-
             <ResizeSetting key={index} setting={setting} onChange={onChange} index={index} onRemove={undefined} canRemove={undefined} />
-        
-</>
 ))}
 
         <div className="card-footer">

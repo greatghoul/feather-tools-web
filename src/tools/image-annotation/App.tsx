@@ -20,12 +20,8 @@ const App = () => {
                 </div>
             </div>
             {images.length > 0 && images.map((image) => (
-<>
-
                 <AnnotationCanvas key={image.id} image={image} />
-            
-</>
-))}
+            ))}
         </div>
     
 </>

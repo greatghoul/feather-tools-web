@@ -316,12 +316,8 @@ const ColumnEditor = ({ columns, setColumns }) => {
 </>
 )
                 : columns.map((column, index) => (
-<>
-
                     <ColumnRow key={column.id} column={column} index={index} total={columns.length} onUpdate={updateColumn} onRemove={removeColumn} onMoveUp={() => moveColumn(column.id, -1)} onMoveDown={() => moveColumn(column.id, 1)} onInsertBefore={() => insertColumnAt(index, 0)} onInsertAfter={() => insertColumnAt(index, 1)} canRemove={canRemove} />
-                
-</>
-))
+                ))
             }
             <button className="btn btn-sm btn-outline-primary w-100 mt-2" onClick={addColumn}>
                 <i className="bi bi-plus-lg me-1"></i>{t('csv-sample/button/add_column')}

@@ -77,8 +77,6 @@ const ResultCard = ({ images = [] as any[], results = {} as any, onResult }) => 
                             const data = isSuccess ? result.data : null;
 
                             return (
-<>
-
                                 <div className="row g-0 border rounded mb-3 overflow-hidden" key={image.id}>
                                     <div className="col-md-4 d-flex align-items-center justify-content-center bg-light p-3">
                                         <img src={image.url} className="img-fluid" style={{ maxHeight: '150px', objectFit: 'contain' }} />
@@ -137,8 +135,6 @@ const ResultCard = ({ images = [] as any[], results = {} as any, onResult }) => 
                                         </div>
                                     </div>
                                 </div>
-                            
-</>
 );
                         })}
                     </div>

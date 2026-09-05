@@ -71,16 +71,12 @@ const OutputCard = ({ groups, total }) => {
                                 </button>
                             </li>
                             {typeKeys.map((type) => (
-<>
-
                                 <li className="nav-item" key={type}>
                                     <button className={`nav-link ${activeTab === type ? 'active' : ''}`} onClick={() => setActiveTab(type)}>
                                         {t(TYPE_LABELS[type] || type)}
                                         <span className={`badge bg-${TYPE_COLORS[type] || 'secondary'} ms-1`} style={{ fontSize: '0.7em' }}>{groups[type].length}</span>
                                     </button>
                                 </li>
-                            
-</>
 ))}
                         </ul>
                     </div>
@@ -89,8 +85,6 @@ const OutputCard = ({ groups, total }) => {
                             <tbody>
                                 {activeTab === 'all'
                                     ? allItems.map((item, i) => (
-<>
-
                                         <tr key={i}>
                                             <td className="text-nowrap" style={{ width: '100px' }}>
                                                 <span className={`badge bg-${TYPE_COLORS[item.type] || 'secondary'}`}>
@@ -99,17 +93,11 @@ const OutputCard = ({ groups, total }) => {
                                             </td>
                                             <td className="font-monospace">{item.value}</td>
                                         </tr>
-                                    
-</>
 ))
                                     : displayedItems.map((item, i) => (
-<>
-
                                         <tr key={i}>
                                             <td className="font-monospace">{item}</td>
                                         </tr>
-                                    
-</>
 ))
                                 }
                             </tbody>

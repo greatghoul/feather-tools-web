@@ -21,12 +21,8 @@ const ColorPicker = ({ value, onChange, presets = [] as any[] }) => {
             <div className="cp-row">
                 <div className="cp-group">
                     {presets.map((p) => (
-<>
-
                         <button className={`cp-btn ${value === p.value ? 'active' : ''}`} style={{ backgroundColor: p.hex }} title={p.label} onClick={() => onChange(p.value)} key={p.value}></button>
-                    
-</>
-))}
+                    ))}
                 </div>
                 <div className="cp-selected">
                     <div className="cp-swatch" style={{ backgroundColor: activeHex }}></div>

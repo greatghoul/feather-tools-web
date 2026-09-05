@@ -46,14 +46,10 @@ const SettingCard = ({
                     <div className="col-md-6">
                         <label className="form-label mb-2 d-block">{t('meal-planner/settings/meals_title')}</label>
                         {mealCheckboxes.map(({ key, labelKey }) => (
-<>
-
                             <div className="form-check form-check-inline" key={key}>
                                 <input className="form-check-input" type="checkbox" id={`meal-${key}`} checked={meals[key]} onChange={() => onToggleMeal(key)} />
                                 <label className="form-check-label" htmlFor={`meal-${key}`}>{t(labelKey)}</label>
                             </div>
-                        
-</>
 ))}
                     </div>
 

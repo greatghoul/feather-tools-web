@@ -68,14 +68,10 @@ const SpeedControls = ({ speed, preservePitch, onSpeedChange, onPreservePitchCha
             <label className="form-label fw-bold mb-2">{t('video-speed/settings/speed')}</label>
             <div className="d-flex flex-wrap gap-1 mb-3">
                 {SPEED_PRESETS.map((preset) => (
-<>
-
                     <button key={preset.value} type="button" className={`btn btn-sm ${!isCustom && speed === preset.value ? 'btn-primary' : 'btn-outline-secondary'}`} onClick={() => handlePresetClick(preset.value)} disabled={disabled}>
                         {t(preset.labelKey)}
                     </button>
-                
-</>
-))}
+                ))}
             </div>
             <div className="d-flex align-items-center gap-2 mb-3">
                 <label className="form-label small text-muted mb-0 text-nowrap">

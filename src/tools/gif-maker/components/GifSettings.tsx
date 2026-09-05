@@ -80,14 +80,10 @@ const GifSettings = ({ settings, maxWidth, isGenerating, onSettingsChange }) => 
                 <label className="form-label mb-2">{t('gif-maker/setting/quality')}</label>
                 <div className="btn-group w-100" role="group">
                     {QUALITIES.map((q) => (
-<>
-
                         <button key={q.value} type="button" className={`btn btn-sm ${settings.quality === q.value ? 'btn-primary' : 'btn-outline-primary'}`} onClick={() => onSettingsChange({ ...settings, quality: q.value })} disabled={isGenerating}>
                             {t(q.labelKey)}
                         </button>
-                    
-</>
-))}
+                    ))}
                 </div>
             </div>
 

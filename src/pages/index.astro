@@ -1,3 +1,10 @@
+---
+// Root URL. The real home pages live at /en/ and /zh/ (i18n routing), so the
+// bare / is a redirect page instead of a 404 on hosts that don't process
+// Cloudflare _redirects (local dev/preview, generic static servers).
+// Mirrors the legacy / /en/ 301 and / ?lang=zh /zh/ 301 rules. On Cloudflare
+// Pages the _redirects rules take precedence and this page is never served.
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +13,7 @@
     <title>Redirecting to Feather Tools</title>
 </head>
 <body>
-    <script>
-        // Mirrors the legacy / /en/ 301 and / ?lang=zh /zh/ 301 rules so the
-        // root URL works on hosts that don't process Cloudflare _redirects
-        // (local dev/preview and generic static servers). On Cloudflare Pages
-        // the _redirects rules take precedence and this page is never served.
+    <script is:inline>
         (function () {
             var lang = new URLSearchParams(window.location.search).get('lang');
             window.location.replace(lang === 'zh' ? '/zh/' : '/en/');

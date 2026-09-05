@@ -8,9 +8,7 @@ const rootDir = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
     site: 'https://feather-tools.com',
-    // Cutover: Astro owns dist/ (wrangler pages_build_output_dir = "dist").
-    // During the migration this was dist-astro so the legacy Vite pipeline's
-    // dist/ was never clobbered; the legacy pipeline is gone now.
+    // Astro owns dist/ (wrangler pages_build_output_dir = "dist").
     outDir: 'dist',
     build: {
         // Emit tool CSS as separate <link> stylesheets (like the legacy build)

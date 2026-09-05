@@ -1,12 +1,31 @@
-# Feather Tools → Astro 迁移评估
+# Feather Tools → Astro 迁移
 
-> 状态：评估文档（未动工）
+> 状态：**已完成**（2026-09-05 迁移落地，本文档保留为迁移记录）
 > 日期：2026-09-05
-> 目的：评估把当前「手写 Vite 多入口 + 自定义预渲染」架构迁移到 Astro 的可行性、工作量与风险，供决策。文档基于对当前仓库的逐文件核对（2026-09-05）。
+> 目的：评估并记录把「手写 Vite 多入口 + 自定义预渲染」架构迁移到 Astro 的可行性、工作量与风险。评估部分基于对当时仓库的逐文件核对。
 
 ---
 
-## 1. 结论先行
+## 0. 迁移完成记录（2026-09-05）
+
+迁移已全部落地并验证，当前站点是标准 Astro 静态站：
+
+| 阶段 | 内容 | 结果 |
+|---|---|---|
+| Phase 1 | Astro 骨架 + 布局壳 + 首页/静态页（i18n 路由 `/en/` `/zh/`） | ✅ 提交 e69b1a4 |
+| Phase 2 | 66 个工具页 as client islands（每工具静态导入、按工具分包） | ✅ 提交 4fcf5c9 |
+| Phase 3a | 按工具 CSS 分包 + SSR 修复（gen-tool-pages.mjs / ToolShell） | ✅ 提交 6d4b4b6 |
+| Phase 3b | sitemap.xml / _redirects / 404.html（site-files 集成） | ✅ 提交 ff36fe5 |
+| Phase 3c | 切换到 `dist/`、删除旧 Vite 管线 | ✅ 提交 07365a6 |
+| 收尾修复 | 根 `/` 重定向、well-known 文件（webmanifest/robots/favicon）、React key 全量清理、dev 依赖预打包 | ✅ 提交 b76bd05 / ed44962 / 49d29e9–94b3ac9 |
+
+验收：typecheck、`astro build`（141 页）、工具页/壳页 HTML 与旧基线对比（已随基线一起退役）、浏览器抽查均通过。
+
+日常开发：`npm run dev`（Astro dev server，HMR）、`npm run build`（→ `dist/`）、`npx wrangler pages deploy dist`。
+
+---
+
+## 1. 原始评估：结论先行
 
 - **Astro 是这个站的正确归属**：多页静态输出、按语言路由、React 交互岛、真 dev server/HMR，正是当前手写管线在重复造的东西。
 - **但迁移是独立工程，不是小改**：要搬的有 66~67 个工具、双语路由、手动分包、SEO 细节、遗留 301、工具专属静态资源，以及一批重依赖工具（ffmpeg.wasm / konva / html2canvas / CodeMirror）的挂载行为。

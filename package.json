@@ -10,8 +10,6 @@
         "astro": "astro",
         "typecheck": "tsc --noEmit",
         "convert-i18n": "node scripts/convert-i18n.mjs",
-        "compare": "node scripts/compare-astro.mjs",
-        "compare:tools": "node scripts/compare-astro-tools.mjs",
         "gen-tool-pages": "node scripts/gen-tool-pages.mjs",
         "build": "astro build",
         "preview": "astro preview"

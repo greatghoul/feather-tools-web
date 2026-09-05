@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import ItemsCard from './components/ItemsCard';
 import OptionsCard, { type WheelSettings } from './components/OptionsCard';
 import WheelCard from './components/WheelCard';
@@ -6,12 +6,45 @@ import HistoryCard from './components/HistoryCard';
 
 const MAX_ITEMS = 100;
 const MAX_HISTORY = 50;
+const TEXT_KEY = 'random-wheel-options';
+const SETTINGS_KEY = 'random-wheel-settings';
+
+const loadSavedText = () => {
+    try {
+        return localStorage.getItem(TEXT_KEY) ?? '';
+    } catch (_) {
+        return '';
+    }
+};
+
+const loadSavedSettings = (): WheelSettings => {
+    try {
+        const raw = localStorage.getItem(SETTINGS_KEY);
+        if (raw) {
+            const saved = JSON.parse(raw);
+            return { dedup: saved.dedup ?? true, removeWinner: saved.removeWinner ?? false };
+        }
+    } catch (_) {}
+    return { dedup: true, removeWinner: false };
+};
 
 const App = () => {
-    const [text, setText] = useState('');
-    const [settings, setSettings] = useState<WheelSettings>({ dedup: true, removeWinner: false });
+    const [text, setText] = useState(loadSavedText);
+    const [settings, setSettings] = useState<WheelSettings>(loadSavedSettings);
     const [spinning, setSpinning] = useState(false);
     const [history, setHistory] = useState<string[]>([]);
+
+    useEffect(() => {
+        try {
+            localStorage.setItem(TEXT_KEY, text);
+        } catch (_) {}
+    }, [text]);
+
+    useEffect(() => {
+        try {
+            localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+        } catch (_) {}
+    }, [settings]);
 
     const { items, truncated } = useMemo(() => {
         const lines = text.split('\n').map((line) => line.trim()).filter(Boolean);

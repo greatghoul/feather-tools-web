@@ -1,0 +1,18 @@
+{
+    "text-sort/button/clear": "Clear",
+    "text-sort/button/copy": "Copy",
+    "text-sort/button/sort": "Sort Text",
+    "text-sort/input/placeholder": "Enter or paste your text here, one item per line...",
+    "text-sort/input/title": "Input Text",
+    "text-sort/message/copied": "Copied to clipboard",
+    "text-sort/name": "Text Sort",
+    "text-sort/note": "Sort lines of text alphabetically or numerically.",
+    "text-sort/options/alphabetically": "Alphabetically",
+    "text-sort/options/ascending": "Ascending (A-Z, 0-9)",
+    "text-sort/options/descending": "Descending (Z-A, 9-0)",
+    "text-sort/options/numerically": "Numerically",
+    "text-sort/options/sort_by": "Sort by",
+    "text-sort/options/sort_order": "Sort order",
+    "text-sort/output/title": "Sorted Result",
+    "text-sort/tags": "text processing, sort, alphabetical, list organizer"
+}

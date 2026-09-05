@@ -1,0 +1,12 @@
+.noPadding {
+    padding: 0;
+}
+
+.noPadding .cm-editor {
+    height: auto;
+    min-height: 150px;
+}
+
+.duplicateLine {
+    background-color: rgba(255, 0, 0, 0.2);
+}

@@ -1,0 +1,21 @@
+{
+    "text-ascii-art/button/clear": "清空",
+    "text-ascii-art/button/generate": "生成",
+    "text-ascii-art/input/placeholder": "在此输入文本...",
+    "text-ascii-art/input/title": "输入文本",
+    "text-ascii-art/message/copied": "已复制",
+    "text-ascii-art/name": "文本转字符画",
+    "text-ascii-art/note": "将普通文本转换为多种风格的 ASCII 字符画。",
+    "text-ascii-art/options/style_block": "块状",
+    "text-ascii-art/options/style_chunky": "粗块",
+    "text-ascii-art/options/style_doom": "末日",
+    "text-ascii-art/options/style_nancyj": "南希",
+    "text-ascii-art/options/style_rectangles": "矩形",
+    "text-ascii-art/options/style_roman": "罗马",
+    "text-ascii-art/options/style_script": "手写体",
+    "text-ascii-art/options/style_shadow": "阴影",
+    "text-ascii-art/options/style_slant": "倾斜",
+    "text-ascii-art/options/style_speed": "速度",
+    "text-ascii-art/options/style_stop": "停止",
+    "text-ascii-art/tags": "文本处理, ASCII 字符画, 字体效果, 文本风格"
+}

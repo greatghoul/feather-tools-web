@@ -1,0 +1,22 @@
+{
+    "text-extract/button/clear": "清除",
+    "text-extract/button/copy": "复制",
+    "text-extract/button/extract": "提取",
+    "text-extract/button/load_example": "加载示例",
+    "text-extract/input/placeholder": "在此粘贴包含待提取信息的文本...",
+    "text-extract/input/title": "源文本",
+    "text-extract/message/copied": "已复制到剪贴板",
+    "text-extract/name": "文本提取",
+    "text-extract/note": "从文本中提取手机号、网址、邮箱、IP 地址等信息。",
+    "text-extract/options/custom": "自定义正则",
+    "text-extract/options/custom_placeholder": "输入自定义正则表达式...",
+    "text-extract/options/email": "邮箱",
+    "text-extract/options/id_card": "身份证号",
+    "text-extract/options/ip": "IP 地址",
+    "text-extract/options/phone": "手机号",
+    "text-extract/options/types": "提取类型",
+    "text-extract/options/url": "网址",
+    "text-extract/output/empty": "未找到匹配项",
+    "text-extract/output/title": "提取结果",
+    "text-extract/tags": "文本, 提取, 手机号, 网址, 邮箱, IP, 身份证, 正则"
+}

@@ -1,0 +1,9 @@
+.bubbleFont {
+font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+        "Noto Sans Mono CJK SC", "Source Han Mono SC",
+        "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB",
+        "Courier New", monospace;
+    white-space: pre;
+    tab-size: 4;
+}
+

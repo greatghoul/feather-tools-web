@@ -1,0 +1,17 @@
+{
+    "text-truncate/button/clear": "清除",
+    "text-truncate/button/copy_all": "复制全部",
+    "text-truncate/button/copy_line": "复制此行",
+    "text-truncate/button/load_example": "加载示例",
+    "text-truncate/button/truncate": "裁切",
+    "text-truncate/input/placeholder": "在此输入或粘贴文本，每行一项...",
+    "text-truncate/input/title": "输入文本",
+    "text-truncate/message/copied": "已复制到剪贴板",
+    "text-truncate/message/copied_line": "该行已复制到剪贴板",
+    "text-truncate/name": "文本裁切",
+    "text-truncate/note": "将每行文本按最大字符数进行裁切，支持末尾添加省略号。",
+    "text-truncate/options/ellipsis": "省略号",
+    "text-truncate/options/max_length": "最大长度",
+    "text-truncate/output/title": "裁切结果",
+    "text-truncate/tags": "文本处理, 裁切, 省略号, 行限制"
+}

@@ -1,0 +1,21 @@
+{
+    "text-ascii-art/button/clear": "Clear",
+    "text-ascii-art/button/generate": "Generate",
+    "text-ascii-art/input/placeholder": "Type text here...",
+    "text-ascii-art/input/title": "Input Text",
+    "text-ascii-art/message/copied": "Copied",
+    "text-ascii-art/name": "Text to ASCII Art",
+    "text-ascii-art/note": "Convert plain text into ASCII art with multiple styles.",
+    "text-ascii-art/options/style_block": "Block",
+    "text-ascii-art/options/style_chunky": "Chunky",
+    "text-ascii-art/options/style_doom": "Doom",
+    "text-ascii-art/options/style_nancyj": "Nancyj",
+    "text-ascii-art/options/style_rectangles": "Rectangles",
+    "text-ascii-art/options/style_roman": "Roman",
+    "text-ascii-art/options/style_script": "Script",
+    "text-ascii-art/options/style_shadow": "Shadow",
+    "text-ascii-art/options/style_slant": "Slant",
+    "text-ascii-art/options/style_speed": "Speed",
+    "text-ascii-art/options/style_stop": "Stop",
+    "text-ascii-art/tags": "text processing, ascii art, typography, text styling"
+}

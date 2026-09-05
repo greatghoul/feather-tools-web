@@ -1,0 +1,22 @@
+{
+    "text-dedup/button/clear": "清空",
+    "text-dedup/button/copy": "复制",
+    "text-dedup/button/load_example": "加载示例",
+    "text-dedup/button/remove_duplicates": "移除重复项",
+    "text-dedup/features/ignore_whitespace": "可选择忽略前导和尾随空格",
+    "text-dedup/features/real_time_highlighting": "实时重复行高亮显示",
+    "text-dedup/features/simple_fast": "简单、快速、客户端处理",
+    "text-dedup/how_to_use/step1": "将您的文本粘贴到输入区域。",
+    "text-dedup/how_to_use/step2": "根据需要调整\"行选项\"以忽略前导/尾随空格。",
+    "text-dedup/how_to_use/step3": "点击\"移除重复项\"以获取输出中的唯一行。",
+    "text-dedup/how_to_use/step4": "复制清理后的文本或加载新示例。",
+    "text-dedup/name": "文本去重",
+    "text-dedup/note": "移除文本中的重复行，保留第一次出现的唯一项。",
+    "text-dedup/options/ignore_leading_whitespace": "忽略行首空格",
+    "text-dedup/options/ignore_trailing_whitespace": "忽略行尾空格",
+    "text-dedup/options/line_options": "行选项",
+    "text-dedup/options/options": "选项",
+    "text-dedup/tags": "文本处理, 去重, 唯一行",
+    "text-dedup/text/placeholder": "在此输入文本以查找和删除重复行...",
+    "text-dedup/text/title": "文本内容"
+}

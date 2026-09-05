@@ -1,0 +1,44 @@
+.urlInputContainerStyle {
+    position: relative;
+}
+
+.urlInputStyle {
+    min-height: 200px;
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    resize: vertical;
+}
+
+@media (max-width: 768px) {
+    .urlInputStyle {
+        min-height: 150px;
+        font-size: 0.8rem;
+    }
+}
+
+.cleaningOptionsStyle {
+    background-color: #f8f9fa;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .cleaningOptionsStyle {
+        padding: 0.75rem;
+    }
+}
+
+.optionGroupStyle {
+    margin-bottom: 1rem;
+}
+
+.optionGroupStyle:last-child {
+    margin-bottom: 0;
+}
+
+.customParamsStyle {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+    font-size: 0.875rem;
+}

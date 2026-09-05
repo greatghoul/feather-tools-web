@@ -1,0 +1,18 @@
+{
+    "text-sort/button/clear": "清空",
+    "text-sort/button/copy": "复制",
+    "text-sort/button/sort": "排序文本",
+    "text-sort/input/placeholder": "在此输入或粘贴文本，每行一项...",
+    "text-sort/input/title": "输入文本",
+    "text-sort/message/copied": "已复制到剪贴板",
+    "text-sort/name": "文本排序",
+    "text-sort/note": "按字母顺序或数字顺序对文本行进行排序。",
+    "text-sort/options/alphabetically": "字母顺序",
+    "text-sort/options/ascending": "正序 (A-Z, 0-9)",
+    "text-sort/options/descending": "倒序 (Z-A, 9-0)",
+    "text-sort/options/numerically": "数字顺序",
+    "text-sort/options/sort_by": "排序依据",
+    "text-sort/options/sort_order": "排序方向",
+    "text-sort/output/title": "排序结果",
+    "text-sort/tags": "文本处理, 排序, 字母顺序, 列表整理"
+}

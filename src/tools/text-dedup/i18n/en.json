@@ -1,0 +1,22 @@
+{
+    "text-dedup/button/clear": "Clear",
+    "text-dedup/button/copy": "Copy",
+    "text-dedup/button/load_example": "Load Example",
+    "text-dedup/button/remove_duplicates": "Remove Duplicates",
+    "text-dedup/features/ignore_whitespace": "Option to ignore leading and trailing whitespace",
+    "text-dedup/features/real_time_highlighting": "Real-time duplicate line highlighting",
+    "text-dedup/features/simple_fast": "Simple, fast, and client-side",
+    "text-dedup/how_to_use/step1": "Paste your text into the input area.",
+    "text-dedup/how_to_use/step2": "Adjust \"Line Options\" to ignore leading/trailing whitespace if needed.",
+    "text-dedup/how_to_use/step3": "Click \"Remove Duplicates\" to get the unique lines in the output.",
+    "text-dedup/how_to_use/step4": "Copy the cleaned text or load a new example.",
+    "text-dedup/name": "Text Deduplicator",
+    "text-dedup/note": "Remove duplicate lines from a text, keeping the first unique occurrence.",
+    "text-dedup/options/ignore_leading_whitespace": "Ignore leading whitespace",
+    "text-dedup/options/ignore_trailing_whitespace": "Ignore trailing whitespace",
+    "text-dedup/options/line_options": "Line Options",
+    "text-dedup/options/options": "Options",
+    "text-dedup/tags": "text processing, deduplication, unique lines",
+    "text-dedup/text/placeholder": "Enter text here to find and remove duplicate lines...",
+    "text-dedup/text/title": "Text Content"
+}

@@ -1,0 +1,22 @@
+{
+    "text-extract/button/clear": "Clear",
+    "text-extract/button/copy": "Copy",
+    "text-extract/button/extract": "Extract",
+    "text-extract/button/load_example": "Load Example",
+    "text-extract/input/placeholder": "Paste text containing information to extract...",
+    "text-extract/input/title": "Source Text",
+    "text-extract/message/copied": "Copied to clipboard",
+    "text-extract/name": "Text Extract",
+    "text-extract/note": "Extract phone numbers, URLs, emails, IP addresses and more from text.",
+    "text-extract/options/custom": "Custom Regex",
+    "text-extract/options/custom_placeholder": "Enter custom regex pattern...",
+    "text-extract/options/email": "Email",
+    "text-extract/options/id_card": "ID Card",
+    "text-extract/options/ip": "IP Address",
+    "text-extract/options/phone": "Phone",
+    "text-extract/options/types": "Types to Extract",
+    "text-extract/options/url": "URL",
+    "text-extract/output/empty": "No matches found",
+    "text-extract/output/title": "Extracted Results",
+    "text-extract/tags": "text, extract, phone, url, email, ip, id card, regex"
+}

@@ -1,0 +1,17 @@
+{
+    "text-truncate/button/clear": "Clear",
+    "text-truncate/button/copy_all": "Copy All",
+    "text-truncate/button/copy_line": "Copy Line",
+    "text-truncate/button/load_example": "Load Example",
+    "text-truncate/button/truncate": "Truncate",
+    "text-truncate/input/placeholder": "Enter or paste your text here, one item per line...",
+    "text-truncate/input/title": "Input Text",
+    "text-truncate/message/copied": "Copied to clipboard",
+    "text-truncate/message/copied_line": "Line copied to clipboard",
+    "text-truncate/name": "Text Truncate",
+    "text-truncate/note": "Truncate each line of text to a maximum length with ellipsis.",
+    "text-truncate/options/ellipsis": "Ellipsis",
+    "text-truncate/options/max_length": "Max Length",
+    "text-truncate/output/title": "Truncated Result",
+    "text-truncate/tags": "text processing, truncate, ellipsis, line limit"
+}

@@ -59,5 +59,4 @@ src/
 scripts/           build & conversion scripts
 functions/         Cloudflare Pages Functions (api/link-meta)
 public/            static assets served as-is (copied from the old app)
-migration-templates/  old Jinja templates, kept as reference during migration
 ```

@@ -8,6 +8,8 @@ export interface ToolDef {
     category: ToolCategory;
     /** Static logo path (relative to /static/), only set for extension tools. */
     logo?: string;
+    /** True when the tool talks to server endpoints; hides the local-processing privacy badge. */
+    serverSide?: boolean;
 }
 
 // Display order of categories on the home page and in nav anchors.
@@ -15,7 +17,7 @@ export const CATEGORY_ORDER: ToolCategory[] = ['text', 'image', 'video', 'printa
 
 export const TOOLS: ToolDef[] = [
     { slug: 'simple-qrcode', category: 'image' },
-    { slug: 'rich-qrcode', category: 'image' },
+    { slug: 'rich-qrcode', category: 'image', serverSide: true },
     { slug: 'batch-qrcode', category: 'image' },
     { slug: 'number-images', category: 'image' },
     { slug: 'resize-images', category: 'image' },

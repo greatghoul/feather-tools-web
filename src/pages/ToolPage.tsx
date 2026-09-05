@@ -17,12 +17,14 @@ interface ToolPageProps {
 
 export const ToolPage = ({ slug, locale, suggested, before, after }: ToolPageProps) => (
     <>
-        <div className="mb-1">
-            <p className="text-success mb-0" style={{ fontSize: '0.9em' }}>
-                <i className="bi bi-shield-fill-check" />
-                <span className="ms-1">{t('common/security')}</span>
-            </p>
-        </div>
+        {!TOOL_MAP[slug]?.serverSide ? (
+            <div className="mb-1">
+                <p className="text-success mb-0" style={{ fontSize: '0.9em' }}>
+                    <i className="bi bi-shield-fill-check" />
+                    <span className="ms-1">{t('common/security')}</span>
+                </p>
+            </div>
+        ) : null}
         <h1 className="mb-4 d-flex align-items-center gap-2">
             {TOOL_MAP[slug]?.logo ? (
                 <img src={`/static/${TOOL_MAP[slug]!.logo}`} alt="" width={32} height={32} className="rounded" />

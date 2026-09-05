@@ -1,6 +1,6 @@
 // Tool registry migrated from the old Flask app/tools.py.
-// A tool only gets generated pages once its src/tools/<slug>/entries/{en,zh}.tsx exist
-// (see vite.entries.mjs scanToolEntries).
+// A tool gets generated pages once scripts/gen-tool-pages.mjs has created its
+// ToolIsland.tsx (see src/data/migrated-tools.ts).
 export type ToolCategory = 'text' | 'image' | 'video' | 'printable' | 'extension';
 
 export interface ToolDef {

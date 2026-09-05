@@ -1,0 +1,74 @@
+---
+// Shared tool page shell: security badge, h1 (+logo), lead, static sections
+// (how-to-use etc.), the #app mount point, suggestions, and tool-extras tags.
+// The tool itself is injected as a client island via the "app" slot so each
+// tool page statically imports only its own App (per-tool CSS chunking).
+import Layout from '../layouts/Layout.astro';
+import Suggestions from './Suggestions.astro';
+import { createT, buildKeywords } from '../helpers/i18n-server';
+import { renderSections } from '../helpers/render-sections';
+import { TOOL_MAP, TOOLS } from '../data/tools';
+import { MIGRATED_TOOLS } from '../data/migrated-tools';
+import { SITE, type Locale } from '../data/site';
+import toolExtras from '../data/generated/tool-extras.json';
+
+interface ExtraTags {
+    scripts: string[];
+    cssLinks: string[];
+}
+
+interface Props {
+    slug: string;
+    locale: Locale;
+}
+
+const { slug, locale } = Astro.props;
+const t = createT(locale);
+const path = `/${locale}/${slug}/`;
+const alternates: Record<Locale, string> = { en: `/en/${slug}/`, zh: `/zh/${slug}/` };
+
+const { before, after } = await renderSections(slug, locale);
+const extras = (toolExtras as Record<string, ExtraTags>)[slug] ?? { scripts: [], cssLinks: [] };
+
+// Build-time random pick of same-category suggestions (mirrors legacy).
+const candidates = TOOLS.filter(
+    (x) => x.category === TOOL_MAP[slug]?.category && x.slug !== slug && MIGRATED_TOOLS.includes(x.slug)
+).map((x) => x.slug);
+const suggested = candidates.sort(() => Math.random() - 0.5).slice(0, 4);
+
+const tool = TOOL_MAP[slug];
+---
+<Layout
+    locale={locale}
+    path={path}
+    alternates={alternates}
+    title={`${t(`${slug}/name`)} | ${t('site/title')}`}
+    description={t(`${slug}/note`)}
+    keywords={buildKeywords(t, `${slug}/tags`)}
+    disqusKey={slug}
+>
+    {!tool?.serverSide && (
+        <div class="mb-1">
+            <p class="text-success mb-0" style="font-size: 0.9em">
+                <i class="bi bi-shield-fill-check" />
+                <span class="ms-1">{t('common/security')}</span>
+            </p>
+        </div>
+    )}
+    <h1 class="mb-4 d-flex align-items-center gap-2">
+        {tool?.logo && <img src={`/static/${tool.logo}`} alt="" width="32" height="32" class="rounded" />}
+        <span>{t(`${slug}/name`)}</span>
+    </h1>
+    <p class="lead mb-5">{t(`${slug}/note`)}</p>
+    <Fragment set:html={before} />
+    <div id="app" class="mb-5">
+        <slot name="app" />
+    </div>
+    <Fragment set:html={after} />
+    <Suggestions current={slug} locale={locale} pool={suggested} />
+
+    <Fragment slot="scripts">
+        {extras.cssLinks.map((href) => <link rel="stylesheet" href={href} />)}
+        {extras.scripts.map((src) => <script is:inline src={src} />)}
+    </Fragment>
+</Layout>

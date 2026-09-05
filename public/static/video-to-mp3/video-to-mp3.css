@@ -1,0 +1,26 @@
+.video-player {
+    max-height: 400px;
+    display: block;
+    background: #000;
+}
+
+.video-preview-wrapper {
+    background: #000;
+}
+
+.file-info-item {
+    padding: 0.5rem 0.75rem;
+    background: var(--bs-tertiary-bg);
+    border-radius: 0.375rem;
+}
+
+.file-info-item .label {
+    font-size: 0.8rem;
+    color: var(--bs-secondary-color);
+    display: block;
+}
+
+.file-info-item .value {
+    font-weight: 600;
+    font-size: 0.95rem;
+}

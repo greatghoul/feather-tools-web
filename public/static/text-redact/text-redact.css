@@ -1,0 +1,8 @@
+.text-redact-container .form-check-label {
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.text-redact-container .form-check-input {
+    cursor: pointer;
+}

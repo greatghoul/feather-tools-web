@@ -1,0 +1,216 @@
+.video-frames-container .video-player {
+    max-height: 400px;
+    display: block;
+    background: #000;
+}
+
+.video-frames-container .video-preview-wrapper {
+    background: #000;
+}
+
+.video-frames-container .frame-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.video-frames-container .frames-card .card-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.video-frames-container .frame-card {
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.video-frames-container .frame-card:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.video-frames-container .frame-card.selected {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 2px rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.video-frames-container .frame-thumbnail {
+    position: relative;
+    cursor: pointer;
+    background: repeating-conic-gradient(#f0f0f0 0% 25%, transparent 0% 50%) 50% / 16px 16px;
+}
+
+.video-frames-container .frame-thumbnail .frame-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    display: block;
+}
+
+.video-frames-container .frame-checkbox {
+    position: absolute;
+    top: 0.4rem;
+    left: 0.4rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 0.3rem;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid var(--bs-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: #fff;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.video-frames-container .frame-checkbox.checked {
+    background: var(--bs-primary);
+    border-color: var(--bs-primary);
+}
+
+.video-frames-container .frame-body {
+    padding: 0.5rem;
+}
+
+.video-frames-container .frame-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+}
+
+.video-frames-container .frame-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--bs-secondary-color);
+}
+
+.video-frames-container .frame-timestamp {
+    font-size: 0.7rem;
+    color: var(--bs-secondary-color);
+    font-variant-numeric: tabular-nums;
+}
+
+.video-frames-container .frame-body .btn {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem;
+}
+
+.video-frames-container .slideshow-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.video-frames-container .slideshow-content {
+    background: #1a1a1a;
+    border-radius: 0.5rem;
+    max-width: 900px;
+    width: 100%;
+    max-height: 95vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.video-frames-container .slideshow-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.video-frames-container .slideshow-title {
+    color: #fff;
+    font-weight: 600;
+}
+
+.video-frames-container .slideshow-stage {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    background: #000;
+    overflow: hidden;
+}
+
+.video-frames-container .slideshow-image {
+    max-width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+}
+
+.video-frames-container .slideshow-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.video-frames-container .slideshow-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+}
+
+.video-frames-container .slideshow-nav-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.video-frames-container .slideshow-play-btn {
+    min-width: 6rem;
+}
+
+.video-frames-container .slideshow-settings {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.video-frames-container .slideshow-duration-slider {
+    width: 150px;
+}
+
+@media (max-width: 576px) {
+    .video-frames-container .frame-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.75rem;
+    }
+
+    .video-frames-container .slideshow-content {
+        max-height: 100vh;
+        border-radius: 0;
+    }
+
+    .video-frames-container .slideshow-image {
+        max-height: 50vh;
+    }
+}

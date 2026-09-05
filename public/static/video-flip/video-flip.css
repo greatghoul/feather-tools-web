@@ -1,0 +1,9 @@
+.video-player {
+    max-height: 400px;
+    display: block;
+    background: #000;
+}
+
+.video-flip-preview-wrapper {
+    background: #000;
+}

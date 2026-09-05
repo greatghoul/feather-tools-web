@@ -1,0 +1,50 @@
+.video-crop-container .video-crop-player {
+    max-height: 400px;
+    display: block;
+    background: #000;
+    object-fit: contain;
+}
+
+.video-crop-container .video-crop-preview-wrapper {
+    background: #000;
+}
+
+.video-crop-container .crop-overlay {
+    z-index: 5;
+}
+
+.video-crop-container .crop-selection {
+    border: 1px solid #fff;
+    box-sizing: border-box;
+}
+
+.video-crop-container .crop-rule-thirds {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
+        linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
+        linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
+        linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35));
+    background-repeat: no-repeat;
+    background-size: 1px 100%, 1px 100%, 100% 1px, 100% 1px;
+    background-position: 33.33% 0, 66.66% 0, 0 33.33%, 0 66.66%;
+}
+
+.video-crop-container .crop-handle {
+    background: #fff;
+    border: 1px solid #0d6efd;
+    border-radius: 2px;
+    z-index: 6;
+}
+
+.video-crop-container .tiny {
+    font-size: 0.7rem;
+}
+
+@media (max-width: 576px) {
+    .video-crop-container .video-crop-player {
+        max-height: 300px;
+    }
+}

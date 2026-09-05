@@ -1,0 +1,29 @@
+/* Long Post Splitter Tool Styles */
+
+.long-post-splitter-container .segment-card {
+    border-left: 3px solid var(--bs-primary);
+}
+
+.long-post-splitter-container .segment-text {
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: inherit;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #1a1a1a;
+}
+
+.long-post-splitter-container .segment-card:has(.bg-danger) {
+    border-left-color: var(--bs-danger);
+}
+
+.long-post-splitter-container textarea.form-control:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+@media (max-width: 768px) {
+    .long-post-splitter-container .card-footer .row {
+        --bs-gutter-y: 0.75rem;
+    }
+}

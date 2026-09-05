@@ -1,0 +1,16 @@
+/* Text Column Extractor Tool Styles */
+
+.text-column-extractor-container .table th,
+.text-column-extractor-container .table td {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.5rem;
+}
+
+.text-column-extractor-container .table th {
+    font-weight: 600;
+}
+
+.text-column-extractor-container .table td {
+    max-width: 300px;
+    overflow-x: auto;
+}

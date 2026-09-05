@@ -1,0 +1,18 @@
+.video-player {
+    max-height: 400px;
+    display: block;
+    background: #000;
+}
+
+.video-speed-preview-wrapper {
+    background: #000;
+}
+
+.speed-controls .btn-group {
+    flex-wrap: wrap;
+}
+
+.speed-controls .btn-group .btn {
+    flex: 0 0 auto;
+    min-width: 60px;
+}

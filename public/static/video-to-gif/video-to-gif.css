@@ -1,0 +1,26 @@
+.video-to-gif-container .video-player {
+    max-height: 400px;
+    display: block;
+    background: #000;
+}
+
+.video-to-gif-container .video-preview-wrapper {
+    background: #000;
+}
+
+.video-to-gif-container .gif-preview-wrapper {
+    background: repeating-conic-gradient(#f0f0f0 0% 25%, transparent 0% 50%) 50% / 16px 16px;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.video-to-gif-container .gif-preview-image {
+    max-height: 400px;
+    border-radius: 0.375rem;
+}
+
+@media (max-width: 576px) {
+    .video-to-gif-container .gif-preview-image {
+        max-height: 300px;
+    }
+}

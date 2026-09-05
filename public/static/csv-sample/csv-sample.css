@@ -1,0 +1,157 @@
+.csv-sample-container .table th,
+.csv-sample-container .table td {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.5rem;
+}
+
+.csv-sample-container .table th {
+    font-weight: 600;
+}
+
+.csv-sample-container .form-check-label {
+    cursor: pointer;
+}
+
+.csv-sample-container .csv-sample-column-row {
+    background-color: #fff;
+}
+
+.csv-sample-container .csv-sample-column-row .form-select,
+.csv-sample-container .csv-sample-column-row .form-control {
+    cursor: pointer;
+}
+
+.csv-sample-container .csv-sample-templates {
+    position: relative;
+}
+
+.csv-sample-container .csv-sample-help-icon {
+    position: relative;
+    display: inline-block;
+    margin-left: 4px;
+    color: var(--bs-secondary);
+    cursor: help;
+    vertical-align: middle;
+}
+
+.csv-sample-container .csv-sample-help-tooltip {
+    visibility: hidden;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1060;
+    width: 240px;
+    padding: 0.5rem 0.75rem;
+    background-color: var(--bs-dark);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1.4;
+    border-radius: var(--bs-border-radius-sm);
+    text-align: left;
+    white-space: normal;
+}
+
+.csv-sample-container .csv-sample-help-icon:hover .csv-sample-help-tooltip,
+.csv-sample-container .csv-sample-help-icon:focus .csv-sample-help-tooltip {
+    visibility: visible;
+}
+
+.csv-sample-container .csv-sample-help-tooltip-wide {
+    width: 280px;
+}
+
+.csv-sample-container .csv-sample-format-table {
+    font-size: 0.75rem;
+}
+
+.csv-sample-container .csv-sample-format-table td {
+    padding: 0.15rem 0.5rem;
+}
+
+.csv-sample-container .csv-sample-templates-popover {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 0;
+    z-index: 1050;
+    min-width: 260px;
+    max-width: 320px;
+    background-color: #fff;
+    border: 1px solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.csv-sample-container .csv-sample-templates-popover-header {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid var(--bs-border-color);
+}
+
+.csv-sample-container .csv-sample-templates-list {
+    list-style: none;
+    margin: 0;
+    padding: 0.25rem 0;
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.csv-sample-container .csv-sample-templates-item {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    background: none;
+    border: none;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.csv-sample-container .csv-sample-templates-item-row:hover {
+    background-color: var(--bs-tertiary-bg);
+}
+
+.csv-sample-container .csv-sample-templates-delete {
+    flex-shrink: 0;
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--bs-border-radius-sm);
+}
+
+.csv-sample-container .csv-sample-templates-delete:hover {
+    background-color: var(--bs-tertiary-bg);
+}
+
+.csv-sample-container .csv-sample-templates-delete.text-success:hover {
+    background-color: var(--bs-success-bg-subtle);
+    color: var(--bs-success-text-emphasis) !important;
+}
+
+.csv-sample-container .csv-sample-templates-delete.text-danger:hover {
+    background-color: var(--bs-danger-bg-subtle);
+    color: var(--bs-danger-text-emphasis) !important;
+}
+
+.csv-sample-container .csv-sample-templates-delete.text-secondary:hover {
+    background-color: var(--bs-secondary-bg-subtle);
+    color: var(--bs-secondary-text-emphasis) !important;
+}
+
+.csv-sample-container .csv-sample-templates-item.active {
+    background-color: var(--bs-primary-bg-subtle);
+    color: var(--bs-primary);
+    font-weight: 600;
+}
+
+.csv-sample-container .csv-sample-templates-actions {
+    padding: 0.5rem 0.75rem;
+    border-top: 1px solid var(--bs-border-color);
+}
+
+@media (min-width: 992px) {
+    .csv-sample-container .border-lg-start {
+        border-left: 1px solid var(--bs-border-color);
+    }
+}

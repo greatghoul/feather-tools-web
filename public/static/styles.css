@@ -1,0 +1,91 @@
+.card-tool:hover {
+    outline: 2px solid rgba(0, 123, 255, 0.3);
+    border: 1px solid rgba(0, 123, 255, 0.3);
+    background-color: rgba(0, 123, 255, 0.05);
+}
+
+.card-tool h6 a,
+.card-tool h2 a {
+    text-decoration: none;
+}
+
+.card-tool h6 a:hover,
+.card-tool h2 a:hover {
+    text-decoration: none;
+}
+
+.card-tool a.stretched-link {
+    text-decoration: none;
+}
+
+.card-tool .card-text-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.video-controls {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+.video-upload-zone {
+    border: 2px dashed #dee2e6;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    cursor: pointer;
+    transition: border-color 0.2s, background-color 0.2s;
+}
+
+.video-upload-zone:hover {
+    border-color: #0d6efd;
+    background-color: rgba(13, 110, 253, 0.05);
+}
+
+/* Todo Paper Styles - Print only */
+@media print {
+    @page {
+        size: A4;
+        margin: 0;
+    }
+
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 210mm;
+        height: 297mm;
+        background: #fff;
+    }
+
+    /* Hide specific elements that should not be printed */
+    .navbar, .footer,
+    h1, .lead,
+    .col-lg-4, .col-lg-6 {
+        display: none !important;
+    }
+
+    /* Hide preview-wrap background and border */
+    .preview-wrap {
+        position: fixed !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        padding: 0 !important;
+        border: 0 !important;
+        margin: 0 !important;
+        background: #fff !important;
+        overflow: hidden !important;
+    }
+
+    /* Style #a4Page for printing */
+    #a4Page {
+        width: 210mm;
+        height: 297mm;
+        padding: 20mm;
+        margin: 0;
+        box-sizing: border-box;
+        background: #fff;
+        overflow: hidden;
+    }
+}

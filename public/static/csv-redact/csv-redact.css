@@ -1,0 +1,26 @@
+.csv-redact-container .table th,
+.csv-redact-container .table td {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.5rem;
+}
+
+.csv-redact-container .table th {
+    font-weight: 600;
+}
+
+.csv-redact-container .csv-redact-masked-col {
+    background-color: #fff3cd;
+}
+
+.csv-redact-container .table-striped tbody tr:nth-of-type(odd) .csv-redact-masked-col {
+    background-color: #fff3cd;
+}
+
+.csv-redact-container .form-check-label {
+    cursor: pointer;
+}
+
+.csv-redact-container .form-select,
+.csv-redact-container .form-control {
+    cursor: pointer;
+}

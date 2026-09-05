@@ -1,0 +1,26 @@
+.video-player {
+    max-height: 400px;
+    display: block;
+    background: #000;
+}
+
+.video-volume-preview-wrapper {
+    background: #000;
+}
+
+.volume-slider {
+    flex: 1 1 auto;
+}
+
+.volume-badge {
+    min-width: 56px;
+}
+
+.volume-controls .btn-group {
+    flex-wrap: wrap;
+}
+
+.volume-controls .btn-group .btn {
+    flex: 0 0 auto;
+    min-width: 60px;
+}

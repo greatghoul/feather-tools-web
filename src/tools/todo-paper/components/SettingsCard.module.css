@@ -1,0 +1,99 @@
+.cardStyle .card {
+
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        overflow: hidden;
+    
+}
+.cardStyle .card-header {
+
+        background: #f9fafb;
+        border-bottom: 1px solid #e5e7eb;
+        padding: 12px 16px;
+    
+}
+.cardStyle .card-header h5 {
+
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #222;
+    
+}
+.cardStyle .card-body {
+
+        padding: 16px;
+    
+}
+.cardStyle .form-label {
+
+        display: block;
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+        color: #374151;
+    
+}
+.cardStyle .form-control, .form-select {
+
+        width: 100%;
+        height: 36px;
+        border: 1px solid #d1d5db;
+        border-radius: 6px;
+        padding: 0 10px;
+        font-size: 0.92rem;
+        background: #fff;
+        color: #222;
+    
+}
+.cardStyle .form-control:focus, .form-select:focus {
+
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    
+}
+.cardStyle .form-check {
+
+        display: flex;
+        align-items: center;
+        min-height: 36px;
+    
+}
+.cardStyle .form-check-input {
+
+        width: 16px;
+        height: 16px;
+        margin-right: 8px;
+    
+}
+.cardStyle .form-check-label {
+
+        font-size: 0.92rem;
+        color: #374151;
+    
+}
+.cardStyle .btn-primary {
+
+        width: 100%;
+        height: 40px;
+        border: none;
+        border-radius: 8px;
+        background: #2563eb;
+        color: #fff;
+        font-size: 0.95rem;
+        cursor: pointer;
+        margin-top: 8px;
+    
+}
+.cardStyle .btn-primary:hover {
+
+        background: #1d4ed8;
+    
+}
+
+
+.cardStyle {
+}
+
+.sliderStyle {
+}

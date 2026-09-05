@@ -1,0 +1,23 @@
+{
+    "line-paper/name": "Printable Line Paper",
+    "line-paper/note": "Generate printable A4 lined paper with 9mm line spacing and customizable line colors.",
+    "line-paper/preview/title": "Preview",
+    "line-paper/settings/card_title": "Settings",
+    "line-paper/settings/color_black": "Black",
+    "line-paper/settings/color_blue": "Blue",
+    "line-paper/settings/color_custom": "Custom",
+    "line-paper/settings/color_gray": "Gray",
+    "line-paper/settings/color_green": "Green",
+    "line-paper/settings/color_red": "Red",
+    "line-paper/settings/line_color": "Line Color",
+    "line-paper/settings/line_height": "Line Height",
+    "line-paper/settings/orientation": "Orientation",
+    "line-paper/settings/orientation_landscape": "Landscape",
+    "line-paper/settings/orientation_portrait": "Portrait",
+    "line-paper/settings/padding_horizontal": "Horizontal Margin",
+    "line-paper/settings/padding_narrow": "Narrow",
+    "line-paper/settings/padding_normal": "Normal",
+    "line-paper/settings/padding_vertical": "Vertical Margin",
+    "line-paper/settings/padding_wide": "Wide",
+    "line-paper/tags": "lined paper, ruled paper, printable, A4, writing paper"
+}

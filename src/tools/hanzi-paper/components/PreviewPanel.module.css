@@ -1,0 +1,14 @@
+.previewStyle {
+}
+
+.previewStyle .preview-container {
+    text-align: center;
+}
+
+.previewStyle .preview-image {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #dee2e6;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}

@@ -1,0 +1,149 @@
+.previewWrapStyle {
+}
+
+.previewWrapStyle .preview-wrap {
+
+        overflow: auto;
+        padding: 12px;
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+        background: #e5e7eb;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    
+}
+.previewWrapStyle .a4-page {
+
+        width: 210mm;
+        min-height: 297mm;
+        padding: 15mm 17mm;
+        background: #fff;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+        overflow: hidden;
+        position: relative;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+}
+.previewWrapStyle .planner-header {
+
+        text-align: center;
+        border-bottom: 2px solid #333;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+    
+}
+.previewWrapStyle .planner-header h2 {
+
+        margin: 0;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    
+}
+.previewWrapStyle .planner-header .subtitle {
+
+        font-size: 12px;
+        color: #666;
+        margin-top: 2px;
+    
+}
+.previewWrapStyle .planner-body {
+
+        display: flex;
+        gap: 12px;
+    
+}
+.previewWrapStyle .calendar-section {
+
+        flex: 1;
+    
+}
+.previewWrapStyle .calendar-grid {
+
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        border: 1px solid #ccc;
+        border-bottom: none;
+        border-right: none;
+    
+}
+.previewWrapStyle .day-header {
+
+        text-align: center;
+        font-size: 10px;
+        font-weight: 600;
+        color: #555;
+        padding: 4px 0;
+        border-bottom: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        background: #f5f5f5;
+        text-transform: uppercase;
+    
+}
+.previewWrapStyle .day-header.weekend {
+
+        color: #888;
+    
+}
+.previewWrapStyle .day-cell {
+
+        border-bottom: 1px solid #ccc;
+        border-right: 1px solid #ccc;
+        padding: 3px 4px;
+        position: relative;
+        min-height: var(--cell-height, 70px);
+    
+}
+.previewWrapStyle .day-cell.other-month {
+
+        background: #f9f9f9;
+    
+}
+.previewWrapStyle .day-cell .day-number {
+
+        font-size: 11px;
+        font-weight: 600;
+        color: #333;
+        line-height: 1;
+    
+}
+.previewWrapStyle .day-cell.weekend .day-number {
+
+        color: #888;
+    
+}
+.previewWrapStyle .day-cell.other-month .day-number {
+
+        color: #bbb;
+    
+}
+.previewWrapStyle .day-cell .day-lines {
+
+        margin-top: 2px;
+    
+}
+.previewWrapStyle .day-cell .day-lines .line {
+
+        border-bottom: 1px solid #eee;
+        height: 20px;
+        box-sizing: border-box;
+    
+}
+@media print {
+
+        .previewWrapStyle .preview-wrap {
+            background: none;
+            padding: 0;
+            border: none;
+        }
+        .previewWrapStyle .a4-page {
+            box-shadow: none;
+            padding: 0;
+            width: 100%;
+            min-height: auto;
+        }
+    
+}
+

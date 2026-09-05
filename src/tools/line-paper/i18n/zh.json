@@ -1,0 +1,23 @@
+{
+    "line-paper/name": "可打印横线纸",
+    "line-paper/note": "生成可打印的 A4 横线纸，固定 9mm 行距，支持自定义线条颜色。",
+    "line-paper/preview/title": "预览",
+    "line-paper/settings/card_title": "设置",
+    "line-paper/settings/color_black": "黑色",
+    "line-paper/settings/color_blue": "蓝色",
+    "line-paper/settings/color_custom": "自定义",
+    "line-paper/settings/color_gray": "灰色",
+    "line-paper/settings/color_green": "绿色",
+    "line-paper/settings/color_red": "红色",
+    "line-paper/settings/line_color": "线条颜色",
+    "line-paper/settings/line_height": "行高",
+    "line-paper/settings/orientation": "纸张方向",
+    "line-paper/settings/orientation_landscape": "横向",
+    "line-paper/settings/orientation_portrait": "纵向",
+    "line-paper/settings/padding_horizontal": "水平边距",
+    "line-paper/settings/padding_narrow": "窄",
+    "line-paper/settings/padding_normal": "常规",
+    "line-paper/settings/padding_vertical": "垂直边距",
+    "line-paper/settings/padding_wide": "宽",
+    "line-paper/tags": "横线纸, 格子纸, 可打印, A4, 书写纸"
+}

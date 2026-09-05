@@ -24,17 +24,13 @@ const SettingsCard = ({ arrow, onArrowChange, onGenerate }) => {
                 <div className="mb-3">
                     <div className="row g-1" style={{ maxWidth: '240px' }}>
                         {ARROWS.map(a => (
-<>
-
-                            <div className="col-4 p-1">
+                            <div className="col-4 p-1" key={a.value}>
                                 <input className="btn-check" type="radio" name="arrowDirection" id={`arrow-${a.value}`} value={a.value} checked={arrow === a.value} onChange={() => onArrowChange(a.value)} />
                                 <label className="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center" htmlFor={`arrow-${a.value}`} title={a.value} style={{ height: '40px', fontSize: '16px' }}>
                                     {a.icon}
                                 </label>
                             </div>
-                        
-</>
-))}
+                        ))}
                     </div>
                 </div>
 

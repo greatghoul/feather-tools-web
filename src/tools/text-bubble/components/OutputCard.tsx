@@ -47,12 +47,8 @@ const OutputCard = ({ outputs }) => {
 
         <div className="d-flex flex-column gap-3">
             {STYLE_KEYS.map(s => (
-<>
-
-                <BubbleCard label={s.label} text={outputs[s.key]} />
-            
-</>
-))}
+                <BubbleCard key={s.key} label={s.label} text={outputs[s.key]} />
+            ))}
         </div>
     
 </>

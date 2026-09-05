@@ -34,7 +34,7 @@ export const SectionsAfter = () => (
                 <div className="card-body">
                     <div className="card-text">
                         <p>{t('simple-qrcode/bookmarklet/drag-to-bookmarks')}</p>
-                        <a className="btn btn-outline-primary" href="javascript:document.location='{/* TODO jinja: {{ request.url_root }} */}simple-qrcode?url='+encodeURIComponent(document.location.href);"></a>
+                        <a className="btn btn-outline-primary" href="javascript:document.location='https://feather-tools.com/simple-qrcode?url='+encodeURIComponent(document.location.href);">{t('simple-qrcode/name')}</a>
                         <div className="mt-3 text-muted small">
                             <i className="bi bi-info-circle me-1"></i>
                             {t('simple-qrcode/bookmarklet/info-text')}

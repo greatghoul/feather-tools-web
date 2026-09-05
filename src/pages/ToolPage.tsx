@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { t } from '~/helpers/i18n';
+import { TOOL_MAP } from '~/data/tools';
 import type { Locale } from '~/data/site';
 import { Suggestions } from './Suggestions';
 
@@ -22,7 +23,12 @@ export const ToolPage = ({ slug, locale, suggested, before, after }: ToolPagePro
                 <span className="ms-1">{t('common/security')}</span>
             </p>
         </div>
-        <h1 className="mb-4">{t(`${slug}/name`)}</h1>
+        <h1 className="mb-4 d-flex align-items-center gap-2">
+            {TOOL_MAP[slug]?.logo ? (
+                <img src={`/static/${TOOL_MAP[slug]!.logo}`} alt="" width={32} height={32} className="rounded" />
+            ) : null}
+            <span>{t(`${slug}/name`)}</span>
+        </h1>
         <p className="lead mb-5">{t(`${slug}/note`)}</p>
         {before}
         <div id="app" className="mb-5">

@@ -34,8 +34,8 @@ export const SectionsAfter = () => (
                 </div>
                 <div className="card-body">
                     <p>{t('rich-qrcode/bookmarklet/drag-to-bookmarks')}</p>
-                    <a className="btn btn-outline-primary" href="javascript:(function(){window.open('{/* TODO jinja: {{ request.url_root }} */}rich-qrcode?url='+encodeURIComponent(location.href),'_blank');})();" draggable="true">
-                        
+                    <a className="btn btn-outline-primary" href="javascript:(function(){window.open('https://feather-tools.com/rich-qrcode?url='+encodeURIComponent(location.href),'_blank');})();" draggable="true">
+                        {t('rich-qrcode/name')}
                     </a>
                     <div className="mt-3 text-muted small">
                         <i className="bi bi-info-circle me-1"></i>

@@ -3,12 +3,6 @@ import { t } from '~/helpers/i18n';
 export const SectionsBefore = () => (
     <>
 
-    <h1 className="mb-4 d-flex align-items-center gap-2">
-        {/* TODO jinja: {% if tool_logo %} */}
-            <img src="{/* TODO jinja: {{ url_for('static', filename=tool_logo) }} */}" alt="Habitica" width="32" height="32" className="rounded" />
-        {/* TODO jinja: {% endif %} */}
-        <span></span>
-    </h1>
     
 
     

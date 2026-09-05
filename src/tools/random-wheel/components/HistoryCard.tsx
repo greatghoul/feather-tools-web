@@ -7,7 +7,7 @@ interface HistoryCardProps {
 
 const HistoryCard = ({ history, onClear }: HistoryCardProps) => {
     return (
-        <div className="card mt-4">
+        <div className="card">
             <div className="card-header bg-light d-flex justify-content-between align-items-center">
                 <span>{t('random-wheel/history/title')}</span>
                 <button

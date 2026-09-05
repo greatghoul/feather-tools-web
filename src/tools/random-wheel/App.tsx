@@ -43,7 +43,7 @@ const App = () => {
                 />
                 <OptionsCard settings={settings} onSettingsChange={setSettings} disabled={spinning} />
             </div>
-            <div className="col-lg-7">
+            <div className="col-lg-7 d-flex flex-column gap-4">
                 <WheelCard
                     items={items}
                     spinning={spinning}

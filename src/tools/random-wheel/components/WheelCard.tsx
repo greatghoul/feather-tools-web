@@ -221,7 +221,7 @@ const WheelCard = ({ items, spinning, onSpinChange, onResult }: WheelCardProps) 
     };
 
     return (
-        <div className="card h-100">
+        <div className="card">
             <div className="card-header bg-light">{t('random-wheel/wheel/title')}</div>
             <div className="card-body d-flex flex-column align-items-center">
                 <div className={styles.wheelWrap} ref={wrapRef}>

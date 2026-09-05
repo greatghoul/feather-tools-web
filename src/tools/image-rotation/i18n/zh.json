@@ -1,0 +1,17 @@
+{
+    "image-rotation/input/images": "图片",
+    "image-rotation/name": "批量图片旋转",
+    "image-rotation/note": "批量调整图片方向，支持旋转和镜像。",
+    "image-rotation/result/download": "下载",
+    "image-rotation/result/download_all": "下载全部",
+    "image-rotation/result/flip_horizontal": "水平翻转",
+    "image-rotation/result/flip_vertical": "垂直翻转",
+    "image-rotation/result/no_images": "尚未加载图片",
+    "image-rotation/result/process_all": "处理全部",
+    "image-rotation/result/processing": "处理中...",
+    "image-rotation/result/reset": "重置",
+    "image-rotation/result/rotate_left": "向左旋转",
+    "image-rotation/result/rotate_right": "向右旋转",
+    "image-rotation/result/upload_hint": "从左侧上传图片以开始",
+    "image-rotation/tags": "图片旋转, 镜像翻转, 批量处理, 隐私, 客户端"
+}

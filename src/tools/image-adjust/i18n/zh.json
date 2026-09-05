@@ -1,0 +1,20 @@
+{
+    "image-adjust/input/images": "图片",
+    "image-adjust/input/settings": "设置",
+    "image-adjust/name": "图片色彩调整",
+    "image-adjust/note": "批量调整图片的亮度、对比度、饱和度、灰度及 RGB 通道。",
+    "image-adjust/result/download": "下载",
+    "image-adjust/result/download_all": "下载全部",
+    "image-adjust/result/not_processed": "暂无处理结果",
+    "image-adjust/result/process_images": "处理图片",
+    "image-adjust/result/upload_hint": "请先上传图片并配置调整参数",
+    "image-adjust/setting/blue": "蓝色",
+    "image-adjust/setting/brightness": "亮度",
+    "image-adjust/setting/contrast": "对比度",
+    "image-adjust/setting/grayscale": "灰度",
+    "image-adjust/setting/green": "绿色",
+    "image-adjust/setting/red": "红色",
+    "image-adjust/setting/reset": "重置为默认值",
+    "image-adjust/setting/saturation": "饱和度",
+    "image-adjust/tags": "图片, 调整, 亮度, 对比度, 饱和度, 灰度, RGB, 色彩, 批量"
+}

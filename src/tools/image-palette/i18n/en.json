@@ -1,0 +1,16 @@
+{
+    "image-palette/input/images": "Images",
+    "image-palette/input/settings": "Settings",
+    "image-palette/name": "Image Color Palette",
+    "image-palette/note": "Extract dominant color palettes from your images. Supports batch processing with customizable color count and sorting options.",
+    "image-palette/result/click_to_copy": "Click to copy",
+    "image-palette/result/download_palette": "Download Palette",
+    "image-palette/result/extract_palette": "Extract Palette",
+    "image-palette/result/not_processed": "No palette extracted yet",
+    "image-palette/result/upload_hint": "Upload images to extract their color palettes",
+    "image-palette/setting/color_count": "Color Count",
+    "image-palette/setting/sort_brightness": "Brightness",
+    "image-palette/setting/sort_by": "Sort By",
+    "image-palette/setting/sort_hue": "Hue",
+    "image-palette/tags": "color palette, color picker, color extraction, image analysis, design"
+}

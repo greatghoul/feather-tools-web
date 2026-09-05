@@ -1,0 +1,17 @@
+{
+    "image-rotation/input/images": "Images",
+    "image-rotation/name": "Batch Image Rotation",
+    "image-rotation/note": "Batch adjust image orientation with rotation and mirroring.",
+    "image-rotation/result/download": "Download",
+    "image-rotation/result/download_all": "Download All",
+    "image-rotation/result/flip_horizontal": "Flip Horizontal",
+    "image-rotation/result/flip_vertical": "Flip Vertical",
+    "image-rotation/result/no_images": "No images loaded yet",
+    "image-rotation/result/process_all": "Process All",
+    "image-rotation/result/processing": "Processing...",
+    "image-rotation/result/reset": "Reset",
+    "image-rotation/result/rotate_left": "Rotate Left",
+    "image-rotation/result/rotate_right": "Rotate Right",
+    "image-rotation/result/upload_hint": "Upload images from the left panel to get started",
+    "image-rotation/tags": "image rotation, mirroring, batch processing, privacy, client-side"
+}

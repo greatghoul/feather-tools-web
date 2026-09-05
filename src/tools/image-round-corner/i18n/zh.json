@@ -1,0 +1,21 @@
+{
+    "image-round-corner/input/images": "图片",
+    "image-round-corner/input/settings": "设置",
+    "image-round-corner/name": "批量图片圆角",
+    "image-round-corner/note": "一次性为多张图片添加圆角。",
+    "image-round-corner/result/download": "下载",
+    "image-round-corner/result/download_all": "下载全部",
+    "image-round-corner/result/not_processed": "尚未处理图片",
+    "image-round-corner/result/process_images": "添加圆角",
+    "image-round-corner/result/upload_hint": "上传图片以添加圆角",
+    "image-round-corner/setting/bottom_left": "左下",
+    "image-round-corner/setting/bottom_right": "右下",
+    "image-round-corner/setting/corner_radius": "圆角半径",
+    "image-round-corner/setting/four_corners": "分别设置四个角",
+    "image-round-corner/setting/mode": "圆角模式",
+    "image-round-corner/setting/mode_all": "全部圆角",
+    "image-round-corner/setting/mode_separate": "分别设置",
+    "image-round-corner/setting/top_left": "左上",
+    "image-round-corner/setting/top_right": "右上",
+    "image-round-corner/tags": "图片圆角, 批量处理, 图片编辑, 隐私优先, 客户端"
+}

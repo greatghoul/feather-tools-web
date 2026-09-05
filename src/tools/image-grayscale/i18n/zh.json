@@ -1,0 +1,12 @@
+{
+    "image-grayscale/input/images": "图片",
+    "image-grayscale/name": "图片灰度处理",
+    "image-grayscale/note": "一键批量将图片转换为灰度模式。",
+    "image-grayscale/result/download": "下载",
+    "image-grayscale/result/download_all": "下载全部",
+    "image-grayscale/result/not_processed": "暂无处理结果",
+    "image-grayscale/result/process_images": "转换为灰度",
+    "image-grayscale/result/title": "处理结果",
+    "image-grayscale/result/upload_hint": "请先上传图片以开始灰度转换",
+    "image-grayscale/tags": "图片, 灰度, 黑白, 批量, 转换"
+}

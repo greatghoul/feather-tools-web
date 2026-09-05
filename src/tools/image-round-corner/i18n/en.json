@@ -1,0 +1,21 @@
+{
+    "image-round-corner/input/images": "Images",
+    "image-round-corner/input/settings": "Settings",
+    "image-round-corner/name": "Batch Round Corner Images",
+    "image-round-corner/note": "Apply rounded corners to multiple images at once.",
+    "image-round-corner/result/download": "Download",
+    "image-round-corner/result/download_all": "Download All",
+    "image-round-corner/result/not_processed": "Images not processed yet",
+    "image-round-corner/result/process_images": "Apply Round Corners",
+    "image-round-corner/result/upload_hint": "Upload images to apply rounded corners",
+    "image-round-corner/setting/bottom_left": "Bottom Left",
+    "image-round-corner/setting/bottom_right": "Bottom Right",
+    "image-round-corner/setting/corner_radius": "Corner Radius",
+    "image-round-corner/setting/four_corners": "Set each corner individually",
+    "image-round-corner/setting/mode": "Corner Mode",
+    "image-round-corner/setting/mode_all": "All Corners",
+    "image-round-corner/setting/mode_separate": "Separate",
+    "image-round-corner/setting/top_left": "Top Left",
+    "image-round-corner/setting/top_right": "Top Right",
+    "image-round-corner/tags": "image rounding, batch processing, image editing, privacy, client-side"
+}

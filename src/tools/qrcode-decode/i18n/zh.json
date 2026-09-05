@@ -1,0 +1,14 @@
+{
+    "qrcode-decode/input/images": "图片",
+    "qrcode-decode/name": "二维码解析",
+    "qrcode-decode/note": "从图片中解析二维码内容。所有处理直接在您的浏览器中进行。",
+    "qrcode-decode/result/click_to_copy": "点击复制",
+    "qrcode-decode/result/copied": "已复制",
+    "qrcode-decode/result/copy_all": "复制全部",
+    "qrcode-decode/result/decode_failed": "未发现二维码",
+    "qrcode-decode/result/decode_success": "发现二维码",
+    "qrcode-decode/result/decoding": "解析中...",
+    "qrcode-decode/result/no_images": "没有图片",
+    "qrcode-decode/result/upload_hint": "上传包含二维码的图片进行解析",
+    "qrcode-decode/tags": "二维码, 解析, 扫码, 批量处理, 隐私, 客户端"
+}

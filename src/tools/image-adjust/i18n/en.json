@@ -1,0 +1,20 @@
+{
+    "image-adjust/input/images": "Images",
+    "image-adjust/input/settings": "Settings",
+    "image-adjust/name": "Image Adjust",
+    "image-adjust/note": "Batch adjust brightness, contrast, saturation, grayscale and RGB channels of your images.",
+    "image-adjust/result/download": "Download",
+    "image-adjust/result/download_all": "Download All",
+    "image-adjust/result/not_processed": "No images processed yet",
+    "image-adjust/result/process_images": "Process Images",
+    "image-adjust/result/upload_hint": "Upload images and configure settings to start adjusting",
+    "image-adjust/setting/blue": "Blue",
+    "image-adjust/setting/brightness": "Brightness",
+    "image-adjust/setting/contrast": "Contrast",
+    "image-adjust/setting/grayscale": "Grayscale",
+    "image-adjust/setting/green": "Green",
+    "image-adjust/setting/red": "Red",
+    "image-adjust/setting/reset": "Reset to Defaults",
+    "image-adjust/setting/saturation": "Saturation",
+    "image-adjust/tags": "image, adjust, brightness, contrast, saturation, grayscale, RGB, color, batch"
+}

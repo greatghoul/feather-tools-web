@@ -1,0 +1,17 @@
+{
+    "image-shadow/input/images": "Upload Images",
+    "image-shadow/input/settings": "Shadow Settings",
+    "image-shadow/name": "Batch Add Shadow",
+    "image-shadow/note": "Add shadow effects to multiple images at once.",
+    "image-shadow/result/download": "Download",
+    "image-shadow/result/download_all": "Download All",
+    "image-shadow/result/not_processed": "Not Processed",
+    "image-shadow/result/process_images": "Add Shadow",
+    "image-shadow/result/upload_hint": "Please upload images to start processing",
+    "image-shadow/setting/blur_radius": "Blur Radius",
+    "image-shadow/setting/offset": "Offset",
+    "image-shadow/setting/padding": "Padding",
+    "image-shadow/setting/shadow_color": "Shadow Color",
+    "image-shadow/setting/spread_radius": "Spread Radius",
+    "image-shadow/tags": "image, shadow, effect, batch processing"
+}

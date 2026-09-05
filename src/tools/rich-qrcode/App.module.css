@@ -1,0 +1,127 @@
+/* Rich QR Code styles */
+/* URL input styling */
+.appStyle .url-input-container {
+
+  margin-bottom: 1.5rem;
+
+}
+.appStyle .input-group-lg .form-control-lg {
+
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+
+}
+.appStyle .input-group-lg .btn {
+
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+
+}
+/* QR code card styling */
+.appStyle .qrcode-card-container {
+
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #f8f9fa;
+
+}
+.appStyle #qrcode-card {
+
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #e9ecef;
+
+}
+/* Make download button more noticeable */
+.appStyle #download-card-btn {
+
+  font-weight: 500;
+  transition: all 0.2s ease;
+
+}
+.appStyle #download-card-btn:disabled {
+
+  opacity: 0.65;
+  cursor: not-allowed;
+
+}
+.appStyle #download-card-btn:not(:disabled):hover {
+
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+/* Form input styling */
+.appStyle .form-control:focus {
+
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+
+}
+/* Card styling */
+.appStyle .card {
+
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+}
+.appStyle .card-header {
+
+  border-bottom: 1px solid #eaeaea;
+
+}
+/* Loading state transitions */
+.appStyle .card {
+
+  transition: opacity 0.3s ease;
+
+}
+.appStyle button {
+
+  position: relative;
+  transition: all 0.2s ease;
+
+}
+.appStyle .spinner-border {
+
+  transition: opacity 0.2s ease;
+
+}
+/* For mobile devices */
+@media (max-width: 767px) {
+
+  .appStyle #qrcode-card {
+    width: 100%;
+    height: auto;
+    max-width: 430px; /* Half original size for mobile */
+    max-height: 60px;
+  }
+
+  .appStyle .input-group-lg .btn {
+    padding: 0.75rem 1rem;
+  }
+
+}
+/* For very small devices */
+@media (max-width: 480px) {
+
+  .appStyle .input-group-lg {
+    flex-direction: column;
+  }
+
+  .appStyle .input-group-lg .form-control,
+  .appStyle .input-group-lg .btn {
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  .appStyle .input-group-lg .btn {
+    margin-top: 10px;
+  }
+
+}

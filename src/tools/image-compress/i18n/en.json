@@ -1,0 +1,22 @@
+{
+    "image-compress/input/images": "Images",
+    "image-compress/input/settings": "Settings",
+    "image-compress/name": "Image Compress",
+    "image-compress/note": "Compress image file sizes while maintaining visual quality.",
+    "image-compress/result/compress_images": "Compress Images",
+    "image-compress/result/compressed_size": "Compressed",
+    "image-compress/result/compression_ratio": "Saved",
+    "image-compress/result/download": "Download",
+    "image-compress/result/download_all": "Download All",
+    "image-compress/result/not_processed": "No images compressed yet",
+    "image-compress/result/original_size": "Original",
+    "image-compress/result/processing": "Compressing...",
+    "image-compress/result/upload_hint": "Upload images and configure settings to start compressing",
+    "image-compress/setting/format_jpeg": "JPEG",
+    "image-compress/setting/format_original": "Original",
+    "image-compress/setting/format_png": "PNG",
+    "image-compress/setting/format_webp": "WebP",
+    "image-compress/setting/output_format": "Output Format",
+    "image-compress/setting/quality": "Quality",
+    "image-compress/tags": "image, compress, reduce, optimize, quality, jpeg, png, webp"
+}

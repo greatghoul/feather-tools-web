@@ -1,0 +1,19 @@
+{
+    "batch-qrcode/features/download": "Download individual QR codes or all as a ZIP file.",
+    "batch-qrcode/features/enter-urls": "Enter multiple URLs (one per line).",
+    "batch-qrcode/features/generate": "Generate QR codes for all valid URLs.",
+    "batch-qrcode/input/generate": "Generate",
+    "batch-qrcode/input/generating": "Generating...",
+    "batch-qrcode/input/label": "Enter URLs (one per line)",
+    "batch-qrcode/input/load_examples": "Load Examples",
+    "batch-qrcode/input/placeholder": "https://example.com\nhttps://google.com",
+    "batch-qrcode/name": "Batch QR Code",
+    "batch-qrcode/note": "Efficiently generate multiple QR codes in bulk. Simply paste your list of URLs, and we'll create individual QR codes for each one.",
+    "batch-qrcode/results/download": "Download",
+    "batch-qrcode/results/download_all": "Download All (ZIP)",
+    "batch-qrcode/results/filename": "Filename",
+    "batch-qrcode/results/preview": "Preview",
+    "batch-qrcode/results/title": "Generated QR Codes",
+    "batch-qrcode/results/url": "URL",
+    "batch-qrcode/tags": "qrcode, batch, generator"
+}

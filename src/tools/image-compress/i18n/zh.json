@@ -1,0 +1,22 @@
+{
+    "image-compress/input/images": "图片",
+    "image-compress/input/settings": "设置",
+    "image-compress/name": "图片压缩",
+    "image-compress/note": "压缩图片文件大小，同时保持视觉质量。支持 JPEG、PNG、WebP 格式。",
+    "image-compress/result/compress_images": "压缩图片",
+    "image-compress/result/compressed_size": "压缩后",
+    "image-compress/result/compression_ratio": "节省",
+    "image-compress/result/download": "下载",
+    "image-compress/result/download_all": "下载全部",
+    "image-compress/result/not_processed": "暂无压缩结果",
+    "image-compress/result/original_size": "原大小",
+    "image-compress/result/processing": "压缩中...",
+    "image-compress/result/upload_hint": "请先上传图片并配置压缩参数",
+    "image-compress/setting/format_jpeg": "JPEG",
+    "image-compress/setting/format_original": "保持原格式",
+    "image-compress/setting/format_png": "PNG",
+    "image-compress/setting/format_webp": "WebP",
+    "image-compress/setting/output_format": "输出格式",
+    "image-compress/setting/quality": "质量",
+    "image-compress/tags": "图片, 压缩, 优化, 质量, JPEG, PNG, WebP"
+}

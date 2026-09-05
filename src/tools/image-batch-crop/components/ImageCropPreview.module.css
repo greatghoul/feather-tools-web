@@ -1,0 +1,9 @@
+.konvajs-content canvas {
+
+        max-width: 100%;
+        height: auto;
+        display: block;
+        background-color: #f8f9fa;
+    
+}
+

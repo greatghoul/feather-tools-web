@@ -1,0 +1,19 @@
+{
+    "batch-qrcode/features/download": "下载单个二维码或打包下载所有二维码。",
+    "batch-qrcode/features/enter-urls": "输入多个网址（每行一个）。",
+    "batch-qrcode/features/generate": "为所有有效网址生成二维码。",
+    "batch-qrcode/input/generate": "生成",
+    "batch-qrcode/input/generating": "生成中...",
+    "batch-qrcode/input/label": "输入网址（每行一个）",
+    "batch-qrcode/input/load_examples": "加载示例",
+    "batch-qrcode/input/placeholder": "https://example.com\nhttps://google.com",
+    "batch-qrcode/name": "批量二维码",
+    "batch-qrcode/note": "高效批量生成二维码。只需粘贴您的网址列表，即可为每个网址生成独立的二维码。",
+    "batch-qrcode/results/download": "下载",
+    "batch-qrcode/results/download_all": "下载全部 (ZIP)",
+    "batch-qrcode/results/filename": "文件名",
+    "batch-qrcode/results/preview": "预览",
+    "batch-qrcode/results/title": "生成的二维码",
+    "batch-qrcode/results/url": "网址",
+    "batch-qrcode/tags": "二维码, 批量, 生成器"
+}

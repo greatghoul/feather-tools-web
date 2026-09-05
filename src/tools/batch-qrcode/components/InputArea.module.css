@@ -1,0 +1,7 @@
+.textareaStyle {
+min-height: 120px;
+    font-family: monospace;
+    resize: none;
+    overflow-y: hidden;
+}
+

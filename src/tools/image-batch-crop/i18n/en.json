@@ -1,0 +1,12 @@
+{
+    "image-batch-crop/input/images": "Images",
+    "image-batch-crop/name": "Batch Image Crop",
+    "image-batch-crop/note": "Crop multiple images in one go with a unified crop size.",
+    "image-batch-crop/result/crop_size": "Global Crop Size",
+    "image-batch-crop/result/download": "Download",
+    "image-batch-crop/result/download_all": "Download All",
+    "image-batch-crop/result/no_images": "No images loaded yet",
+    "image-batch-crop/result/upload_hint": "Upload images from the left panel to start cropping",
+    "image-batch-crop/result/wheel_hint": "Use mouse wheel to zoom and drag image to align",
+    "image-batch-crop/tags": "image crop, batch processing, konva, drag and zoom, privacy"
+}

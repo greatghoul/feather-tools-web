@@ -1,0 +1,16 @@
+{
+    "image-palette/input/images": "图片",
+    "image-palette/input/settings": "设置",
+    "image-palette/name": "图片色卡提取",
+    "image-palette/note": "从图片中提取主要颜色组成色卡。支持批量处理，可自定义提取颜色数量和排序方式。",
+    "image-palette/result/click_to_copy": "点击复制",
+    "image-palette/result/download_palette": "下载色卡",
+    "image-palette/result/extract_palette": "提取色卡",
+    "image-palette/result/not_processed": "暂无提取结果",
+    "image-palette/result/upload_hint": "上传图片以提取色卡",
+    "image-palette/setting/color_count": "颜色数量",
+    "image-palette/setting/sort_brightness": "按亮度",
+    "image-palette/setting/sort_by": "排序方式",
+    "image-palette/setting/sort_hue": "按色相",
+    "image-palette/tags": "色卡, 取色, 颜色提取, 图片分析, 设计"
+}

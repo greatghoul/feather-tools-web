@@ -1,0 +1,4 @@
+.image {
+    max-width: 100%;
+    background: repeating-conic-gradient(#e5e5e5 0% 25%, #ffffff 0% 50%) 50% / 20px 20px;
+}

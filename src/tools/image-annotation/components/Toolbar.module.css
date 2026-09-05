@@ -1,0 +1,21 @@
+.narrowInputStyle input.form-control {
+
+        flex: none !important;
+        width: 50px !important;
+
+}
+
+.fillSwitchStyle {
+
+        padding-left: 0 !important;
+
+}
+
+.fillSwitchStyle .form-check-input {
+
+        width: 2.5em !important;
+        height: 1.3em !important;
+        margin-left: 0 !important;
+        margin-top: 0 !important;
+
+}

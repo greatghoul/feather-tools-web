@@ -1,0 +1,17 @@
+{
+    "image-shadow/input/images": "上传图片",
+    "image-shadow/input/settings": "阴影设置",
+    "image-shadow/name": "批量添加阴影",
+    "image-shadow/note": "为图片批量添加阴影效果。",
+    "image-shadow/result/download": "下载",
+    "image-shadow/result/download_all": "下载全部",
+    "image-shadow/result/not_processed": "等待处理",
+    "image-shadow/result/process_images": "添加阴影",
+    "image-shadow/result/upload_hint": "请上传图片后开始处理",
+    "image-shadow/setting/blur_radius": "模糊半径",
+    "image-shadow/setting/offset": "偏移量",
+    "image-shadow/setting/padding": "内边距",
+    "image-shadow/setting/shadow_color": "阴影颜色",
+    "image-shadow/setting/spread_radius": "扩展半径",
+    "image-shadow/tags": "图片, 阴影, 效果, 批量处理"
+}

@@ -1,0 +1,12 @@
+{
+    "image-batch-crop/input/images": "图片",
+    "image-batch-crop/name": "图片批量剪裁",
+    "image-batch-crop/note": "统一设置剪裁尺寸后批量处理图片。",
+    "image-batch-crop/result/crop_size": "全局剪裁尺寸",
+    "image-batch-crop/result/download": "下载",
+    "image-batch-crop/result/download_all": "下载全部",
+    "image-batch-crop/result/no_images": "暂无图片",
+    "image-batch-crop/result/upload_hint": "请先从左侧上传图片开始剪裁",
+    "image-batch-crop/result/wheel_hint": "可用鼠标滚轮缩放并拖动图片对齐",
+    "image-batch-crop/tags": "图片剪裁, 批量处理, konva, 拖拽缩放, 隐私"
+}

@@ -1,0 +1,10 @@
+.konvajs-content canvas {
+
+        display: block;
+        max-width: 100%;
+        height: auto;
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+    
+}
+

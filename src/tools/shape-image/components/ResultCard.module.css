@@ -1,0 +1,41 @@
+.shapeSelectorContainerStyle .btn {
+    white-space: nowrap;
+}
+
+.shapeSelectorContainerStyle .shape-icon {
+    width: clamp(24px, 8vw, 80px);
+    height: clamp(24px, 8vw, 80px);
+}
+
+.canvasContainerStyle {
+    width: 100%;
+    height: 200px;
+}
+
+@media (max-width: 576px) {
+    .canvasContainerStyle {
+        height: 200px;
+    }
+}
+
+@media (min-width: 992px) {
+    .canvasContainerStyle {
+        height: 600px;
+    }
+}
+
+.imageCroppedStyle {
+    max-height: 100px;
+}
+
+@media (max-width: 576px) {
+    .imageCroppedStyle {
+        max-height: 100px;
+    }
+}
+
+@media (min-width: 992px) {
+    .imageCroppedStyle {
+        max-height: 200px;
+    }
+}

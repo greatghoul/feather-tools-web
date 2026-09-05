@@ -1,0 +1,14 @@
+{
+    "qrcode-decode/input/images": "Images",
+    "qrcode-decode/name": "QR Code Decoder",
+    "qrcode-decode/note": "Decode QR codes from images. All processing happens directly in your browser.",
+    "qrcode-decode/result/click_to_copy": "Click to copy",
+    "qrcode-decode/result/copied": "Copied",
+    "qrcode-decode/result/copy_all": "Copy All",
+    "qrcode-decode/result/decode_failed": "No QR code found",
+    "qrcode-decode/result/decode_success": "QR code found",
+    "qrcode-decode/result/decoding": "Decoding...",
+    "qrcode-decode/result/no_images": "No images loaded",
+    "qrcode-decode/result/upload_hint": "Upload images containing QR codes to decode",
+    "qrcode-decode/tags": "qr code, decoder, qr scanner, batch processing, privacy, client-side"
+}

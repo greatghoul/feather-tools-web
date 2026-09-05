@@ -1,0 +1,19 @@
+{
+    "simple-qrcode/bookmarklet/drag-to-bookmarks": "Drag the bookmarklet above to your bookmarks bar, on any page, click it to generate its QR code.",
+    "simple-qrcode/bookmarklet/info-text": "This will open the Simple QRCode tool using the active page's URL.",
+    "simple-qrcode/features/customize-appearance": "<strong>Customize the appearance</strong> with color options",
+    "simple-qrcode/features/download-buttons": "Right-click the preview image to copy or save, or use the <strong>Download PNG</strong> or <strong>Download SVG</strong> buttons.",
+    "simple-qrcode/features/enter-url": "<strong>Enter the URL</strong> you want to encode in the QR code",
+    "simple-qrcode/features/generate-qrcode": "Click <strong>Generate QR Code</strong>",
+    "simple-qrcode/name": "Simple QRCode",
+    "simple-qrcode/note": "Generate QR code for your URL and customize its colors.",
+    "simple-qrcode/preview/download-png": "Download PNG",
+    "simple-qrcode/preview/download-svg": "Download SVG",
+    "simple-qrcode/preview/title": "Preview",
+    "simple-qrcode/settings/background": "Background Color",
+    "simple-qrcode/settings/foreground": "Foreground Color",
+    "simple-qrcode/settings/generate": "Generate QR Code",
+    "simple-qrcode/settings/title": "Settings",
+    "simple-qrcode/settings/url": "URL",
+    "simple-qrcode/tags": "qrcode, image generator"
+}

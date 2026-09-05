@@ -1,0 +1,19 @@
+{
+    "simple-qrcode/bookmarklet/drag-to-bookmarks": "将上面的书签工具拖到书签栏，在任何页面上点击它即可生成该页面的二维码。",
+    "simple-qrcode/bookmarklet/info-text": "这将使用该页面的URL打开简易二维码工具。",
+    "simple-qrcode/features/customize-appearance": "<strong>自定义外观</strong> 使用颜色选项",
+    "simple-qrcode/features/download-buttons": "右键点击预览图片复制或保存，或使用 <strong>下载 PNG</strong> 或 <strong>下载 SVG</strong> 按钮。",
+    "simple-qrcode/features/enter-url": "<strong>输入 URL</strong> 您想要编码到二维码中的网址",
+    "simple-qrcode/features/generate-qrcode": "点击 <strong>生成二维码</strong>",
+    "simple-qrcode/name": "简易二维码",
+    "simple-qrcode/note": "为您的 URL 生成二维码并自定义其颜色。",
+    "simple-qrcode/preview/download-png": "下载 PNG",
+    "simple-qrcode/preview/download-svg": "下载 SVG",
+    "simple-qrcode/preview/title": "预览",
+    "simple-qrcode/settings/background": "背景色",
+    "simple-qrcode/settings/foreground": "前景色",
+    "simple-qrcode/settings/generate": "生成二维码",
+    "simple-qrcode/settings/title": "设置",
+    "simple-qrcode/settings/url": "URL",
+    "simple-qrcode/tags": "二维码, 图片生成"
+}

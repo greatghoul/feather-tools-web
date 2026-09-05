@@ -1,0 +1,9 @@
+.previewStyle {
+display: inline-block;
+    max-width: 512px;
+    max-height: 512px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+

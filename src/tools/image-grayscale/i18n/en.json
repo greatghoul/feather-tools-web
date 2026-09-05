@@ -1,0 +1,12 @@
+{
+    "image-grayscale/input/images": "Images",
+    "image-grayscale/name": "Image Grayscale",
+    "image-grayscale/note": "Batch convert your images to grayscale with a single click.",
+    "image-grayscale/result/download": "Download",
+    "image-grayscale/result/download_all": "Download All",
+    "image-grayscale/result/not_processed": "No images processed yet",
+    "image-grayscale/result/process_images": "Convert to Grayscale",
+    "image-grayscale/result/title": "Results",
+    "image-grayscale/result/upload_hint": "Upload images to start converting to grayscale",
+    "image-grayscale/tags": "image, grayscale, black and white, batch, convert"
+}

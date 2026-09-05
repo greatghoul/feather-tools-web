@@ -1,0 +1,14 @@
+.containerStyle {
+}
+
+.inputStyle {
+    -webkit-appearance: none !important;
+    -moz-appearance: textfield !important;
+    margin: 0 !important;
+}
+
+.inputStyle::-webkit-outer-spin-button,
+.inputStyle::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+}

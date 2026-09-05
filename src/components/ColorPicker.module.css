@@ -1,0 +1,91 @@
+.cp-row {
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    
+}
+.cp-group {
+
+        display: flex;
+        gap: 6px;
+        align-items: center;
+    
+}
+.cp-btn {
+
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        cursor: pointer;
+        padding: 0;
+        transition: border-color 0.15s, transform 0.15s;
+        outline: none;
+    
+}
+.cp-btn:hover {
+
+        transform: scale(1.15);
+    
+}
+.cp-btn.active {
+
+        border-color: #333;
+        transform: scale(1.12);
+    
+}
+.cp-selected {
+
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        padding: 4px 8px 4px 4px;
+        border-radius: 8px;
+        border: 1px solid #e5e7eb;
+        background: #f9fafb;
+        transition: border-color 0.15s;
+        position: relative;
+    
+}
+.cp-selected:hover {
+
+        border-color: #2563eb;
+    
+}
+.cp-swatch {
+
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        border: 2px solid #fff;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        flex-shrink: 0;
+    
+}
+.cp-icon {
+
+        font-size: 14px;
+        color: #9ca3af;
+        line-height: 1;
+    
+}
+.cp-selected:hover .cp-icon {
+
+        color: #2563eb;
+    
+}
+.cp-picker {
+
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    
+}
+

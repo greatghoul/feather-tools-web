@@ -1,0 +1,26 @@
+.imageListItemStyle {
+    transition: opacity 0.2s ease;
+}
+
+.imageListItemStyle:hover {
+    background-color: var(--bs-light);
+}
+
+.uploadThumbnailStyle {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.imageRemoveStyle {
+    opacity: 0.7;
+}
+
+.imageRemoveStyle:hover {
+    opacity: 1;
+}
+
+.minWidth0Style {
+    min-width: 0;
+}

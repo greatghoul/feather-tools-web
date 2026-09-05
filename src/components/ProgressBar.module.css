@@ -1,0 +1,5 @@
+.progressFtStyle {
+--bs-progress-height: 5px;
+    --bs-progress-border-radius: 0;
+}
+

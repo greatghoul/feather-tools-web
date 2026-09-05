@@ -1,0 +1,19 @@
+.containerStyle {
+    overflow-x: auto;
+    text-align: center;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .containerStyle {
+        overflow-x: scroll;
+    }
+}
+
+.canvasStyle {
+    border: 1px solid #dee2e6;
+    background: white;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+}

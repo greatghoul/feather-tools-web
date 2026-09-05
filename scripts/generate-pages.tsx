@@ -137,6 +137,7 @@ for (const locale of LOCALES) {
             title={pageTitle(null)}
             description={t('site/description')}
             keywords={buildKeywords()}
+            disqusKey="home"
         >
             <HomePage locale={locale} tools={migratedTools} />
         </Layout>
@@ -153,6 +154,7 @@ for (const locale of LOCALES) {
                 title={pageTitle(t(page.titleKey))}
                 description={t(page.descriptionKey)}
                 keywords={buildKeywords(page.tagsKey)}
+                disqusKey={page.key}
             >
                 <StaticPage page={page} />
             </Layout>
@@ -184,6 +186,7 @@ for (const locale of LOCALES) {
                 description={t(`${slug}/note`)}
                 keywords={buildKeywords(`${slug}/tags`)}
                 cssLinks={collectCss(manifestKeyMap[`tools/${slug}/${locale}`])}
+                disqusKey={slug}
                 scripts={
                     <>
                         {extraTags}

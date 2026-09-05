@@ -21,6 +21,7 @@ Translations live in `src/i18n/` (full catalogs and client-common slices) and
 | Variable | Purpose |
 |---|---|
 | `GA_MEASUREMENT_ID` | GA4 id (e.g. `G-XXXXXXX`); set as a build env var (Cloudflare Pages dashboard) to include the gtag snippet on generated pages. Unset = no analytics. |
+| `DISQUS_SHORTNAME` | Disqus shortname; set to append the comment embed to generated pages. Unset = no comments. |
 
 ## Build pipeline
 

@@ -14,3 +14,9 @@ export type Locale = (typeof SITE.locales)[number];
 // Read at page-generation time (generate-pages runs under node/tsx).
 export const GA_MEASUREMENT_ID: string | undefined =
     process.env.GA_MEASUREMENT_ID;
+
+// Optional Disqus comments. Set DISQUS_SHORTNAME as a build environment
+// variable to append the comment embed to generated pages; leave unset to
+// disable comments entirely.
+export const DISQUS_SHORTNAME: string | undefined =
+    process.env.DISQUS_SHORTNAME;

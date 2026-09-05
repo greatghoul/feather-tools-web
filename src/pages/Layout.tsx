@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { t } from '~/helpers/i18n';
-import { SITE, GA_MEASUREMENT_ID, type Locale } from '~/data/site';
+import { SITE, GA_MEASUREMENT_ID, DISQUS_SHORTNAME, type Locale } from '~/data/site';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 
@@ -30,6 +30,8 @@ export interface LayoutProps {
     scripts?: ReactNode;
     /** CSS files required by the tool's bundle graph (from the vite manifest). */
     cssLinks?: string[];
+    /** Disqus thread key (page key from the old site); requires DISQUS_SHORTNAME. */
+    disqusKey?: string;
     children: ReactNode;
 }
 
@@ -82,6 +84,22 @@ const BACK_TO_TOP_SCRIPT = `
 })();
 `;
 
+// Disqus comment embed, rendered only when a shortname is configured.
+const DisqusEmbed = ({ disqusKey }: { disqusKey: string }) => (
+    <>
+        <div id="disqus_thread" className="py-4" />
+        <script
+            dangerouslySetInnerHTML={{
+                __html: `var disqus_config = function () {\n    this.page.url = window.location.href;\n    this.page.identifier = '${disqusKey}';\n};\n(function() {\n    var d = document, s = d.createElement('script');\n    s.src = 'https://${DISQUS_SHORTNAME}.disqus.com/embed.js';\n    s.setAttribute('data-timestamp', +new Date());\n    (d.head || d.body).appendChild(s);\n})();`,
+            }}
+        />
+        <noscript>
+            Please enable JavaScript to view the{' '}
+            <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+    </>
+);
+
 export const Layout = ({
     locale,
     path,
@@ -91,6 +109,7 @@ export const Layout = ({
     keywords,
     scripts,
     cssLinks,
+    disqusKey,
     children,
 }: LayoutProps) => {
     const url = SITE.baseUrl + path;
@@ -160,7 +179,10 @@ export const Layout = ({
                 <Navbar locale={locale} alternates={alternates} />
                 <main className="container py-4">
                     <div className="row">
-                        <div className="col-12">{children}</div>
+                        <div className="col-12">
+                        {children}
+                        {DISQUS_SHORTNAME && disqusKey ? <DisqusEmbed disqusKey={disqusKey} /> : null}
+                    </div>
                     </div>
                 </main>
                 <Footer locale={locale} alternates={alternates} />

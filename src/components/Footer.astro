@@ -1,0 +1,83 @@
+---
+// Ported from the legacy src/pages/Footer.tsx.
+import { createT } from '../helpers/i18n-server';
+import type { Locale } from '../data/site';
+
+const { locale, alternates } = Astro.props as { locale: Locale; alternates: Record<Locale, string> };
+const t = createT(locale);
+---
+<footer class="footer mt-auto py-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3 mb-md-0">
+                <h6 class="text-muted text-uppercase small fw-bold mb-2">{t('footer/site')}</h6>
+                <ul class="list-unstyled d-flex flex-wrap gap-3 mb-0 flex-md-column gap-md-1">
+                    <li>
+                        <a href={`/${locale}/`} class="text-decoration-none text-muted">{t('footer/home')}</a>
+                    </li>
+                    <li>
+                        <a href={`/${locale}/about/`} class="text-decoration-none text-muted">{t('about/name')}</a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://blog.feather-tools.com"
+                            target="_blank"
+                            rel="noopener"
+                            class="text-decoration-none text-muted"
+                        >
+                            {t('footer/blog')}
+                        </a>
+                    </li>
+                    <li>
+                        <a href={`/${locale}/privacy/`} class="text-decoration-none text-muted">{t('privacy/name')}</a>
+                    </li>
+                    <li>
+                        <a href={`/${locale}/terms/`} class="text-decoration-none text-muted">{t('terms/name')}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+                <h6 class="text-muted text-uppercase small fw-bold mb-2">{t('footer/extensions')}</h6>
+                <ul class="list-unstyled d-flex flex-wrap gap-3 mb-0 flex-md-column gap-md-1">
+                    <li>
+                        <a
+                            href="https://habitica.com"
+                            target="_blank"
+                            rel="noopener"
+                            class="text-decoration-none text-muted d-inline-flex align-items-center"
+                        >
+                            <img src="/static/extensions/habitica/habitica-icon.svg" alt="Habitica" width={16} height={16} class="me-1" />
+                            {' '}Habitica
+                        </a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://www.minecraft.net"
+                            target="_blank"
+                            rel="noopener"
+                            class="text-decoration-none text-muted d-inline-flex align-items-center"
+                        >
+                            <img src="/static/extensions/minecraft/minecraft-icon.svg" alt="Minecraft" width={16} height={16} class="me-1" />
+                            {' '}Minecraft
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h6 class="text-muted text-uppercase small fw-bold mb-2">{t('site/language')}</h6>
+                <ul class="list-unstyled d-flex flex-wrap gap-3 mb-0 flex-md-column gap-md-1">
+                    <li>
+                        <a href={alternates.en} class="text-decoration-none text-muted">English</a>
+                    </li>
+                    <li>
+                        <a href={alternates.zh} class="text-decoration-none text-muted">简体中文</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <hr class="my-3" />
+        <div class="text-center">
+            <span class="text-muted">© 2025-2026 {t('site/title')}. {t('site/all_rights_reserved')}</span>
+        </div>
+    </div>
+</footer>

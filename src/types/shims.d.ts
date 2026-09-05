@@ -1,7 +1,7 @@
 // Libraries shipped without type declarations.
 declare module 'upng-js';
 
-// Locale set by each tool entry bundle before mounting (entries/*.tsx).
+// Locale set by the tool island before mounting (see createToolIsland).
 interface Window {
     LOCALE: string;
     // Global `sudoku` library (robatron/sudoku.js) loaded via <script> tag.

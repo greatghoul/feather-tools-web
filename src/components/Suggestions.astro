@@ -1,0 +1,26 @@
+---
+// Ported from the legacy src/pages/Suggestions.tsx.
+import { createT } from '../helpers/i18n-server';
+import type { Locale } from '../data/site';
+import ToolCard from './ToolCard.astro';
+
+const { current, locale, pool } = Astro.props as {
+    current: string;
+    locale: Locale;
+    pool: string[];
+};
+const t = createT(locale);
+const suggestions = pool.filter((slug) => slug !== current);
+---
+{suggestions.length > 0 && (
+    <>
+        <h2 class="h5 mb-3">{t('tool/you_may_also_like')}</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 mb-3">
+            {suggestions.map((slug) => (
+                <div class="col">
+                    <ToolCard slug={slug} locale={locale} />
+                </div>
+            ))}
+        </div>
+    </>
+)}

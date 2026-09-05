@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="refresh" content="0; url=/en/">
+    <title>Redirecting to Feather Tools</title>
+</head>
+<body>
+    <script>
+        // Mirrors the legacy / /en/ 301 and / ?lang=zh /zh/ 301 rules so the
+        // root URL works on hosts that don't process Cloudflare _redirects
+        // (local dev/preview and generic static servers). On Cloudflare Pages
+        // the _redirects rules take precedence and this page is never served.
+        (function () {
+            var lang = new URLSearchParams(window.location.search).get('lang');
+            window.location.replace(lang === 'zh' ? '/zh/' : '/en/');
+        })();
+    </script>
+    <p>Redirecting to <a href="/en/">Feather Tools</a>…</p>
+</body>
+</html>

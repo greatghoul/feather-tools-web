@@ -1,0 +1,29 @@
+---
+// Ported from the legacy src/pages/StaticPage.tsx.
+import type { StaticPageDef } from '../data/pages';
+import type { Translate } from '../helpers/i18n-server';
+import Rich from './Rich.astro';
+
+const { page, t } = Astro.props as { page: StaticPageDef; t: Translate };
+---
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <h1 class="mb-4">{t(page.titleKey)}</h1>
+        <p class={page.headingNoteStyle === 'muted' ? 'text-muted mb-4' : 'lead mb-4'}>
+            <Rich k={page.headingNoteKey} t={t} />
+        </p>
+        {page.sections.map((section) => (
+            <div>
+                <h2 class="h5 mb-2">{t(section.titleKey)}</h2>
+                <p><Rich k={section.bodyKey} t={t} /></p>
+                {section.itemKeys && (
+                    <ul class="mb-4">
+                        {section.itemKeys.map((itemKey) => (
+                            <li><Rich k={itemKey} t={t} /></li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+        ))}
+    </div>
+</div>

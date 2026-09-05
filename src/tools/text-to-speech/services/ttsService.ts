@@ -1,6 +1,8 @@
-const SYNC = window.speechSynthesis;
-const Utterance = window.SpeechSynthesisUtterance;
-const SUPPORTED = typeof SYNC !== 'undefined';
+const SUPPORTED =
+    typeof window !== 'undefined' &&
+    typeof window.speechSynthesis !== 'undefined';
+const SYNC = SUPPORTED ? window.speechSynthesis : null;
+const Utterance = SUPPORTED ? window.SpeechSynthesisUtterance : null;
 
 class TtsService  {
 
@@ -24,14 +26,14 @@ class TtsService  {
                 resolve([]);
                 return;
             }
-            const voices = SYNC.getVoices();
+            const voices = SYNC!.getVoices();
             if (voices.length > 0) {
                 this.voices = voices;
                 this.voicesReady = true;
                 resolve(voices);
             } else {
-                SYNC.addEventListener('voiceschanged', () => {
-                    this.voices = SYNC.getVoices();
+                SYNC!.addEventListener('voiceschanged', () => {
+                    this.voices = SYNC!.getVoices();
                     this.voicesReady = true;
                     resolve(this.voices);
                 }, { once: true });
@@ -44,7 +46,7 @@ class TtsService  {
 
         const { rate = 1, pitch = 1, voiceIndex = -1 } = options;
 
-        const utterance = new Utterance(text);
+        const utterance = new Utterance!(text);
         utterance.rate = rate;
         utterance.pitch = pitch;
 
@@ -59,36 +61,36 @@ class TtsService  {
 
     speak(utterance) {
         if (!SUPPORTED || !utterance) return;
-        SYNC.cancel();
+        SYNC!.cancel();
         this._currentUtterance = utterance;
-        SYNC.speak(utterance);
+        SYNC!.speak(utterance);
     }
 
     pause() {
         if (SUPPORTED) {
-            SYNC.pause();
+            SYNC!.pause();
         }
     }
 
     resume() {
         if (SUPPORTED) {
-            SYNC.resume();
+            SYNC!.resume();
         }
     }
 
     stop() {
         if (SUPPORTED) {
-            SYNC.cancel();
+            SYNC!.cancel();
             this._currentUtterance = null;
         }
     }
 
     isSpeaking() {
-        return SUPPORTED && SYNC.speaking;
+        return SUPPORTED && SYNC!.speaking;
     }
 
     isPaused() {
-        return SUPPORTED && SYNC.paused;
+        return SUPPORTED && SYNC!.paused;
     }
 }
 

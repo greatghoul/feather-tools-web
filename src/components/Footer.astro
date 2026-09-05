@@ -1,7 +1,7 @@
 ---
 // Ported from the legacy src/pages/Footer.tsx.
 import { createT } from '../helpers/i18n-server';
-import type { Locale } from '../data/site';
+import { REPO_URL, type Locale } from '../data/site';
 
 const { locale, alternates } = Astro.props as { locale: Locale; alternates: Record<Locale, string> };
 const t = createT(locale);
@@ -33,6 +33,17 @@ const t = createT(locale);
                     </li>
                     <li>
                         <a href={`/${locale}/terms/`} class="text-decoration-none text-muted">{t('terms/name')}</a>
+                    </li>
+                    <li>
+                        <a
+                            href={REPO_URL}
+                            target="_blank"
+                            rel="noopener"
+                            class="text-decoration-none text-muted d-inline-flex align-items-center"
+                        >
+                            <i class="bi bi-github me-1" />
+                            {t('footer/source')}
+                        </a>
                     </li>
                 </ul>
             </div>

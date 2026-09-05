@@ -6,6 +6,9 @@ export const SITE = {
     defaultLocale: 'en',
 } as const;
 
+// Source repository; linked from the navbar, footer and the home tagline.
+export const REPO_URL = 'https://github.com/greatghoul/feather-tools-web';
+
 export type Locale = (typeof SITE.locales)[number];
 
 // Optional Google Analytics (GA4). Set GA_MEASUREMENT_ID as a build

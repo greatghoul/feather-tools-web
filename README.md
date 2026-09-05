@@ -16,6 +16,12 @@ npx wrangler pages deploy dist   # deploy to Cloudflare Pages
 Translations live in `src/i18n/` (full catalogs and client-common slices) and
 `src/tools/<slug>/i18n/` (per-tool slices); edit the JSON files directly.
 
+### Optional environment variables
+
+| Variable | Purpose |
+|---|---|
+| `GA_MEASUREMENT_ID` | GA4 id (e.g. `G-XXXXXXX`); set as a build env var (Cloudflare Pages dashboard) to include the gtag snippet on generated pages. Unset = no analytics. |
+
 ## Build pipeline
 
 1. **`npm run build:bundles`** (`scripts/build-bundles.ts`) — a single Vite build over

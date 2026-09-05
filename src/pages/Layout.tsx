@@ -1,8 +1,21 @@
 import type { ReactNode } from 'react';
 import { t } from '~/helpers/i18n';
-import { SITE, type Locale } from '~/data/site';
+import { SITE, GA_MEASUREMENT_ID, type Locale } from '~/data/site';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
+
+// Google tag (gtag.js), included only when a measurement id is configured.
+const GA_SCRIPT = GA_MEASUREMENT_ID
+    ? [
+          <script async key="ga-src" src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`} />,
+          <script
+              key="ga-init"
+              dangerouslySetInnerHTML={{
+                  __html: `window.dataLayer = window.dataLayer || [];\nfunction gtag(){dataLayer.push(arguments);}\ngtag('js', new Date());\ngtag('config', '${GA_MEASUREMENT_ID}');`,
+              }}
+          />,
+      ]
+    : null;
 
 export interface LayoutProps {
     locale: Locale;
@@ -138,6 +151,7 @@ export const Layout = ({
                     href="https://cdn.jsdelivr.net/npm/simple-notify@1.0.6/dist/simple-notify.min.css"
                 />
                 <link rel="stylesheet" href={`/static/styles.css?v=${STYLES_VERSION}`} />
+                {GA_SCRIPT}
                 {(cssLinks ?? []).map((href) => (
                     <link key={href} rel="stylesheet" href={`/${href}`} />
                 ))}

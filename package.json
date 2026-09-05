@@ -3,6 +3,7 @@
     "private": true,
     "version": "1.0.0",
     "type": "module",
+    "license": "MIT",
     "description": "Feather Tools - pure static build for Cloudflare Pages",
     "scripts": {
         "dev": "vite",
@@ -19,8 +20,6 @@
         "@codemirror/view": "^6.43.11",
         "@faker-js/faker": "^10.6.0",
         "@ffmpeg/ffmpeg": "^0.12.15",
-        "@types/figlet": "^1.7.0",
-        "@types/qrcode": "^1.5.6",
         "axios": "^1.20.0",
         "figlet": "^1.11.4",
         "gifuct-js": "^2.1.2",
@@ -35,7 +34,9 @@
         "upng-js": "^2.1.0"
     },
     "devDependencies": {
+        "@types/figlet": "^1.7.0",
         "@types/node": "^26.4.1",
+        "@types/qrcode": "^1.5.6",
         "@types/react": "^18.3.12",
         "@types/react-dom": "^18.3.1",
         "@vitejs/plugin-react": "^4.3.4",

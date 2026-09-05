@@ -79,6 +79,7 @@ export const TOOLS: ToolDef[] = [
     { slug: 'video-volume', category: 'video' },
     { slug: 'emoji-picker', category: 'text' },
     { slug: 'long-post-splitter', category: 'text' },
+    { slug: 'random-wheel', category: 'text' },
     { slug: 'habitica-batch-tasks', category: 'extension', logo: 'extensions/habitica/habitica-icon.svg' },
     { slug: 'habitica-egg-hatcher', category: 'extension', logo: 'extensions/habitica/habitica-icon.svg' },
     { slug: 'minecraft-shape-calculator', category: 'extension', logo: 'extensions/minecraft/minecraft-icon.svg' },

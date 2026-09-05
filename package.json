@@ -1,0 +1,47 @@
+{
+    "name": "feather-tools-static",
+    "private": true,
+    "version": "1.0.0",
+    "type": "module",
+    "description": "Feather Tools - pure static build for Cloudflare Pages",
+    "scripts": {
+        "dev": "vite",
+        "typecheck": "tsc --noEmit",
+        "convert-i18n": "node scripts/convert-i18n.mjs",
+        "build:bundles": "tsx scripts/build-bundles.ts",
+        "build:pages": "tsx scripts/generate-pages.tsx",
+        "build": "npm run typecheck && npm run build:bundles && npm run build:pages",
+        "preview": "vite preview"
+    },
+    "dependencies": {
+        "@codemirror/commands": "^6.11.0",
+        "@codemirror/state": "^6.7.4",
+        "@codemirror/view": "^6.43.11",
+        "@faker-js/faker": "^10.6.0",
+        "@ffmpeg/ffmpeg": "^0.12.15",
+        "@types/figlet": "^1.7.0",
+        "@types/qrcode": "^1.5.6",
+        "axios": "^1.20.0",
+        "figlet": "^1.11.4",
+        "gifuct-js": "^2.1.2",
+        "html2canvas": "^1.4.1",
+        "jsqr": "^1.4.0",
+        "jszip": "^3.10.1",
+        "konva": "^10.3.3",
+        "qrcode": "^1.5.4",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1",
+        "simple-notify": "^1.0.6",
+        "upng-js": "^2.1.0"
+    },
+    "devDependencies": {
+        "@types/node": "^26.4.1",
+        "@types/react": "^18.3.12",
+        "@types/react-dom": "^18.3.1",
+        "@vitejs/plugin-react": "^4.3.4",
+        "gettext-parser": "^8.0.0",
+        "tsx": "^4.19.2",
+        "typescript": "5.7.2",
+        "vite": "^6.0.7"
+    }
+}

@@ -6,12 +6,15 @@ import HistoryCard from './components/HistoryCard';
 
 const MAX_ITEMS = 100;
 const MAX_HISTORY = 50;
+// Options live in sessionStorage: a reload restores them, but a fresh visit
+// starts empty. The legacy localStorage keys predate this and are cleaned up.
 const TEXT_KEY = 'random-wheel-options';
 const SETTINGS_KEY = 'random-wheel-settings';
+const LEGACY_KEYS = ['random-wheel-options', 'random-wheel-settings'];
 
 const loadSavedText = () => {
     try {
-        return localStorage.getItem(TEXT_KEY) ?? '';
+        return sessionStorage.getItem(TEXT_KEY) ?? '';
     } catch (_) {
         return '';
     }
@@ -19,13 +22,19 @@ const loadSavedText = () => {
 
 const loadSavedSettings = (): WheelSettings => {
     try {
-        const raw = localStorage.getItem(SETTINGS_KEY);
+        const raw = sessionStorage.getItem(SETTINGS_KEY);
         if (raw) {
             const saved = JSON.parse(raw);
             return { dedup: saved.dedup ?? true, removeWinner: saved.removeWinner ?? false };
         }
     } catch (_) {}
     return { dedup: true, removeWinner: false };
+};
+
+const clearLegacyStorage = () => {
+    try {
+        LEGACY_KEYS.forEach((key) => localStorage.removeItem(key));
+    } catch (_) {}
 };
 
 const App = () => {
@@ -36,15 +45,19 @@ const App = () => {
 
     useEffect(() => {
         try {
-            localStorage.setItem(TEXT_KEY, text);
+            sessionStorage.setItem(TEXT_KEY, text);
         } catch (_) {}
     }, [text]);
 
     useEffect(() => {
         try {
-            localStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
+            sessionStorage.setItem(SETTINGS_KEY, JSON.stringify(settings));
         } catch (_) {}
     }, [settings]);
+
+    useEffect(() => {
+        clearLegacyStorage();
+    }, []);
 
     const { items, truncated } = useMemo(() => {
         const lines = text.split('\n').map((line) => line.trim()).filter(Boolean);

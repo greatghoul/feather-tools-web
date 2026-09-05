@@ -1,4 +1,4 @@
-// HTML parity check: compares the Astro build (dist-astro) against the legacy
+// HTML parity check: compares the Astro build (dist) against the legacy
 // baseline (dist snapshot in .astro-baseline) for the Phase 1 pages, after
 // normalizing formatting differences between React SSR and Astro output.
 import { readFileSync } from 'node:fs';
@@ -43,7 +43,7 @@ function normalize(html) {
 let failures = 0;
 for (const page of PAGES) {
     const baseline = readFileSync(resolve(ROOT, '.astro-baseline', page), 'utf-8');
-    const astro = readFileSync(resolve(ROOT, 'dist-astro', page), 'utf-8');
+    const astro = readFileSync(resolve(ROOT, 'dist', page), 'utf-8');
     const a = normalize(baseline);
     const b = normalize(astro);
     if (a === b) {

@@ -1,5 +1,5 @@
 // HTML parity check for the 66 tool pages: compares the Astro build
-// (dist-astro) against the legacy baseline (dist snapshot in .astro-baseline).
+// (dist) against the legacy baseline (dist snapshot in .astro-baseline).
 //
 // Tool pages are not byte-identical to the baseline for three expected
 // reasons, which this script normalizes away:
@@ -121,7 +121,7 @@ for (const slug of TOOLS) {
     for (const locale of ['en', 'zh']) {
         const page = `${locale}/${slug}/index.html`;
         const baselinePath = resolve(ROOT, '.astro-baseline', page);
-        const astroPath = resolve(ROOT, 'dist-astro', page);
+        const astroPath = resolve(ROOT, 'dist', page);
         if (!existsSync(baselinePath) || !existsSync(astroPath)) {
             failures++;
             console.log(`FAIL  ${page} (missing)`);

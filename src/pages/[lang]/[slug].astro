@@ -1,0 +1,82 @@
+---
+// Tool page: /en/<slug>/ and /zh/<slug>/ for every migrated tool.
+// The tool itself mounts as a client:load island (ToolApp) into the legacy
+// #app container; static sections (how-to-use etc.) and the security/h1/lead
+// header are rendered server-side, matching the legacy generate-pages output.
+import Layout from '../../layouts/Layout.astro';
+import Suggestions from '../../components/Suggestions.astro';
+import ToolApp from '../../components/ToolApp';
+import { createT, buildKeywords } from '../../helpers/i18n-server';
+import { renderSections } from '../../helpers/render-sections';
+import { TOOL_MAP, TOOLS } from '../../data/tools';
+import { MIGRATED_TOOLS } from '../../data/migrated-tools';
+import { SITE, type Locale } from '../../data/site';
+import toolExtras from '../../data/generated/tool-extras.json';
+
+interface ExtraTags {
+    scripts: string[];
+    cssLinks: string[];
+}
+
+export function getStaticPaths() {
+    const paths: { params: { lang: string; slug: string } }[] = [];
+    for (const lang of SITE.locales) {
+        for (const slug of MIGRATED_TOOLS) {
+            paths.push({ params: { lang, slug } });
+        }
+    }
+    return paths;
+}
+
+const locale = Astro.params.lang as Locale;
+const slug = Astro.params.slug as string;
+const t = createT(locale);
+const path = `/${locale}/${slug}/`;
+const alternates: Record<Locale, string> = { en: `/en/${slug}/`, zh: `/zh/${slug}/` };
+
+// Static sections + tool-extras tags (per-tool css / external scripts).
+const { before, after } = await renderSections(slug, locale);
+const extras = (toolExtras as Record<string, ExtraTags>)[slug] ?? { scripts: [], cssLinks: [] };
+
+// Build-time random pick of same-category suggestions (mirrors legacy).
+const candidates = TOOLS.filter(
+    (x) => x.category === TOOL_MAP[slug]?.category && x.slug !== slug && MIGRATED_TOOLS.includes(x.slug)
+).map((x) => x.slug);
+const suggested = candidates.sort(() => Math.random() - 0.5).slice(0, 4);
+
+const tool = TOOL_MAP[slug];
+---
+<Layout
+    locale={locale}
+    path={path}
+    alternates={alternates}
+    title={`${t(`${slug}/name`)} | ${t('site/title')}`}
+    description={t(`${slug}/note`)}
+    keywords={buildKeywords(t, `${slug}/tags`)}
+    disqusKey={slug}
+>
+    {!tool?.serverSide && (
+        <div class="mb-1">
+            <p class="text-success mb-0" style="font-size: 0.9em">
+                <i class="bi bi-shield-fill-check" />
+                <span class="ms-1">{t('common/security')}</span>
+            </p>
+        </div>
+    )}
+    <h1 class="mb-4 d-flex align-items-center gap-2">
+        {tool?.logo && <img src={`/static/${tool.logo}`} alt="" width="32" height="32" class="rounded" />}
+        <span>{t(`${slug}/name`)}</span>
+    </h1>
+    <p class="lead mb-5">{t(`${slug}/note`)}</p>
+    <Fragment set:html={before} />
+    <div id="app" class="mb-5">
+        <ToolApp client:load slug={slug} locale={locale} />
+    </div>
+    <Fragment set:html={after} />
+    <Suggestions current={slug} locale={locale} pool={suggested} />
+
+    <Fragment slot="scripts">
+        {extras.cssLinks.map((href) => <link rel="stylesheet" href={href} />)}
+        {extras.scripts.map((src) => <script is:inline src={src} />)}
+    </Fragment>
+</Layout>

@@ -67,9 +67,7 @@ const SettingsCard = ({
                             <label className="form-label" htmlFor="minorCountSelect">{t('todo-paper/settings/minor_tasks_per_group')}</label>
                             <select id="minorCountSelect" className="form-select" value={minorCount} onChange={(e) => onMinorCountChange(Number(e.target.value))}>
                                 {minorOptions.map(count => (
-<>
-<option value={count}>{count}</option>
-</>
+                                    <option key={count} value={count}>{count}</option>
 ))}
                             </select>
                         </div>

@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { t } from '~/helpers/i18n';
 
 const labelOf = (content, key) => (content && content[key] && content[key].text) ? content[key].text : key;
@@ -277,35 +278,29 @@ const HatchMatrixCard = ({
                             <thead>
                                 <tr>
                                     <th className="habitica-egg-matrix-corner">{t('habitica-egg-hatcher/matrix/potions')}</th>
-                                    {eggs.map((egg) => (
-<>
-
-                                        <th className="habitica-egg-matrix-head">
+                                    {eggs.map((egg, i) => (
+                                        <th key={i} className="habitica-egg-matrix-head">
                                             <div className="habitica-egg-matrix-head-text" title={labelOf(content.eggs, egg)}>
                                                 {labelOf(content.eggs, egg)}
                                             </div>
                                             <span className="badge text-bg-secondary">{inventory.eggs[egg]}</span>
                                         </th>
-                                    
-</>
 ))}
                                 </tr>
                             </thead>
                             <tbody>
-                                {potions.map((potion) => (
-<>
-
-                                    <tr>
+                                {potions.map((potion, i) => (
+                                    <tr key={i}>
                                         <th className="habitica-egg-matrix-row-head" scope="row">
                                             <div className="habitica-egg-matrix-row-inner">
                                                 <span className="habitica-egg-matrix-row-text">{labelOf(content.hatchingPotions, potion)}</span>
                                                 <span className="badge text-bg-secondary">{inventory.potions[potion]}</span>
                                             </div>
                                         </th>
-                                        {eggs.map((egg) => renderCell(egg, potion))}
+                                        {eggs.map((egg, i) => (
+                                            <Fragment key={i}>{renderCell(egg, potion)}</Fragment>
+                                        ))}
                                     </tr>
-                                
-</>
 ))}
                             </tbody>
                         </table>

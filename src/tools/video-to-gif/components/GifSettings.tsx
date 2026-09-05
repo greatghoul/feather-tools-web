@@ -124,13 +124,9 @@ const GifSettings = ({
                         </label>
                         <select className="form-select" value={width} disabled={isGenerating} onChange={(e) => onWidthChange(parseInt(e.target.value, 10) || 0)}>
                             {widthOptions.map((opt) => (
-<>
-
-                                <option value={opt.value}>
+                                <option key={opt.value} value={opt.value}>
                                     {opt.label ? opt.label : t(opt.labelKey!)}
                                 </option>
-                            
-</>
 ))}
                         </select>
                     </div>

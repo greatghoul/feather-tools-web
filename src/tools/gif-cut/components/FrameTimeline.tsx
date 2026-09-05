@@ -75,9 +75,7 @@ const FrameTimeline = ({ totalFrames, startFrame, endFrame, onStartChange, onEnd
                             const isSelected = i >= startFrame && i <= endFrame;
                             const isHover = i === hoverFrame;
                             return (
-<>
-
-                                <div className="flex-grow-1 position-relative" style={{
+                                <div key={i} className="flex-grow-1 position-relative" style={{
                                         background: isSelected ? '#0d6efd33' : 'transparent',
                                         borderLeft: isHover ? '2px solid rgba(0,0,0,0.2)' : 'none',
                                     }}>
@@ -89,8 +87,6 @@ const FrameTimeline = ({ totalFrames, startFrame, endFrame, onStartChange, onEnd
 </>
 ) : null}
                                 </div>
-                            
-</>
 );
                         })}
                     </div>

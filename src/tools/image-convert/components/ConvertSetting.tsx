@@ -42,11 +42,7 @@ const ConvertSetting = ({ setting, onChange }) => {
                 </label>
                 <select className="form-select" value={setting.outputFormat} onChange={(e) => handleChange({ outputFormat: (e.target as HTMLSelectElement).value })}>
                     {FORMATS.map(f => (
-<>
-
-                        <option value={f.value}>{t(f.key)}</option>
-                    
-</>
+                        <option key={f.value} value={f.value}>{t(f.key)}</option>
 ))}
                 </select>
             </div>

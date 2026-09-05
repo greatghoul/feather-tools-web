@@ -110,12 +110,8 @@ const InputCard = ({
                                     <thead className="table-light">
                                         <tr>
                                             {displayHeaders.map((h, i) => (
-<>
-
-                                                <th className={`text-nowrap ${isMaskedCol(i) ? 'csv-redact-masked-col' : ''}`}>{h}</th>
-                                            
-</>
-))}
+                                                <th key={i} className={`text-nowrap ${isMaskedCol(i) ? 'csv-redact-masked-col' : ''}`}>{h}</th>
+                                            ))}
                                         </tr>
                                     </thead>
                                 
@@ -123,27 +119,19 @@ const InputCard = ({
 ) : null}
                                 <tbody>
                                     {parsedData.rows.length > 0
-                                        ? parsedData.rows.map((row) => (
-<>
-
-                                            <tr>
+                                        ? parsedData.rows.map((row, i) => (
+                                            <tr key={i}>
                                                 {row.map((cell, ci) => (
-<>
-
-                                                    <td className={`font-monospace small ${isMaskedCol(ci) ? 'csv-redact-masked-col' : ''}`} style={{ whiteSpace: 'pre-wrap', maxWidth: '240px', overflowX: 'auto' }}>
+                                                    <td key={ci} className={`font-monospace small ${isMaskedCol(ci) ? 'csv-redact-masked-col' : ''}`} style={{ whiteSpace: 'pre-wrap', maxWidth: '240px', overflowX: 'auto' }}>
                                                         {cell !== '' ? cell : (
 <>
 <span className="text-muted fst-italic">{t('csv-redact/view/empty')}</span>
 </>
 )}
                                                     </td>
-                                                
-</>
-))}
+                                                ))}
                                             </tr>
-                                        
-</>
-))
+                                        ))
                                         : (
 <>
 
@@ -168,12 +156,8 @@ const InputCard = ({
                         <label className="form-label small mb-1">{t('csv-redact/options/delimiter')}</label>
                         <select className="form-select form-select-sm" value={delimiter} onChange={(e) => setDelimiter(e.target.value)}>
                             {DELIMITER_OPTIONS.map((opt) => (
-<>
-
-                                <option value={opt.value}>{t(opt.key)}</option>
-                            
-</>
-))}
+                                <option key={opt.value} value={opt.value}>{t(opt.key)}</option>
+                            ))}
                         </select>
                         {delimiter === 'custom' ? (
 <>

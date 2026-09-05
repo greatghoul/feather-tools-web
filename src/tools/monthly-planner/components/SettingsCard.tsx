@@ -25,9 +25,7 @@ const SettingsCard = ({
                         <label className="form-label" htmlFor="monthSelect">{t('monthly-planner/settings/month')}</label>
                         <select id="monthSelect" className="form-select" value={month} onChange={(e) => onMonthChange(Number(e.target.value))}>
                             {Array.from({ length: 12 }, (_, i) => (
-<>
-<option value={i}>{t(`common/month/${i + 1}`)}</option>
-</>
+                                <option key={i} value={i}>{t(`common/month/${i + 1}`)}</option>
 ))}
                         </select>
                     </div>
@@ -36,9 +34,7 @@ const SettingsCard = ({
                         <label className="form-label" htmlFor="yearSelect">{t('monthly-planner/settings/year')}</label>
                         <select id="yearSelect" className="form-select" value={year} onChange={(e) => onYearChange(Number(e.target.value))}>
                             {years.map(y => (
-<>
-<option value={y}>{y}</option>
-</>
+                                <option key={y} value={y}>{y}</option>
 ))}
                         </select>
                     </div>
@@ -55,9 +51,7 @@ const SettingsCard = ({
                         <label className="form-label" htmlFor="lineCountSelect">{t('monthly-planner/settings/line_count')}</label>
                         <select id="lineCountSelect" className="form-select" value={lineCount} onChange={(e) => onLineCountChange(Number(e.target.value))}>
                             {[3, 4, 5, 6].map(n => (
-<>
-<option value={n}>{n}</option>
-</>
+                                <option key={n} value={n}>{n}</option>
 ))}
                         </select>
                     </div>

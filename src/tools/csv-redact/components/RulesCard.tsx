@@ -94,29 +94,19 @@ const RulesCard = ({ rules, setRules, columns, headers, nextRuleId, onRedact, is
                             <div className="col-md-1"></div>
                         </div>
                         {rules.map((rule) => (
-<>
-
-                            <div className="row g-2 align-items-end mb-2">
+                            <div key={rule.id} className="row g-2 align-items-end mb-2">
                                 <div className="col-md-4">
                                     <select className="form-select form-select-sm" value={rule.column} onChange={(e) => updateRule(rule.id, { column: Number(e.target.value) })}>
                                         {columnOptions.map((opt) => (
-<>
-
-                                            <option value={opt.value}>{opt.label}</option>
-                                        
-</>
-))}
+                                            <option key={opt.value} value={opt.value}>{opt.label}</option>
+                                        ))}
                                     </select>
                                 </div>
                                 <div className="col-md-4">
                                     <select className="form-select form-select-sm" value={rule.scheme} onChange={(e) => handleSchemeChange(rule.id, e.target.value)}>
                                         {SCHEMES.map((opt) => (
-<>
-
-                                            <option value={opt.value}>{t(opt.key)}</option>
-                                        
-</>
-))}
+                                            <option key={opt.value} value={opt.value}>{t(opt.key)}</option>
+                                        ))}
                                     </select>
                                 </div>
                                 <div className="col-md-3">
@@ -136,9 +126,7 @@ const RulesCard = ({ rules, setRules, columns, headers, nextRuleId, onRedact, is
                                     <button className="btn btn-sm btn-outline-danger w-100" title={t('csv-redact/rules/remove')} onClick={() => removeRule(rule.id)}>\u00D7</button>
                                 </div>
                             </div>
-                        
-</>
-))}
+                        ))}
                     
 </>
 )

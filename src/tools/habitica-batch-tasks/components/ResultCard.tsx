@@ -55,25 +55,17 @@ const ResultCard = ({ result }) => {
                     <span><i className="bi bi-clipboard-check"></i> {summary}</span>
                 </div>
                 <ul className="list-group list-group-flush">
-                    {result.results.map((item) => (
-<>
-
-                        <li className="list-group-item d-flex justify-content-between align-items-center">
+                    {result.results.map((item, i) => (
+                        <li key={i} className="list-group-item d-flex justify-content-between align-items-center">
                             <span className="text-truncate me-2">{item.text}</span>
                             <span className="badge text-bg-success bg-success">{t('habitica-batch-tasks/message/success')}</span>
                         </li>
-                    
-</>
 ))}
-                    {result.failures.map((item) => (
-<>
-
-                        <li className="list-group-item d-flex justify-content-between align-items-center">
+                    {result.failures.map((item, i) => (
+                        <li key={i} className="list-group-item d-flex justify-content-between align-items-center">
                             <span className="text-truncate me-2" title={item.error}>{item.text}</span>
                             <span className="badge text-bg-danger bg-danger">{t('habitica-batch-tasks/message/failed')}</span>
                         </li>
-                    
-</>
 ))}
                 </ul>
             </div>

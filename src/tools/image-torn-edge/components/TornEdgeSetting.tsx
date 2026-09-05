@@ -69,9 +69,7 @@ const TornEdgeSetting = ({ setting, onChange }) => {
                 <div>
                     <div className="btn-group btn-group-sm d-flex flex-wrap" role="group">
                         {EDGE_OPTIONS.map(edge => (
-<>
-
-                            <button type="button" className={`btn btn-outline-secondary ${formSetting.edges === edge.value ? 'active' : ''}`} onClick={() => handleSettingChange({ edges: edge.value })}>
+                            <button key={edge.value} type="button" className={`btn btn-outline-secondary ${formSetting.edges === edge.value ? 'active' : ''}`} onClick={() => handleSettingChange({ edges: edge.value })}>
                                 {edge.icon ? (
 <>
 <i className={`bi bi-${edge.icon} me-1`}></i>
@@ -79,8 +77,6 @@ const TornEdgeSetting = ({ setting, onChange }) => {
 ) : ''}
                                 {getEdgeLabel(edge)}
                             </button>
-                        
-</>
 ))}
                     </div>
                 </div>

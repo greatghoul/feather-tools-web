@@ -68,38 +68,26 @@ const OutputCard = ({ headers, rows, outputViewMode, setOutputViewMode, delimite
 
                                         <thead className="table-light">
                                             <tr>
-                                                {displayHeaders.map((h) => (
-<>
-
-                                                    <th className="text-nowrap">{h}</th>
-                                                
-</>
-))}
+                                                {displayHeaders.map((h, i) => (
+                                                    <th key={i} className="text-nowrap">{h}</th>
+                                                ))}
                                             </tr>
                                         </thead>
                                     
 </>
 ) : null}
                                     <tbody>
-                                        {rows.map((row) => (
-<>
-
-                                            <tr>
-                                                {row.map((cell) => (
-<>
-
-                                                    <td className="font-monospace small" style={{ whiteSpace: 'pre-wrap' }}>{cell !== '' ? cell : (
+                                        {rows.map((row, i) => (
+                                            <tr key={i}>
+                                                {row.map((cell, ci) => (
+                                                    <td key={ci} className="font-monospace small" style={{ whiteSpace: 'pre-wrap' }}>{cell !== '' ? cell : (
 <>
 <span className="text-muted fst-italic">{t('csv-redact/view/empty')}</span>
 </>
 )}</td>
-                                                
-</>
-))}
+                                                ))}
                                             </tr>
-                                        
-</>
-))}
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>

@@ -100,9 +100,7 @@ const ResultList = ({ results }) => {
                         </thead>
                         <tbody>
                             {results.map((result, index) => (
-<>
-
-                                <tr>
+                                <tr key={index}>
                                     <th scope="row">{index + 1}</th>
                                     <td className="text-break" style={{ maxWidth: '300px' }}>{result.url}</td>
                                     <td>
@@ -115,9 +113,7 @@ const ResultList = ({ results }) => {
                                         </button>
                                     </td>
                                 </tr>
-                            
-</>
-))}
+                            ))}
                         </tbody>
                     </table>
                 </div>

@@ -57,17 +57,13 @@ const ShadowSetting = ({ setting, onChange }) => {
                 <span className="visually-hidden">Toggle Dropdown</span>
             </button>
             <ul className="dropdown-menu dropdown-menu-end">
-                {QuickValues.map(val => (
-<>
-
-                    <a className="dropdown-item" href="#" onClick={(e) => {
+                {QuickValues.map((val, i) => (
+                    <a key={i} className="dropdown-item" href="#" onClick={(e) => {
                             e.preventDefault();
                             onChange(val);
                         }}>
                         {val === 0 ? '0' : `${val}px`}
                     </a>
-                
-</>
 ))}
             </ul>
         
@@ -138,18 +134,14 @@ const ShadowSetting = ({ setting, onChange }) => {
                         <span className="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <ul className="dropdown-menu dropdown-menu-end">
-                        {[0, 25, 50, 75, 100].map(val => (
-<>
-
-                            <a className="dropdown-item" href="#" onClick={(e) => {
+                        {[0, 25, 50, 75, 100].map((val, i) => (
+                            <a key={i} className="dropdown-item" href="#" onClick={(e) => {
                                     e.preventDefault();
                                     const rgb = hexToRgb(shadowHex);
                                     handleSettingChange({ shadowColor: `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${val / 100})` });
                                 }}>
                                 {val}%
                             </a>
-                        
-</>
 ))}
                     </ul>
                 </div>

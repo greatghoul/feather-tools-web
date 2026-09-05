@@ -48,29 +48,21 @@ const SettingCard = ({ onGenerate, onReset }: { onGenerate: any; onReset?: any }
     const [blankTitle, setBlankTitle] = useState(defaultSettings.blankTitle);
 
     const renderDateTypeOption = (option) => (
-<>
-
-        <div className="form-check form-check-inline">
+        <div key={option.value} className="form-check form-check-inline">
             <input className="form-check-input" type="radio" name="dateType" id={option.id} value={option.value} checked={dateType === option.value} onChange={() => setDateType(option.value)} />
             <label className="form-check-label" htmlFor={option.id}>
                 {t(option.labelKey)}
             </label>
         </div>
-    
-</>
 );
 
     const renderWeekStartOption = (option, disabled) => (
-<>
-
-        <div className="form-check form-check-inline">
+        <div key={option.value} className="form-check form-check-inline">
             <input className="form-check-input" type="radio" name="weekStart" id={option.id} value={option.value} checked={weekStart === option.value} onChange={() => setWeekStart(option.value)} disabled={disabled} />
             <label className="form-check-label" htmlFor={option.id}>
                 {t(option.labelKey)}
             </label>
         </div>
-    
-</>
 );
 
     const handleResetDefaults = () => {
@@ -117,21 +109,13 @@ const SettingCard = ({ onGenerate, onReset }: { onGenerate: any; onReset?: any }
                         <div className="d-flex align-items-center gap-2">
                             <select className="form-select form-select-sm" style={{ width: 'auto' }} value={timeMin} onChange={e => setTimeMin(Number(e.target.value))}>
                                 {hourOptions.map(h => (
-<>
-
-                                    <option value={h}>{formatHour(h)}</option>
-                                
-</>
+                                    <option key={h} value={h}>{formatHour(h)}</option>
 ))}
                             </select>
                             <span>—</span>
                             <select className="form-select form-select-sm" style={{ width: 'auto' }} value={timeSpan} onChange={e => setTimeSpan(Number(e.target.value))}>
                                 {spanOptions.map(s => (
-<>
-
-                                    <option value={s}>{s}h</option>
-                                
-</>
+                                    <option key={s} value={s}>{s}h</option>
 ))}
                             </select>
                             <span className="text-muted small">{formatHour(timeMin + timeSpan)}</span>

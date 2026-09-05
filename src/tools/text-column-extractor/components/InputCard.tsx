@@ -96,15 +96,11 @@ const TagsInput = ({ selectedColumns, setSelectedColumns, totalColumns, previewH
 <span className="text-muted small">{t('text-column-extractor/options/columns_placeholder')}</span>
 </>
 )
-                    : selectedColumns.map((col) => (
-<>
-
-                        <span className="badge bg-primary d-inline-flex align-items-center gap-1" style={{ fontSize: '0.8rem' }}>
+                    : selectedColumns.map((col, i) => (
+                        <span key={i} className="badge bg-primary d-inline-flex align-items-center gap-1" style={{ fontSize: '0.8rem' }}>
                             {getTagLabel(col)}
                             <span className="tag-remove" onClick={(e) => { e.stopPropagation(); handleRemove(col); }} style={{ cursor: 'pointer', opacity: '0.7', lineHeight: '1' }}>\u00D7</span>
                         </span>
-                    
-</>
 ))
                 }
             </div>
@@ -113,11 +109,7 @@ const TagsInput = ({ selectedColumns, setSelectedColumns, totalColumns, previewH
 
                 <div className="list-group shadow-sm" style={{ position: 'absolute', top: '100%', left: '0', right: '0', zIndex: '100', maxHeight: '200px', overflowY: 'auto' }}>
                     {availableOptions.map((opt, idx) => (
-<>
-
-                        <button className={`list-group-item list-group-item-action py-1 px-2 small ${idx === focusIndex ? 'active' : ''}`} onClick={() => handleAdd(opt.value)} onMouseEnter={() => setFocusIndex(idx)}>{opt.label}</button>
-                    
-</>
+                        <button key={idx} className={`list-group-item list-group-item-action py-1 px-2 small ${idx === focusIndex ? 'active' : ''}`} onClick={() => handleAdd(opt.value)} onMouseEnter={() => setFocusIndex(idx)}>{opt.label}</button>
 ))}
                 </div>
             
@@ -202,26 +194,18 @@ const InputCard = ({ text, onTextChange, onClear, onLoadExample, onExtract, deli
                             <table className="table table-bordered table-striped table-sm mb-0">
                                 <tbody>
                                     {previewData.rows.length > 0
-                                        ? previewData.rows.map((row) => (
-<>
-
-                                            <tr>
+                                        ? previewData.rows.map((row, ri) => (
+                                            <tr key={ri}>
                                                 {row.map((cell, ci) => (
-<>
-
-                                                    <td className={`font-monospace small ${ci < previewData.columns ? '' : 'text-muted'}`} style={{ whiteSpace: 'pre-wrap', maxWidth: '200px', overflowX: 'auto' }}>
+                                                    <td key={ci} className={`font-monospace small ${ci < previewData.columns ? '' : 'text-muted'}`} style={{ whiteSpace: 'pre-wrap', maxWidth: '200px', overflowX: 'auto' }}>
                                                         {cell || (
 <>
 <span className="text-muted fst-italic">{t('text-column-extractor/view/empty')}</span>
 </>
 )}
                                                     </td>
-                                                
-</>
 ))}
                                             </tr>
-                                        
-</>
 ))
                                         : (
 <>
@@ -253,11 +237,7 @@ const InputCard = ({ text, onTextChange, onClear, onLoadExample, onExtract, deli
                         <label className="form-label small mb-1">{t('text-column-extractor/options/delimiter')}</label>
                         <select className="form-select form-select-sm" value={delimiter} onChange={(e) => setDelimiter(e.target.value)}>
                             {DELIMITER_OPTIONS.map((opt) => (
-<>
-
-                                <option value={opt.value}>{t(opt.key)}</option>
-                            
-</>
+                                <option key={opt.value} value={opt.value}>{t(opt.key)}</option>
 ))}
                         </select>
                         {delimiter === 'custom' ? (

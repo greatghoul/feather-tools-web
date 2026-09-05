@@ -39,11 +39,7 @@ const SettingsCard = ({
                         <label className="form-label">{t('hanzi-paper/settings/style')}</label>
                         <select className="form-select" value={style} onChange={(e) => onStyleChange(e.target.value)}>
                             {styleOptions.map(opt => (
-<>
-
-                                <option value={opt.value}>{opt.label}</option>
-                            
-</>
+                                <option key={opt.value} value={opt.value}>{opt.label}</option>
 ))}
                         </select>
                     </div>
@@ -64,11 +60,7 @@ const SettingsCard = ({
                         <label className="form-label" htmlFor="orientationSelect">{t('hanzi-paper/settings/orientation')}</label>
                         <select id="orientationSelect" className="form-select" value={orientation} onChange={(e) => onOrientationChange(e.target.value)}>
                             {orientationOptions.map(opt => (
-<>
-
-                                <option value={opt.value}>{opt.label}</option>
-                            
-</>
+                                <option key={opt.value} value={opt.value}>{opt.label}</option>
 ))}
                         </select>
                     </div>
@@ -76,11 +68,7 @@ const SettingsCard = ({
                         <label className="form-label" htmlFor="paddingVerticalSelect">{t('hanzi-paper/settings/padding_vertical')}</label>
                         <select id="paddingVerticalSelect" className="form-select" value={paddingVertical} onChange={(e) => onPaddingVerticalChange(e.target.value)}>
                             {marginOptions.map(opt => (
-<>
-
-                                <option value={opt.value}>{opt.label}</option>
-                            
-</>
+                                <option key={opt.value} value={opt.value}>{opt.label}</option>
 ))}
                         </select>
                     </div>
@@ -88,11 +76,7 @@ const SettingsCard = ({
                         <label className="form-label" htmlFor="paddingHorizontalSelect">{t('hanzi-paper/settings/padding_horizontal')}</label>
                         <select id="paddingHorizontalSelect" className="form-select" value={paddingHorizontal} onChange={(e) => onPaddingHorizontalChange(e.target.value)}>
                             {marginOptions.map(opt => (
-<>
-
-                                <option value={opt.value}>{opt.label}</option>
-                            
-</>
+                                <option key={opt.value} value={opt.value}>{opt.label}</option>
 ))}
                         </select>
                     </div>

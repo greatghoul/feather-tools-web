@@ -95,11 +95,7 @@ const ResultCard = ({ images = [] as any[], onImagesChange }) => {
                         {images.map((image, index) => {
                             const namedImage = { ...image, downloadName: buildDownloadName(image, index) };
                             return (
-<>
-
-                            <ImagePreview image={namedImage} index={index} onImageProcessed={(result) => handleProcessedImage(index, result)} />
-                            
-</>
+                            <ImagePreview key={index} image={namedImage} index={index} onImageProcessed={(result) => handleProcessedImage(index, result)} />
 );
                         })}
                     </div>

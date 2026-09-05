@@ -46,17 +46,13 @@ const OutputCard = ({ lines }) => {
 
                         <div className="list-group list-group-flush" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                             {lines.map((line, index) => (
-<>
-
-                                <div className="list-group-item list-group-item-action text-truncate-output-line d-flex align-items-center gap-2 py-2 px-3">
+                                <div key={index} className="list-group-item list-group-item-action text-truncate-output-line d-flex align-items-center gap-2 py-2 px-3">
                                     <span className="text-muted small text-end" style={{ minWidth: '2rem', userSelect: 'none' }}>{index + 1}</span>
                                     <span className="flex-grow-1 font-monospace" style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-all' }}>{line.text}</span>
                                     <button className="btn btn-sm btn-outline-secondary flex-shrink-0" onClick={() => handleCopyLine(index, line.text)} disabled={copyingLineIndex === index} title={t('text-truncate/button/copy_line')}>
                                         {t('text-truncate/button/copy_line')}
                                     </button>
                                 </div>
-                            
-</>
 ))}
                         </div>
                     

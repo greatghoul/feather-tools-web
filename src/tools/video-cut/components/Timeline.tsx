@@ -185,9 +185,7 @@ const Timeline = ({ duration, startTime, endTime, onStartChange, onEndChange, th
                                     borderRadius: '6px',
                                 }}>
                                 {thumbnails.list.map((url, i) => (
-<>
-
-                                    <div style={{
+                                    <div key={i} style={{
                                         flex: '1 0 0',
                                         minWidth: 0,
                                         background: '#111',
@@ -201,8 +199,6 @@ const Timeline = ({ duration, startTime, endTime, onStartChange, onEndChange, th
                                                 display: 'block',
                                             }} />
                                     </div>
-                                
-</>
 ))}
                             </div>
                         
@@ -337,12 +333,10 @@ const Timeline = ({ duration, startTime, endTime, onStartChange, onEndChange, th
                 </div>
 
                 <div className="position-relative" style={{ height: '20px', marginTop: '22px' }}>
-                    {ticks.map(t => {
+                    {ticks.map((t, i) => {
                         const pct = (t / duration) * 100;
                         return (
-<>
-
-                            <div className="position-absolute" style={{
+                            <div key={i} className="position-absolute" style={{
                                 left: pct + '%',
                                 transform: 'translateX(-50%)',
                                 fontSize: '10px',
@@ -352,8 +346,6 @@ const Timeline = ({ duration, startTime, endTime, onStartChange, onEndChange, th
                             }}>
                                 {formatTick(t)}
                             </div>
-                        
-</>
 );
                     })}
                 </div>

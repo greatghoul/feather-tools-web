@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { t } from '~/helpers/i18n';
 
 const DIFFICULTIES = [
@@ -25,12 +26,10 @@ const SettingsCard = ({ difficulty, perRow, isGenerating, onDifficultyChange, on
                     <label className="form-label">{t('sudoku-generator/settings/difficulty')}</label>
                     <div className="btn-group w-100" role="group">
                         {DIFFICULTIES.map((item) => (
-<>
-
+                            <Fragment key={item.value}>
                             <input type="radio" className="btn-check" id={`difficulty-${item.value}`} name="difficulty" value={item.value} checked={difficulty === item.value} onChange={() => onDifficultyChange(item.value)} />
                             <label className="btn btn-outline-primary btn-sm" htmlFor={`difficulty-${item.value}`}>{t(item.key)}</label>
-                        
-</>
+                            </Fragment>
 ))}
                     </div>
                 </div>
@@ -39,12 +38,10 @@ const SettingsCard = ({ difficulty, perRow, isGenerating, onDifficultyChange, on
                     <label className="form-label">{t('sudoku-generator/settings/per_row')}</label>
                     <div className="btn-group w-100" role="group">
                         {PER_ROW_OPTIONS.map((value) => (
-<>
-
+                            <Fragment key={value}>
                             <input type="radio" className="btn-check" id={`per-row-${value}`} name="perRow" value={value} checked={perRow === value} onChange={() => onPerRowChange(value)} />
                             <label className="btn btn-outline-primary btn-sm" htmlFor={`per-row-${value}`}>{value}</label>
-                        
-</>
+                            </Fragment>
 ))}
                     </div>
                 </div>

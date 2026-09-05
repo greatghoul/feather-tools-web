@@ -78,34 +78,22 @@ const OutputCard = ({ headers, rows, delimiter, viewMode, setViewMode, filenameP
 
                                         <thead className="table-light">
                                             <tr>
-                                                {displayHeaders.map((h) => (
-<>
-
-                                                    <th className="text-nowrap">{h}</th>
-                                                
-</>
-))}
+                                                {displayHeaders.map((h, i) => (
+                                                    <th key={i} className="text-nowrap">{h}</th>
+                                                ))}
                                             </tr>
                                         </thead>
                                     
 </>
 ) : null}
                                     <tbody>
-                                        {previewRows.map((row) => (
-<>
-
-                                            <tr>
-                                                {row.map((cell) => (
-<>
-
-                                                    <td className="font-monospace small" style={{ whiteSpace: 'pre-wrap' }}>{cell}</td>
-                                                
-</>
-))}
+                                        {previewRows.map((row, i) => (
+                                            <tr key={i}>
+                                                {row.map((cell, ci) => (
+                                                    <td key={ci} className="font-monospace small" style={{ whiteSpace: 'pre-wrap' }}>{cell}</td>
+                                                ))}
                                             </tr>
-                                        
-</>
-))}
+                                        ))}
                                     </tbody>
                                 </table>
                             </div>

@@ -39,11 +39,7 @@ const InputCard = ({ text, onTextChange, onClear, onLoadExample, onConvert, case
                         <label className="form-label small mb-1">{t('text-case-convert/options/convert_to')}</label>
                         <select className="form-select form-select-sm" value={caseType} onChange={(e) => setCaseType(e.target.value)}>
                             {CASE_OPTIONS.map(opt => (
-<>
-
-                                <option value={opt.value}>{opt.label}</option>
-                            
-</>
+                                <option key={opt.value} value={opt.value}>{opt.label}</option>
 ))}
                         </select>
                     </div>

@@ -148,23 +148,15 @@ const ResultCard = ({ images, settings }) => {
 
                 <div className="mt-3">
                     {gridResults.map((row, rowIndex) => (
-<>
-
-                        <div className="row g-2 mb-2">
+                        <div key={rowIndex} className="row g-2 mb-2">
                             {row.map((result, colIndex) => (
-<>
-
-                                <div className="col" style={{ flex: `1 0 ${100 / cols}%`, maxWidth: `${100 / cols}%` }}>
+                                <div key={colIndex} className="col" style={{ flex: `1 0 ${100 / cols}%`, maxWidth: `${100 / cols}%` }}>
                                     <div className="border rounded p-1 text-center" style={{ height: '120px', overflow: 'hidden' }}>
                                         <img src={result.dataUrl} className="img-fluid h-100" style={{ objectFit: 'contain' }} />
                                     </div>
                                 </div>
-                            
-</>
 ))}
                         </div>
-                    
-</>
 ))}
                 </div>
             
@@ -178,15 +170,11 @@ const ResultCard = ({ images, settings }) => {
                 <div className="mt-3">
                     <div className="row g-2">
                         {splitResults.map((result, index) => (
-<>
-
-                            <div className="col" style={{ flex: `1 0 ${100 / settings.columns}%`, maxWidth: `${100 / settings.columns}%` }}>
+                            <div key={index} className="col" style={{ flex: `1 0 ${100 / settings.columns}%`, maxWidth: `${100 / settings.columns}%` }}>
                                 <div className="border rounded p-1 text-center" style={{ height: '120px', overflow: 'hidden' }}>
                                     <img src={result.dataUrl} className="img-fluid h-100" style={{ objectFit: 'contain' }} />
                                 </div>
                             </div>
-                        
-</>
 ))}
                     </div>
                 </div>
@@ -200,17 +188,13 @@ const ResultCard = ({ images, settings }) => {
 
                 <div className="mt-3">
                     {splitResults.map((result, index) => (
-<>
-
-                        <div className="row g-2 mb-2">
+                        <div key={index} className="row g-2 mb-2">
                             <div className="col-12">
                                 <div className="border rounded p-1 text-center" style={{ height: '120px', overflow: 'hidden' }}>
                                     <img src={result.dataUrl} className="img-fluid h-100" style={{ objectFit: 'contain' }} />
                                 </div>
                             </div>
                         </div>
-                    
-</>
 ))}
                 </div>
             

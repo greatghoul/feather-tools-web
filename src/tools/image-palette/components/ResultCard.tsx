@@ -75,10 +75,8 @@ const ResultCard = ({ images = [], setting, processingKey = 0 }) => {
 <>
 
             <div className={`${styles.paletteRowStyle}`}>
-                {colors.map(color => (
-<>
-
-                    <div className="d-flex flex-column align-items-center" style={{ cursor: 'pointer' }} onClick={() => handleCopyColor(color.hex)} title={`${t('image-palette/result/click_to_copy')}`}>
+                {colors.map((color, i) => (
+                    <div key={i} className="d-flex flex-column align-items-center" style={{ cursor: 'pointer' }} onClick={() => handleCopyColor(color.hex)} title={`${t('image-palette/result/click_to_copy')}`}>
                         <span className={`${styles.paletteSwatchStyle}`} style={{ backgroundColor: color.hex, position: 'relative' }}>
                             {copiedColor === color.hex && (
 <>
@@ -92,8 +90,6 @@ const ResultCard = ({ images = [], setting, processingKey = 0 }) => {
                             {color.hex}
                         </small>
                     </div>
-                
-</>
 ))}
             </div>
         
@@ -103,9 +99,7 @@ const ResultCard = ({ images = [], setting, processingKey = 0 }) => {
 
     const renderResult = (result, index) => {
         return (
-<>
-
-            <div className={`card-body ${index % 2 === 0 ? '' : 'bg-light'}`}>
+            <div key={index} className={`card-body ${index % 2 === 0 ? '' : 'bg-light'}`}>
                 <div className="row align-items-center">
                     <div className="col-md-5 text-center mb-3 mb-md-0">
                         <img src={result.image.url} className="img-fluid rounded" style={{ maxHeight: '160px', objectFit: 'contain' }} alt={result.image.name} />
@@ -119,9 +113,7 @@ const ResultCard = ({ images = [], setting, processingKey = 0 }) => {
                     </div>
                 </div>
             </div>
-        
-</>
-);
+        );
     };
 
     return (

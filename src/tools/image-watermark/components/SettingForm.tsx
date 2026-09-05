@@ -139,11 +139,7 @@ const SettingForm = ({ settings, onChange, disabled }) => {
                 <label className="form-label">{t('image-watermark/settings/position')}</label>
                 <select className="form-select" value={localSettings.position} onChange={(e) => handleChange('position', (e.target as HTMLSelectElement).value)} disabled={disabled}>
                     {positions.map(pos => (
-<>
-
-                        <option value={pos.value}>{pos.label}</option>
-                    
-</>
+                        <option key={pos.value} value={pos.value}>{pos.label}</option>
 ))}
                 </select>
             </div>

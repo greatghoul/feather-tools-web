@@ -52,12 +52,8 @@ const OutputCard = ({ text, stats }) => {
                     {stats.details && stats.details.length > 0 ? (
 <>
 
-                        ({stats.details.map((d) => (
-<>
-
-                            <span className="badge bg-secondary me-1">{t(d.label)}: {d.count}</span>
-                        
-</>
+                        ({stats.details.map((d, i) => (
+                            <span key={i} className="badge bg-secondary me-1">{t(d.label)}: {d.count}</span>
 ))})
                     
 </>

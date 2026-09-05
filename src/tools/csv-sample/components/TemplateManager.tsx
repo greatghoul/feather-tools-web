@@ -171,9 +171,7 @@ const TemplateManager = ({ config, onApplyTemplate, onActiveTemplateChange }) =>
 </>
 )
                             : templates.map((tpl) => (
-<>
-
-                                <li className="d-flex align-items-center csv-sample-templates-item-row">
+                                <li key={tpl.id} className="d-flex align-items-center csv-sample-templates-item-row">
                                     <button className={`csv-sample-templates-item ${tpl.id === activeId ? 'active' : ''}`} onClick={() => handleLoad(tpl)}>
                                         <i className="bi bi-file-earmark-text me-1"></i>
                                         {tpl.name}
@@ -205,9 +203,7 @@ const TemplateManager = ({ config, onApplyTemplate, onActiveTemplateChange }) =>
 </>
 )}
                                 </li>
-                            
-</>
-))
+                            ))
                         }
                     </ul>
                     <div className="csv-sample-templates-actions">

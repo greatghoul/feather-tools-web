@@ -106,9 +106,7 @@ const App = () => {
             </div>
 
             {hasResults ? STYLES.map(style => (
-<>
-
-                <div className="col-12">
+                <div key={style.id} className="col-12">
                     <div className="card">
                         <div className="card-header d-flex justify-content-between align-items-center">
                             <h6 className="mb-0">{t(style.key)}</h6>
@@ -125,8 +123,6 @@ const App = () => {
                         </div>
                     </div>
                 </div>
-            
-</>
 )) : null}
         </div>
     

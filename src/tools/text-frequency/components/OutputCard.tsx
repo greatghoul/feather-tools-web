@@ -54,16 +54,12 @@ const OutputCard = ({ result, onExportCSV }) => {
                             </thead>
                             <tbody>
                                 {frequencies.map((f, i) => (
-<>
-
-                                    <tr>
+                                    <tr key={i}>
                                         <td className="ps-3 text-muted">{i + 1}</td>
                                         <td><code>{f.word}</code></td>
                                         <td className="text-end">{f.count}</td>
                                         <td className="text-end pe-3">{f.percentage}%</td>
                                     </tr>
-                                
-</>
 ))}
                             </tbody>
                         </table>

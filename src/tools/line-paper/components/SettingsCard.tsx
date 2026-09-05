@@ -49,11 +49,7 @@ const SettingsCard = ({
                         <label className="form-label" htmlFor="orientationSelect">{t('line-paper/settings/orientation')}</label>
                         <select id="orientationSelect" className="form-select" value={orientation} onChange={(e) => onOrientationChange(e.target.value)}>
                             {orientationOptions.map(opt => (
-<>
-
-                                <option value={opt.value}>{opt.label}</option>
-                            
-</>
+                                <option key={opt.value} value={opt.value}>{opt.label}</option>
 ))}
                         </select>
                     </div>
@@ -61,11 +57,7 @@ const SettingsCard = ({
                         <label className="form-label" htmlFor="paddingVerticalSelect">{t('line-paper/settings/padding_vertical')}</label>
                         <select id="paddingVerticalSelect" className="form-select" value={paddingVertical} onChange={(e) => onPaddingVerticalChange(e.target.value)}>
                             {marginOptions.map(opt => (
-<>
-
-                                <option value={opt.value}>{opt.label}</option>
-                            
-</>
+                                <option key={opt.value} value={opt.value}>{opt.label}</option>
 ))}
                         </select>
                     </div>
@@ -73,11 +65,7 @@ const SettingsCard = ({
                         <label className="form-label" htmlFor="paddingHorizontalSelect">{t('line-paper/settings/padding_horizontal')}</label>
                         <select id="paddingHorizontalSelect" className="form-select" value={paddingHorizontal} onChange={(e) => onPaddingHorizontalChange(e.target.value)}>
                             {marginOptions.map(opt => (
-<>
-
-                                <option value={opt.value}>{opt.label}</option>
-                            
-</>
+                                <option key={opt.value} value={opt.value}>{opt.label}</option>
 ))}
                         </select>
                     </div>

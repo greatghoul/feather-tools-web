@@ -29,15 +29,11 @@ const SettingCard = ({ settings, onChange }) => {
             <div className={`card-body ${styles.bodyClass}`}>
                 <ul className={`nav nav-pills ${styles.navPillsClass}`} role="tablist">
                     {TABS.map((tab) => (
-<>
-
-                        <li className="nav-item" role="presentation">
+                        <li key={tab.key} className="nav-item" role="presentation">
                             <button className={`nav-link ${activeTab === tab.key && 'active'} ${styles.navLinkClass}`} onClick={() => setActiveTab(tab.key)} role="tab">
                                 {t(tab.labelKey)}
                             </button>
                         </li>
-                    
-</>
 ))}
                 </ul>
 

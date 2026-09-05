@@ -201,11 +201,7 @@ const InputCard = ({
                         <div className="col-6 col-md-3">
                             <select className="form-select form-select-sm" value={options.padding} onChange={(e) => updateOption('padding', parseInt(e.target.value))}>
                                 {[1, 2, 3, 4, 5, 6].map(d => (
-<>
-
-                                    <option value={d} disabled={d < minPadding}>{d}位</option>
-                                
-</>
+                                    <option key={d} value={d} disabled={d < minPadding}>{d}位</option>
 ))}
                             </select>
                         </div>

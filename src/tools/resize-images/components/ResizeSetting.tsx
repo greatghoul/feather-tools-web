@@ -85,9 +85,7 @@ const ResizeSetting = ({ setting, index, onChange, onRemove, canRemove }) => {
         ];
 
         const renderScaleOption = (opt) => (
-<>
-
-            <li>
+            <li key={opt.value}>
                 <a className="dropdown-item" href="#" onClick={(e) => {
                         e.preventDefault();
                         handleSettingChange({ height: opt.value, width: '' });
@@ -95,8 +93,6 @@ const ResizeSetting = ({ setting, index, onChange, onRemove, canRemove }) => {
                     {opt.label}
                 </a>
             </li>
-        
-</>
 );
         
         return (
@@ -142,11 +138,7 @@ const ResizeSetting = ({ setting, index, onChange, onRemove, canRemove }) => {
                 <div className="col-8">
                     <select id="fileFormat" className="form-select form-select-sm col-sm-8" value={formSetting.format} onChange={(e) => handleSettingChange({ format: e.target.value })}>
                         {fileFormatOptions.map((opt) => (
-<>
-
-                            <option value={opt.value}>{opt.label}</option>
-                        
-</>
+                            <option key={opt.value} value={opt.value}>{opt.label}</option>
 ))}
                     </select>
                 </div>

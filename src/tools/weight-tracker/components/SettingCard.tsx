@@ -180,16 +180,12 @@ const SettingCard = ({ onGenerate }) => {
                         <label className="form-label mb-2 d-block">{t('weight-tracker/settings/start_of_week')}</label>
                         <div>
                             {weekStartOptions.map(option => (
-<>
-
-                                <div className="form-check form-check-inline">
+                                <div key={option.value} className="form-check form-check-inline">
                                     <input className="form-check-input" type="radio" name="weekStart" id={`${option.id}`} value={`${option.value}`} checked={settings.weekStart === option.value} onChange={handleWeekStartChange} disabled={settings.dateRange === 'monthly'} />
                                     <label className={`form-check-label ${settings.dateRange === 'monthly' ? 'text-muted' : ''}`} htmlFor={`${option.id}`}>
                                         {t(option.labelKey)}
                                     </label>
                                 </div>
-                            
-</>
 ))}
                         </div>
                     </div>
@@ -218,9 +214,7 @@ const SettingCard = ({ onGenerate }) => {
                                     for (let i = 1; i <= 6; i++) {
                                         const value = start + i * 10;
                                         options.push((
-<>
-<option value={value}>{value}</option>
-</>
+                                            <option key={value} value={value}>{value}</option>
 ));
                                     }
                                     return options;

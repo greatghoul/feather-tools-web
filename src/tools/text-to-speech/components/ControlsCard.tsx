@@ -48,9 +48,7 @@ const ControlsCard = ({
     const otherOptions: any[] = [];
     voices.forEach((v, i) => {
         const opt = (
-<>
-<option value={i}>{v.name} ({v.lang})</option>
-</>
+            <option key={i} value={i}>{v.name} ({v.lang})</option>
 );
         if (commonIndicesSet.has(i)) {
             commonOptions.push(opt);
@@ -131,15 +129,11 @@ const ControlsCard = ({
 
                     <div className="list-group list-group-flush">
                         {paragraphs.map((p, i) => (
-<>
-
-                            <div className="list-group-item border-0 py-2" style={{ borderLeft: `3px solid ${i === currentParagraph ? 'var(--bs-primary)' : 'transparent'}`, background: i === currentParagraph ? 'var(--bs-primary-bg-subtle)' : 'transparent' }}>
+                            <div key={i} className="list-group-item border-0 py-2" style={{ borderLeft: `3px solid ${i === currentParagraph ? 'var(--bs-primary)' : 'transparent'}`, background: i === currentParagraph ? 'var(--bs-primary-bg-subtle)' : 'transparent' }}>
                                 <span className={i === currentParagraph ? 'fw-medium' : ''}>
                                     {p.length > 120 ? p.slice(0, 120) + '...' : p}
                                 </span>
                             </div>
-                        
-</>
 ))}
                     </div>
                 

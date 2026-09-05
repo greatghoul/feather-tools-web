@@ -52,9 +52,7 @@ const InputCard = ({ onLayoutChange, selectedLayout, onYearChange, selectedYear,
 
                         <select className="form-select form-select-sm mt-2" value={selectedYear} onChange={(e) => onYearChange({ type: 'specific', year: parseInt(e.target.value) })}>
                             {years.map(y => (
-<>
-<option value={y}>{y}</option>
-</>
+                                <option key={y} value={y}>{y}</option>
 ))}
                         </select>
                     

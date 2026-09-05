@@ -87,11 +87,7 @@ const ResultCard = ({ images = [], cropSize, onCropSizeChange }) => {
 
                     <div className="card-body">
                         {images.map((image, index) => (
-<>
-
-                            <ImageCropPreview image={image} index={index} cropSize={cropSize} downloadName={buildDownloadName(image, index)} onRegisterExporter={handleRegisterExporter} />
-                        
-</>
+                            <ImageCropPreview key={index} image={image} index={index} cropSize={cropSize} downloadName={buildDownloadName(image, index)} onRegisterExporter={handleRegisterExporter} />
 ))}
                     </div>
                 

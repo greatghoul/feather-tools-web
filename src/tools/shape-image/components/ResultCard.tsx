@@ -359,13 +359,9 @@ const ResultCard = ({ image, onClear }) => {
             <div className="card-body bg-light">
                 <div className={`d-flex justify-content-center gap-2 shape-selector-container ${styles.shapeSelectorContainerStyle}`}>
                     {shapeComponents.map(shape => (
-<>
-
-                        <button className={`btn btn-outline-secondary ${selectedShape === shape.id ? 'active' : ''}`} onClick={() => setSelectedShape(shape.id)} title={t(shape.label)}>
+                        <button key={shape.id} className={`btn btn-outline-secondary ${selectedShape === shape.id ? 'active' : ''}`} onClick={() => setSelectedShape(shape.id)} title={t(shape.label)}>
                             <shape.component />
                         </button>
-                    
-</>
 ))}
                 </div>
             </div>

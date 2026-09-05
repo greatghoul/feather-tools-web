@@ -63,9 +63,7 @@ const SettingsCard = ({
                     <label className="form-label" htmlFor="cardRowsSelect">{t('reading-log/settings/rows_per_card')}</label>
                     <select id="cardRowsSelect" className="form-select" value={cardRows} onChange={(e) => onCardRowsChange(Number(e.target.value))}>
                         {options.map(n => (
-<>
-<option value={n}>{n}</option>
-</>
+                            <option key={n} value={n}>{n}</option>
 ))}
                     </select>
                     <div className="text-muted mt-1" style={{ fontSize: '0.82rem' }}>

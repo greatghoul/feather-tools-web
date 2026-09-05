@@ -63,12 +63,8 @@ const ConfigCard = ({
                                     <label className="form-label fw-bold">{t('csv-sample/options/delimiter')}</label>
                                     <select className="form-select form-select-sm" value={delimiter} onChange={(e) => setDelimiter(e.target.value)}>
                                         {CsvSampleService.DELIMITERS.map((d) => (
-<>
-
-                                            <option value={d.value}>{t(d.key)}</option>
-                                        
-</>
-))}
+                                            <option key={d.value} value={d.value}>{t(d.key)}</option>
+                                        ))}
                                     </select>
                                     {delimiter === 'custom' ? (
 <>
@@ -82,12 +78,8 @@ const ConfigCard = ({
                                     <label className="form-label fw-bold">{t('csv-sample/options/locale')}</label>
                                     <select className="form-select form-select-sm" value={locale} onChange={(e) => setLocale(e.target.value)}>
                                         {CsvSampleService.LOCALES.map((l) => (
-<>
-
-                                            <option value={l.value}>{t(l.key)}</option>
-                                        
-</>
-))}
+                                            <option key={l.value} value={l.value}>{t(l.key)}</option>
+                                        ))}
                                     </select>
                                 </div>
                                 <div className="form-check form-switch">

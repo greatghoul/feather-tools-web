@@ -105,9 +105,7 @@ const ResultCard = ({ images, settings }) => {
 
             <div>
                 {watermarkedResults.map((result, index) => (
-<>
-
-                    <div className="card mb-3">
+                    <div key={index} className="card mb-3">
                         <div className="card-body text-center">
                             <div className="border rounded p-2 mb-3" style={{ overflow: 'hidden', backgroundColor: '#f8f9fa' }}>
                                 <div className="d-flex justify-content-center align-items-center">
@@ -122,8 +120,6 @@ const ResultCard = ({ images, settings }) => {
                             </div>
                         </div>
                     </div>
-                
-</>
 ))}
             </div>
         

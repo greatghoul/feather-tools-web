@@ -106,11 +106,7 @@ const PreviewPanel = ({ month, year, startOfWeek, lineCount, title }) => {
                                 {calendarData.dayNames.map((name, i) => {
                                     const isWeekend = calendarData.dayIndices[i] === 0 || calendarData.dayIndices[i] === 6;
                                     return (
-<>
-
-                                        <div className={`day-header ${isWeekend ? 'weekend' : ''}`}>{name}</div>
-                                    
-</>
+                                        <div key={i} className={`day-header ${isWeekend ? 'weekend' : ''}`}>{name}</div>
 );
                                 })}
                                 {calendarData.weeks.flat().map((cell, idx) => {

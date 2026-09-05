@@ -69,13 +69,9 @@ const GifSettings = ({ settings, maxWidth, isGenerating, onSettingsChange }) => 
                 <label className="form-label mb-2">{t('gif-maker/setting/width')}</label>
                 <select className="form-select" value={settings.width} disabled={isGenerating} onChange={handleWidthChange}>
                     {widthOptions.map((opt) => (
-<>
-
-                        <option value={opt.value}>
+                        <option key={opt.value} value={opt.value}>
                             {opt.label ?? t(opt.labelKey ?? '')}
                         </option>
-                    
-</>
 ))}
                 </select>
             </div>

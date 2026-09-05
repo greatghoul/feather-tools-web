@@ -47,15 +47,11 @@ const DateFormatField = ({ column, onUpdate }) => {
                     <table className="table table-sm table-dark mb-0 csv-sample-format-table">
                         <tbody>
                             {DATE_FORMAT_TOKENS.map((tok) => (
-<>
-
-                                <tr>
+                                <tr key={tok.token}>
                                     <td className="font-monospace text-nowrap">{tok.token}</td>
                                     <td>{t(tok.key)}</td>
                                 </tr>
-                            
-</>
-))}
+                            ))}
                         </tbody>
                     </table>
                 </span>
@@ -71,12 +67,8 @@ const DateFormatField = ({ column, onUpdate }) => {
 </>
 ) : null}
                 {DATE_FORMAT_PRESETS.map((opt) => (
-<>
-
-                    <option value={opt.value}>{opt.value}</option>
-                
-</>
-))}
+                    <option key={opt.value} value={opt.value}>{opt.value}</option>
+                ))}
                 <option value={DATE_FORMAT_CUSTOM}>{t('csv-sample/rules/custom_format')}</option>
             </select>
             {isCustom ? (
@@ -105,12 +97,8 @@ const PersonGroupField = ({ value, onUpdate }) => {
         </label>
         <select className="form-select form-select-sm" value={value ?? 0} onChange={(e) => onUpdate(Number(e.target.value))}>
             {PERSON_GROUP_OPTIONS.map((opt) => (
-<>
-
-                <option value={opt.value}>{opt.label ? opt.label : t(opt.labelKey!)}</option>
-            
-</>
-))}
+                <option key={opt.value} value={opt.value}>{opt.label ? opt.label : t(opt.labelKey!)}</option>
+            ))}
         </select>
     
 </>
@@ -154,12 +142,8 @@ const RuleInput = ({ rule, column, onUpdate }) => {
 </>
 ) : null}
                 {field.options.map((opt) => (
-<>
-
-                    <option value={opt.value}>{opt.label || opt.value}</option>
-                
-</>
-))}
+                    <option key={opt.value} value={opt.value}>{opt.label || opt.value}</option>
+                ))}
             </select>
         
 </>
@@ -223,12 +207,8 @@ const ColumnRow = ({ column, index, total, onUpdate, onRemove, onMoveUp, onMoveD
                     </label>
                     <select className="form-select form-select-sm" value={column.type} onChange={(e) => handleTypeChange(e.target.value)}>
                         {COLUMN_TYPES.map((ct) => (
-<>
-
-                            <option value={ct.value}>{t(ct.key)}</option>
-                        
-</>
-))}
+                            <option key={ct.value} value={ct.value}>{t(ct.key)}</option>
+                        ))}
                     </select>
                 </div>
                 {PERSON_TYPES.includes(column.type) || typeDef.rules.length > 0 ? (
@@ -248,9 +228,7 @@ const ColumnRow = ({ column, index, total, onUpdate, onRemove, onMoveUp, onMoveD
 
                                 <div className="row g-2">
                                     {typeDef.rules.map((rule) => (
-<>
-
-                                        <div className={`${rule === 'dateFormat'
+                                        <div key={rule} className={`${rule === 'dateFormat'
                                             ? (column.dateFormatMode === 'custom' ? 'col-12' : 'col-6')
                                             : (typeDef.rules.length === 1 ? 'col-12' : 'col-6')}`}>
                                             {rule === 'dateFormat'
@@ -273,9 +251,7 @@ const ColumnRow = ({ column, index, total, onUpdate, onRemove, onMoveUp, onMoveD
 )
                                             }
                                         </div>
-                                    
-</>
-))}
+                                    ))}
                                 </div>
                             
 </>

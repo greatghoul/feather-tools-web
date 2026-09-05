@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% from "helpers.html" import register_tool_assets, register_messages with context %}
+
+{% block head %}
+    {{ register_tool_assets('image-convert', 'v1.0', [
+        'components/InputCard.js',
+        'components/ResultCard.js',
+        'components/ConvertSetting.js',
+        'services/ImageConvert.js'
+    ]) }}
+    {{
+        register_messages(messages, [
+            'image-convert/input/images',
+            'image-convert/input/settings',
+            'image-convert/setting/output_format',
+            'image-convert/setting/format_jpeg',
+            'image-convert/setting/format_png',
+            'image-convert/setting/format_webp',
+            'image-convert/setting/format_gif',
+            'image-convert/setting/format_bmp',
+            'image-convert/setting/quality',
+            'image-convert/setting/quality_hint',
+            'image-convert/setting/background_color',
+            'image-convert/setting/background_color_hint',
+            'image-convert/result/not_processed',
+            'image-convert/result/upload_hint',
+            'image-convert/result/convert_images',
+            'image-convert/result/convert',
+            'image-convert/result/download',
+            'image-convert/result/download_all',
+            'image-convert/result/original_size',
+            'image-convert/result/converted_size',
+            'image-convert/result/processing'
+        ])
+    }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+{% endblock %}

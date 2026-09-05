@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'remove-whitespaces/options/text_processing_options',
+        'remove-whitespaces/options/full_text_options',
+        'remove-whitespaces/options/remove_full_leading_whitespace',
+        'remove-whitespaces/options/remove_full_trailing_whitespace',
+        'remove-whitespaces/options/line_options',
+        'remove-whitespaces/options/remove_line_leading_whitespace',
+        'remove-whitespaces/options/remove_line_trailing_whitespace',
+        'remove-whitespaces/options/blank_line_option',
+        'remove-whitespaces/options/remove_empty_lines',
+        'remove-whitespaces/options/merge_empty_lines',
+        'remove-whitespaces/options/other_options',
+        'remove-whitespaces/options/remove_chinese_whitespace',
+        'remove-whitespaces/button/process_text',
+        'remove-whitespaces/input/text_input',
+        'remove-whitespaces/input/placeholder',
+        'remove-whitespaces/button/load_example_text',
+        'remove-whitespaces/button/clear'
+    ]) }}
+    {{ register_tool_assets('remove-whitespaces', 'v1.2', [
+        'components/SettingCard.js',
+        'components/TextCard.js'
+    ]) }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+    <div class="row row-gap-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header bg-light">
+                    <h2 class="h5 mb-0">{{ messages['tool/how_to_use'] }}</h2>
+                </div>
+                <div class="card-body">
+                    <ol class="mb-0">
+                        <li>{{ messages['remove-whitespaces/how_to_use/step1'] }}</li>
+                        <li>{{ messages['remove-whitespaces/how_to_use/step2'] }}</li>
+                        <li>{{ messages['remove-whitespaces/how_to_use/step3'] }}</li>
+                        <li>{{ messages['remove-whitespaces/how_to_use/step4'] }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header bg-light">
+                    <h2 class="h5 mb-0">{{ messages['tool/features'] }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>{{ messages['remove-whitespaces/features/whitespace_highlighting'] }}</li>
+                        <li>{{ messages['remove-whitespaces/features/full_line_options'] }}</li>
+                        <li>{{ messages['remove-whitespaces/features/chinese_whitespace'] }}</li>
+                        <li>{{ messages['remove-whitespaces/features/empty_line_handling'] }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

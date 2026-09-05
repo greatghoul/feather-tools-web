@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <h1 class="mb-4">{{ _('about/name') }}</h1>
+        <p class="lead mb-4">{{ _('about/intro') }}</p>
+
+        <h2 class="h5 mb-2">{{ _('about/what_we_offer/title') }}</h2>
+        <p>{{ _('about/what_we_offer/desc') }}</p>
+        <ul class="mb-4">
+            <li>{{ _('about/what_we_offer/item_images') }}</li>
+            <li>{{ _('about/what_we_offer/item_printables') }}</li>
+            <li>{{ _('about/what_we_offer/item_text') }}</li>
+            <li>{{ _('about/what_we_offer/item_video') }}</li>
+        </ul>
+
+        <h2 class="h5 mb-2">{{ _('about/privacy_first/title') }}</h2>
+        <p>{{ _('about/privacy_first/desc') }}</p>
+
+        <h2 class="h5 mb-2">{{ _('about/free/title') }}</h2>
+        <p>{{ _('about/free/desc') }}</p>
+    </div>
+</div>
+{% endblock %}

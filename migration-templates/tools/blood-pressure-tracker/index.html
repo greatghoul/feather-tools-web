@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_tool_assets('blood-pressure-tracker', 'v1.3', [
+        'components/SettingCard.js',
+        'services/ChartBuilder.js'
+    ]) }}
+    {{ register_messages(messages, [
+        'blood-pressure-tracker/settings/chart_settings',
+        'blood-pressure-tracker/settings/date_range',
+        'blood-pressure-tracker/settings/monthly',
+        'blood-pressure-tracker/settings/weekly',
+        'blood-pressure-tracker/settings/bi_weekly',
+        'blood-pressure-tracker/settings/start_of_week',
+        'blood-pressure-tracker/settings/sunday',
+        'blood-pressure-tracker/settings/monday',
+        'blood-pressure-tracker/settings/safe_diastolic_value',
+        'blood-pressure-tracker/settings/current_value',
+        'blood-pressure-tracker/settings/safe_systolic_value',
+        'blood-pressure-tracker/settings/blank_title',
+        'blood-pressure-tracker/button/generate_chart',
+        'blood-pressure-tracker/button/reset_to_default'
+    ]) }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+    <div class="row row-gap-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header bg-light">
+                    <h2 class="h5 mb-0">{{ _('tool/how_to_use') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ol class="mb-0">
+                        <li>{{ _('blood-pressure-tracker/how_to_use/step1') }}</li>
+                        <li>{{ _('blood-pressure-tracker/how_to_use/step2') }}</li>
+                        <li>{{ _('blood-pressure-tracker/how_to_use/step3') }}</li>
+                        <li>{{ _('blood-pressure-tracker/how_to_use/step4') }}</li>
+                        <li>{{ _('blood-pressure-tracker/how_to_use/step5') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header bg-light">
+                    <h2 class="h5 mb-0">{{ _('tool/features') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li><strong>{{ _('blood-pressure-tracker/features/custom_date_range') }}</strong> – {{ _('blood-pressure-tracker/features/custom_date_range_desc') }}</li>
+                        <li><strong>{{ _('blood-pressure-tracker/features/personalized_safe_ranges') }}</strong> – {{ _('blood-pressure-tracker/features/personalized_safe_ranges_desc') }}</li>
+                        <li><strong>{{ _('blood-pressure-tracker/features/printer_friendly') }}</strong> – {{ _('blood-pressure-tracker/features/printer_friendly_desc') }}</li>
+                        <li><strong>{{ _('blood-pressure-tracker/features/reference_guide') }}</strong> – {{ _('blood-pressure-tracker/features/reference_guide_desc') }}</li>
+                        <li><strong>{{ _('blood-pressure-tracker/features/one_click_export') }}</strong> – {{ _('blood-pressure-tracker/features/one_click_export_desc') }}</li>
+                        <li><strong>{{ _('blood-pressure-tracker/features/daily_segments') }}</strong> – {{ _('blood-pressure-tracker/features/daily_segments_desc') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

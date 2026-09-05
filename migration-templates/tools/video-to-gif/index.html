@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    <script src="{{ url_for('static', filename='libs/gif.js') }}?v1.0"></script>
+    {{ register_messages(messages, [
+        'video-to-gif/name',
+        'video-to-gif/note',
+        'video-to-gif/preview/title',
+        'video-to-gif/button/load',
+        'video-to-gif/button/clear',
+        'video-to-gif/button/generate',
+        'video-to-gif/button/generating',
+        'video-to-gif/button/download',
+        'video-to-gif/settings/title',
+        'video-to-gif/settings/mode',
+        'video-to-gif/settings/mode_fps',
+        'video-to-gif/settings/mode_interval',
+        'video-to-gif/settings/mode_count',
+        'video-to-gif/settings/fps',
+        'video-to-gif/settings/interval',
+        'video-to-gif/settings/count',
+        'video-to-gif/settings/width',
+        'video-to-gif/settings/width_original',
+        'video-to-gif/settings/quality',
+        'video-to-gif/settings/quality_high',
+        'video-to-gif/settings/quality_medium',
+        'video-to-gif/settings/quality_low',
+        'video-to-gif/settings/estimated_frames',
+        'video-to-gif/settings/estimated_size',
+        'video-to-gif/message/processing',
+        'video-to-gif/message/extracting',
+        'video-to-gif/message/encoding',
+        'video-to-gif/message/error',
+        'video-to-gif/message/generated',
+        'video-to-gif/result/title',
+        'video-to-gif/result/file_size',
+        'video-to-gif/result/dimensions',
+        'video-to-gif/result/frames',
+    ]) }}
+    {{ register_tool_assets('video-to-gif', 'v1.0', [
+        'components/GifSettings.js',
+        'components/GifPreview.js',
+        'services/VideoGifService.js',
+    ]) }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='video-to-gif/video-to-gif.css') }}?v1.0">
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+    {% include 'shared/app.html' %}
+{% endblock %}

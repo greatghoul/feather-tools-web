@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% from "helpers.html" import register_tool_assets, register_messages with context %}
+
+{% block head %}
+    {{ register_tool_assets('image-palette', 'v1.0', [
+        'components/InputCard.js',
+        'components/ResultCard.js',
+        'components/PaletteSetting.js',
+        'services/ColorExtractor.js'
+    ]) }}
+    {{
+        register_messages(messages, [
+            'image-palette/input/images',
+            'image-palette/input/settings',
+            'image-palette/setting/color_count',
+            'image-palette/setting/sort_by',
+            'image-palette/setting/sort_brightness',
+            'image-palette/setting/sort_hue',
+            'image-palette/result/not_processed',
+            'image-palette/result/upload_hint',
+            'image-palette/result/extract_palette',
+            'image-palette/result/download_palette',
+            'image-palette/result/click_to_copy'
+        ])
+    }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+{% endblock %}

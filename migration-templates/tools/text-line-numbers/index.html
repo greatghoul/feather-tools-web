@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'text-line-numbers/name',
+        'text-line-numbers/note',
+        'text-line-numbers/input/title',
+        'text-line-numbers/input/placeholder',
+        'text-line-numbers/output/title',
+        'text-line-numbers/options/line_type',
+        'text-line-numbers/options/number',
+        'text-line-numbers/options/letter',
+        'text-line-numbers/options/roman',
+        'text-line-numbers/options/prefix',
+        'text-line-numbers/options/suffix',
+        'text-line-numbers/options/start',
+        'text-line-numbers/options/step',
+        'text-line-numbers/options/padding',
+        'text-line-numbers/options/padding_digits',
+        'text-line-numbers/options/reverse',
+        'text-line-numbers/options/uppercase',
+        'text-line-numbers/options/skip_empty',
+        'text-line-numbers/options/advanced_settings',
+        'text-line-numbers/button/generate',
+        'text-line-numbers/button/clear',
+        'text-line-numbers/button/copy',
+        'text-line-numbers/button/example',
+        'text-line-numbers/button/upload',
+        'text-line-numbers/button/download',
+        'text-line-numbers/message/copied',
+    ]) }}
+    {{ register_tool_assets('text-line-numbers', 'v1.0', [
+        'components/InputCard.js',
+        'components/OutputCard.js'
+    ]) }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    <div id="app" class="mb-5"></div>
+
+    <div class="row row-gap-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('tool/how_to_use') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ol>
+                        <li>{{ _('text-line-numbers/how_to_use/step1') }}</li>
+                        <li>{{ _('text-line-numbers/how_to_use/step2') }}</li>
+                        <li>{{ _('text-line-numbers/how_to_use/step3') }}</li>
+                        <li>{{ _('text-line-numbers/how_to_use/step4') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('tool/features') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>{{ _('text-line-numbers/features/line_types') }}</li>
+                        <li>{{ _('text-line-numbers/features/formatting') }}</li>
+                        <li>{{ _('text-line-numbers/features/advanced') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

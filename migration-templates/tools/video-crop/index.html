@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'video-crop/name',
+        'video-crop/note',
+        'video-crop/preview/title',
+        'video-crop/button/load',
+        'video-crop/button/clear',
+        'video-crop/button/crop',
+        'video-crop/button/download',
+        'video-crop/button/reset',
+        'video-crop/aspect/free',
+        'video-crop/aspect/square',
+        'video-crop/aspect/4_3',
+        'video-crop/aspect/16_9',
+        'video-crop/aspect/9_16',
+        'video-crop/settings/title',
+        'video-crop/settings/aspect',
+        'video-crop/settings/region',
+        'video-crop/settings/x',
+        'video-crop/settings/y',
+        'video-crop/settings/width',
+        'video-crop/settings/height',
+        'video-crop/message/processing',
+        'video-crop/message/progress',
+        'video-crop/message/complete',
+        'video-crop/message/error',
+        'video-crop/message/no_crop',
+        'video-crop/message/select_hint',
+    ]) }}
+    {{ register_tool_assets('video-crop', 'v1.0', [
+        'components/CropOverlay.js',
+        'components/CropControls.js',
+        'services/VideoCropper.js',
+    ]) }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='video-crop/video-crop.css') }}?v1.0">
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+    {% include 'shared/app.html' %}
+{% endblock %}

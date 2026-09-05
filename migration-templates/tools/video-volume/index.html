@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'video-volume/name',
+        'video-volume/note',
+        'video-volume/preview/title',
+        'video-volume/upload/hint',
+        'video-volume/button/load',
+        'video-volume/button/clear',
+        'video-volume/button/apply',
+        'video-volume/button/download',
+        'video-volume/settings/title',
+        'video-volume/settings/volume',
+        'video-volume/settings/custom_hint',
+        'video-volume/preset/mute',
+        'video-volume/info/current_volume',
+        'video-volume/info/change',
+        'video-volume/message/processing',
+        'video-volume/message/progress',
+        'video-volume/message/complete',
+        'video-volume/message/error',
+        'video-volume/message/no_video',
+        'video-volume/message/no_audio',
+        'video-volume/message/loading_engine',
+    ]) }}
+    <script type="importmap">
+    {
+        "imports": {
+            "@ffmpeg/ffmpeg": "{{ url_for('static', filename='video-to-mp3/ffmpeg/index.js') }}?v1.0"
+        }
+    }
+    </script>
+    {{ register_tool_assets('video-volume', 'v1.0', [
+        'components/VolumeControls.js',
+        'services/VolumeEngine.js',
+        'services/VolumeFFmpeg.js',
+    ]) }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='video-volume/video-volume.css') }}?v1.0">
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+    {% include 'shared/app.html' %}
+
+    <div class="row row-gap-4 my-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('tool/how_to_use') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ol class="mb-0">
+                        <li>{{ _('video-volume/how_to_use/step1') }}</li>
+                        <li>{{ _('video-volume/how_to_use/step2') }}</li>
+                        <li>{{ _('video-volume/how_to_use/step3') }}</li>
+                        <li>{{ _('video-volume/how_to_use/step4') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('tool/features') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li>{{ _('video-volume/features/volume_range') }}</li>
+                        <li>{{ _('video-volume/features/realtime_preview') }}</li>
+                        <li>{{ _('video-volume/features/mute_support') }}</li>
+                        <li>{{ _('video-volume/features/privacy_first') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

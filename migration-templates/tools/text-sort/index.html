@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'text-sort/name',
+        'text-sort/note',
+        'text-sort/input/title',
+        'text-sort/input/placeholder',
+        'text-sort/output/title',
+        'text-sort/options/sort_by',
+        'text-sort/options/alphabetically',
+        'text-sort/options/numerically',
+        'text-sort/options/sort_order',
+        'text-sort/options/ascending',
+        'text-sort/options/descending',
+        'text-sort/button/sort',
+        'text-sort/button/clear',
+        'text-sort/button/copy',
+        'text-sort/message/copied',
+    ]) }}
+    {{ register_tool_assets('text-sort', 'v1.0', [
+        'components/InputCard.js',
+        'components/OutputCard.js'
+    ]) }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    <div id="app" class="mb-5"></div>
+
+{% endblock %}

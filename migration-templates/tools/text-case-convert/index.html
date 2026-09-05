@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'text-case-convert/name',
+        'text-case-convert/note',
+        'text-case-convert/input/title',
+        'text-case-convert/input/placeholder',
+        'text-case-convert/output/title',
+        'text-case-convert/options/convert_to',
+        'text-case-convert/options/uppercase',
+        'text-case-convert/options/lowercase',
+        'text-case-convert/options/title_case',
+        'text-case-convert/options/capitalize',
+        'text-case-convert/options/sentence_case',
+        'text-case-convert/options/camel_case',
+        'text-case-convert/options/pascal_case',
+        'text-case-convert/options/kebab_case',
+        'text-case-convert/options/snake_case',
+        'text-case-convert/options/invert_case',
+        'text-case-convert/options/alternating_case',
+        'text-case-convert/button/convert',
+        'text-case-convert/button/clear',
+        'text-case-convert/button/copy',
+        'text-case-convert/message/copied',
+    ]) }}
+    {{ register_tool_assets('text-case-convert', 'v1.0', [
+        'components/InputCard.js',
+        'components/OutputCard.js',
+        'services/caseConverter.js'
+    ]) }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+{% endblock %}

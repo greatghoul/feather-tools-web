@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages with context %}
+
+{% block head %}
+    {{
+        register_tool_assets('number-images', 'v1.3', [
+            'components/InputCard.js',
+            'components/ResultCard.js',
+            'components/SettingForm.js',
+            'services/NumberImage.js',
+            'services/SequenceNumber.js',
+        ])
+    }}
+    {{
+        register_messages(messages, [
+            'number-images/input/upload',
+            'number-images/input/settings',
+            'number-images/input/images_count',
+            'number-images/input/no_images',
+            'number-images/input/clear_all',
+            'number-images/settings/number_type',
+            'number-images/settings/number_type_number',
+            'number-images/settings/number_type_letter',
+            'number-images/settings/number_start',
+            'number-images/settings/number_start_hint',
+            'number-images/settings/position',
+            'number-images/settings/position_top_left',
+            'number-images/settings/position_top_center',
+            'number-images/settings/position_top_right',
+            'number-images/settings/position_middle_left',
+            'number-images/settings/position_middle_center',
+            'number-images/settings/position_middle_right',
+            'number-images/settings/position_bottom_left',
+            'number-images/settings/position_bottom_center',
+            'number-images/settings/position_bottom_right',
+            'number-images/settings/circle_border',
+            'number-images/settings/circle_background',
+            'number-images/settings/font_color',
+            'number-images/settings/font_size',
+            'number-images/settings/font_size_hint',
+            'number-images/result/process_images',
+            'number-images/result/processing',
+            'number-images/result/download_all',
+            'number-images/result/no_images_loaded',
+            'number-images/result/load_images_hint',
+            'number-images/result/process_success',
+            'number-images/result/process_error'
+        ])
+    }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+    <div class="row row-gap-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header bg-light">
+                    <h2 class="h5 mb-0">{{ _('tool/how_to_use') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ol class="mb-0">
+                        <li>{{ _('number-images/how_to_use/step1') }}</li>
+                        <li>{{ _('number-images/how_to_use/step2') }}</li>
+                        <li>{{ _('number-images/how_to_use/step3') }}</li>
+                        <li>{{ _('number-images/how_to_use/step4') }}</li>
+                        <li>{{ _('number-images/how_to_use/step5') }}</li>
+                        <li>{{ _('number-images/how_to_use/step6') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header bg-light">
+                    <h2 class="h5 mb-0">{{ _('tool/features') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li>{{ _('number-images/features/customizable') }}</li>
+                        <li>{{ _('number-images/features/numbering') }}</li>
+                        <li>{{ _('number-images/features/formats') }}</li>
+                        <li>{{ _('number-images/features/batch') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

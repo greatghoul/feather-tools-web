@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{
+        register_tool_assets('shape-image', 'v1.2', [
+            'components/ResultCard.js',
+            'components/CircleShape.js',
+            'components/RoundedSquareShape.js',
+            'components/SquareShape.js',
+            'components/TriangleShape.js',
+            'services/TransformDataConverter.js'
+        ])
+    }}
+    {{
+        register_messages(messages, [
+            'shape-image/result/title',
+            'shape-image/result/clear',
+            'shape-image/result/clear_title',
+            'shape-image/result/download_image',
+            'shape-image/shape/circle',
+            'shape-image/shape/rounded_square',
+            'shape-image/shape/square',
+            'shape-image/shape/triangle',
+            'shape-image/error/load_failed'
+        ])
+    }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+    <div class="row row-gap-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header bg-light">
+                    <h2 class="h5 mb-0">{{ _('shape-image/how_to_use/title') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ol class="mb-0">
+                        <li><strong>{{ _('shape-image/how_to_use/select_image') }}</strong> - {{ _('shape-image/how_to_use/select_image_desc') }}</li>
+                        <li>{{ _('shape-image/how_to_use/choose_shape') }} - {{ _('shape-image/how_to_use/choose_shape_desc') }}</li>
+                        <li><strong>{{ _('shape-image/how_to_use/preview_generate') }}</strong> - {{ _('shape-image/how_to_use/preview_generate_desc') }}</li>
+                        <li><strong>{{ _('shape-image/how_to_use/download') }}</strong> - {{ _('shape-image/how_to_use/download_desc') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header bg-light">
+                    <h2 class="h5 mb-0">{{ _('tool/features') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li><strong>{{ _('shape-image/features/multiple_shapes') }}</strong> - {{ _('shape-image/features/multiple_shapes_desc') }}</li>
+                        <li><strong>{{ _('shape-image/features/high_quality') }}</strong> - {{ _('shape-image/features/high_quality_desc') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

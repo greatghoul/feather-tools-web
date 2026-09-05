@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'text-frequency/name',
+        'text-frequency/note',
+        'text-frequency/input/title',
+        'text-frequency/input/placeholder',
+        'text-frequency/output/title',
+        'text-frequency/output/table/word',
+        'text-frequency/output/table/frequency',
+        'text-frequency/output/table/percentage',
+        'text-frequency/output/stats/total_words',
+        'text-frequency/output/stats/unique_words',
+        'text-frequency/options/min_length',
+        'text-frequency/options/case_sensitive',
+        'text-frequency/options/ignore_numbers',
+        'text-frequency/options/ignore_stopwords',
+        'text-frequency/options/sort_by',
+        'text-frequency/options/sort_by_frequency',
+        'text-frequency/options/sort_by_alphabetical',
+        'text-frequency/options/sort_order',
+        'text-frequency/options/ascending',
+        'text-frequency/options/descending',
+        'text-frequency/options/limit',
+        'text-frequency/options/all_words',
+        'text-frequency/button/analyze',
+        'text-frequency/button/clear',
+        'text-frequency/button/copy',
+        'text-frequency/button/export_csv',
+        'text-frequency/button/load_example',
+        'text-frequency/message/copied',
+    ]) }}
+    {{ register_tool_assets('text-frequency', 'v1.0', [
+        'components/InputCard.js',
+        'components/OutputCard.js',
+        'services/FrequencyService.js'
+    ]) }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+{% endblock %}

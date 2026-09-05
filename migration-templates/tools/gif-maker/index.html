@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    <script src="{{ url_for('static', filename='libs/gif.js') }}?v1.0"></script>
+    {{ register_messages(messages, [
+        'gif-maker/name',
+        'gif-maker/note',
+        'gif-maker/tab/images',
+        'gif-maker/tab/settings',
+        'gif-maker/tab/result',
+        'gif-maker/button/generate',
+        'gif-maker/button/generating',
+        'gif-maker/button/download',
+        'gif-maker/setting/delay',
+        'gif-maker/setting/delay_hint',
+        'gif-maker/setting/width',
+        'gif-maker/setting/width_original',
+        'gif-maker/setting/quality',
+        'gif-maker/setting/quality_high',
+        'gif-maker/setting/quality_medium',
+        'gif-maker/setting/quality_low',
+        'gif-maker/setting/loop',
+        'gif-maker/setting/loop_infinite',
+        'gif-maker/setting/loop_times',
+        'gif-maker/setting/background_color',
+        'gif-maker/setting/background_color_hint',
+        'gif-maker/setting/dither',
+        'gif-maker/setting/dither_on',
+        'gif-maker/setting/dither_off',
+        'gif-maker/setting/dither_hint',
+        'gif-maker/message/no_images',
+        'gif-maker/message/processing',
+        'gif-maker/message/encoding',
+        'gif-maker/message/error',
+        'gif-maker/message/generated',
+        'gif-maker/result/title',
+        'gif-maker/result/file_size',
+        'gif-maker/result/dimensions',
+        'gif-maker/result/frames',
+        'gif-maker/result/duration',
+    ]) }}
+    {{ register_tool_assets('gif-maker', 'v1.0', [
+        'components/PrepareCard.js',
+        'components/GifSettings.js',
+        'components/ResultCard.js',
+        'services/GifMakerService.js',
+    ]) }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='gif-maker/gif-maker.css') }}?v1.0">
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+    <div class="row row-gap-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('gif-maker/how_to_use/title') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ol>
+                        <li><strong>{{ _('gif-maker/how_to_use/upload_images') }}</strong> {{ _('gif-maker/how_to_use/upload_images_desc') }}</li>
+                        <li><strong>{{ _('gif-maker/how_to_use/order') }}</strong> {{ _('gif-maker/how_to_use/order_desc') }}</li>
+                        <li><strong>{{ _('gif-maker/how_to_use/settings') }}</strong> {{ _('gif-maker/how_to_use/settings_desc') }}</li>
+                        <li><strong>{{ _('gif-maker/how_to_use/delay') }}</strong> {{ _('gif-maker/how_to_use/delay_desc') }}</li>
+                        <li><strong>{{ _('gif-maker/how_to_use/generate') }}</strong> {{ _('gif-maker/how_to_use/generate_desc') }}</li>
+                        <li><strong>{{ _('gif-maker/how_to_use/download') }}</strong> {{ _('gif-maker/how_to_use/download_desc') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('gif-maker/tips/title') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-info-circle text-primary me-1"></i> {{ _('gif-maker/tips/frame_size') }}</li>
+                        <li class="mb-2"><i class="bi bi-info-circle text-primary me-1"></i> {{ _('gif-maker/tips/transparency') }}</li>
+                        <li class="mb-2"><i class="bi bi-info-circle text-primary me-1"></i> {{ _('gif-maker/tips/format') }}</li>
+                        <li><i class="bi bi-info-circle text-primary me-1"></i> {{ _('gif-maker/tips/quality') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

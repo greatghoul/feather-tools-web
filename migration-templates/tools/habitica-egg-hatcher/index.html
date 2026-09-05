@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'habitica-egg-hatcher/name',
+        'habitica-egg-hatcher/note',
+        'habitica-egg-hatcher/button/load_inventory',
+        'habitica-egg-hatcher/button/refresh',
+        'habitica-egg-hatcher/button/select_all',
+        'habitica-egg-hatcher/button/clear_selection',
+        'habitica-egg-hatcher/button/hatch',
+        'habitica-egg-hatcher/button/confirm',
+        'habitica-egg-hatcher/button/cancel',
+        'habitica-egg-hatcher/matrix/title',
+        'habitica-egg-hatcher/matrix/potions',
+        'habitica-egg-hatcher/matrix/owned',
+        'habitica-egg-hatcher/matrix/invalid',
+        'habitica-egg-hatcher/message/no_credentials',
+        'habitica-egg-hatcher/message/load_failed',
+        'habitica-egg-hatcher/message/inventory_empty',
+        'habitica-egg-hatcher/message/loading_inventory',
+        'habitica-egg-hatcher/message/none_selected',
+        'habitica-egg-hatcher/message/selected_count',
+        'habitica-egg-hatcher/message/confirm_hatch',
+        'habitica-egg-hatcher/message/failed',
+    ]) }}
+    {{ register_tool_assets('habitica-egg-hatcher', 'v1.2', [
+        'components/HatchMatrixCard.js',
+        'components/ResultCard.js',
+        'services/HabiticaService.js'
+    ]) }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='habitica-egg-hatcher/habitica-egg-hatcher.css') }}?v1.0">
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4 d-flex align-items-center gap-2">
+        {% if tool_logo %}
+            <img src="{{ url_for('static', filename=tool_logo) }}"
+                 alt="Habitica"
+                 width="32"
+                 height="32"
+                 class="rounded">
+        {% endif %}
+        <span>{{ page_name }}</span>
+    </h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+    <div class="row row-gap-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('tool/how_to_use') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ol>
+                        <li>{{ _('habitica-egg-hatcher/how_to_use/step1') }}</li>
+                        <li>{{ _('habitica-egg-hatcher/how_to_use/step2') }}</li>
+                        <li>{{ _('habitica-egg-hatcher/how_to_use/step3') }}</li>
+                        <li>{{ _('habitica-egg-hatcher/how_to_use/step4') }}</li>
+                        <li>{{ _('habitica-egg-hatcher/how_to_use/step5') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('tool/features') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>{{ _('habitica-egg-hatcher/features/batch') }}</li>
+                        <li>{{ _('habitica-egg-hatcher/features/skip_owned') }}</li>
+                        <li>{{ _('habitica-egg-hatcher/features/auto_retry') }}</li>
+                        <li>{{ _('habitica-egg-hatcher/features/privacy') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

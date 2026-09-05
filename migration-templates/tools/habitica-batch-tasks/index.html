@@ -1,0 +1,87 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'habitica-batch-tasks/name',
+        'habitica-batch-tasks/note',
+        'habitica-batch-tasks/input/title',
+        'habitica-batch-tasks/input/placeholder',
+        'habitica-batch-tasks/tab/tasks',
+        'habitica-batch-tasks/tab/subtasks',
+        'habitica-batch-tasks/options/task_title',
+        'habitica-batch-tasks/options/task_title_placeholder',
+        'habitica-batch-tasks/options/checklist',
+        'habitica-batch-tasks/options/checklist_placeholder',
+        'habitica-batch-tasks/options/task_type',
+        'habitica-batch-tasks/options/type_todo',
+        'habitica-batch-tasks/options/type_daily',
+        'habitica-batch-tasks/button/create',
+        'habitica-batch-tasks/button/clear',
+        'habitica-batch-tasks/button/example',
+        'habitica-batch-tasks/message/creating',
+        'habitica-batch-tasks/message/success',
+        'habitica-batch-tasks/message/failed',
+        'habitica-batch-tasks/message/no_tasks',
+        'habitica-batch-tasks/message/no_title',
+        'habitica-batch-tasks/message/no_checklist',
+        'habitica-batch-tasks/message/no_credentials',
+        'habitica-batch-tasks/message/result_summary',
+        'habitica-batch-tasks/message/error',
+    ]) }}
+    {{ register_tool_assets('habitica-batch-tasks', 'v1.1', [
+        'components/TasksInputCard.js',
+        'components/ResultCard.js',
+        'services/HabiticaService.js'
+    ]) }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4 d-flex align-items-center gap-2">
+        {% if tool_logo %}
+            <img src="{{ url_for('static', filename=tool_logo) }}"
+                 alt="Habitica"
+                 width="32"
+                 height="32"
+                 class="rounded">
+        {% endif %}
+        <span>{{ page_name }}</span>
+    </h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+    <div class="row row-gap-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('tool/how_to_use') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ol>
+                        <li>{{ _('habitica-batch-tasks/how_to_use/step1') }}</li>
+                        <li>{{ _('habitica-batch-tasks/how_to_use/step2') }}</li>
+                        <li>{{ _('habitica-batch-tasks/how_to_use/step3') }}</li>
+                        <li>{{ _('habitica-batch-tasks/how_to_use/step4') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('tool/features') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>{{ _('habitica-batch-tasks/features/batch') }}</li>
+                        <li>{{ _('habitica-batch-tasks/features/subtasks') }}</li>
+                        <li>{{ _('habitica-batch-tasks/features/progress') }}</li>
+                        <li>{{ _('habitica-batch-tasks/features/privacy') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

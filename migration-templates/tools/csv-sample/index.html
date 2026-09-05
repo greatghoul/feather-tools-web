@@ -1,0 +1,161 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'csv-sample/settings/title',
+        'csv-sample/settings/rows',
+        'csv-sample/settings/columns',
+        'csv-sample/options/rows',
+        'csv-sample/options/delimiter',
+        'csv-sample/options/comma',
+        'csv-sample/options/tab',
+        'csv-sample/options/semicolon',
+        'csv-sample/options/pipe',
+        'csv-sample/options/custom',
+        'csv-sample/options/locale',
+        'csv-sample/options/locale_auto',
+        'csv-sample/options/locale_en',
+        'csv-sample/options/locale_zh',
+        'csv-sample/options/include_header',
+        'csv-sample/button/generate',
+        'csv-sample/button/add_column',
+        'csv-sample/button/remove_column',
+        'csv-sample/button/clear',
+        'csv-sample/button/copy',
+        'csv-sample/button/download',
+        'csv-sample/columns/title',
+        'csv-sample/columns/name',
+        'csv-sample/columns/name_placeholder',
+        'csv-sample/columns/type',
+        'csv-sample/columns/empty',
+        'csv-sample/columns/move_up',
+        'csv-sample/columns/move_down',
+        'csv-sample/columns/insert_before',
+        'csv-sample/columns/insert_after',
+        'csv-sample/output/title',
+        'csv-sample/output/no_data',
+        'csv-sample/output/preview_limit',
+        'csv-sample/view/table',
+        'csv-sample/view/text',
+        'csv-sample/type/full_name',
+        'csv-sample/type/first_name',
+        'csv-sample/type/last_name',
+        'csv-sample/type/email',
+        'csv-sample/type/username',
+        'csv-sample/type/phone',
+        'csv-sample/type/integer',
+        'csv-sample/type/float',
+        'csv-sample/type/date',
+        'csv-sample/type/boolean',
+        'csv-sample/type/uuid',
+        'csv-sample/type/word',
+        'csv-sample/type/sentence',
+        'csv-sample/type/paragraph',
+        'csv-sample/type/city',
+        'csv-sample/type/address',
+        'csv-sample/type/country',
+        'csv-sample/type/company',
+        'csv-sample/type/job_title',
+        'csv-sample/type/url',
+        'csv-sample/type/ipv4',
+        'csv-sample/type/color',
+        'csv-sample/type/sequence',
+        'csv-sample/type/constant',
+        'csv-sample/type/custom_list',
+        'csv-sample/rules/min',
+        'csv-sample/rules/max',
+        'csv-sample/rules/decimals',
+        'csv-sample/rules/date_from',
+        'csv-sample/rules/date_to',
+        'csv-sample/rules/date_format',
+        'csv-sample/rules/custom_format',
+        'csv-sample/date_format/token_year',
+        'csv-sample/date_format/token_month',
+        'csv-sample/date_format/token_day',
+        'csv-sample/date_format/token_hour',
+        'csv-sample/date_format/token_minute',
+        'csv-sample/date_format/token_second',
+        'csv-sample/rules/start',
+        'csv-sample/rules/step',
+        'csv-sample/rules/value',
+        'csv-sample/rules/value_placeholder',
+        'csv-sample/rules/values',
+        'csv-sample/rules/values_placeholder',
+        'csv-sample/person_group/title',
+        'csv-sample/person_group/none',
+        'csv-sample/person_group/help',
+        'csv-sample/message/copied',
+        'csv-sample/message/downloaded',
+        'csv-sample/message/no_columns',
+        'csv-sample/message/saved',
+        'csv-sample/message/loaded',
+        'csv-sample/message/deleted',
+        'csv-sample/message/save_name_required',
+        'csv-sample/message/save_failed',
+        'csv-sample/templates/title',
+        'csv-sample/templates/save',
+        'csv-sample/templates/load',
+        'csv-sample/templates/delete',
+        'csv-sample/templates/name_placeholder',
+        'csv-sample/templates/no_templates',
+        'csv-sample/templates/new',
+        'csv-sample/templates/no_active',
+        'csv-sample/templates/confirm',
+        'csv-sample/templates/cancel',
+    ]) }}
+    {{ register_tool_assets('csv-sample', 'v1.2', [
+        'components/ConfigCard.js',
+        'components/ColumnEditor.js',
+        'components/OutputCard.js',
+        'components/TemplateManager.js',
+        'services/CsvSampleService.js',
+        'services/TemplateStorage.js'
+    ]) }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='csv-sample/csv-sample.css') }}?v1.1">
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+    <div class="row row-gap-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header bg-light">
+                    <h2 class="h5 mb-0">{{ _('tool/how_to_use') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ol class="mb-0">
+                        <li>{{ _('csv-sample/how_to_use/step1') }}</li>
+                        <li>{{ _('csv-sample/how_to_use/step2') }}</li>
+                        <li>{{ _('csv-sample/how_to_use/step3') }}</li>
+                        <li>{{ _('csv-sample/how_to_use/step4') }}</li>
+                        <li>{{ _('csv-sample/how_to_use/step5') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header bg-light">
+                    <h2 class="h5 mb-0">{{ _('tool/features') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>{{ _('csv-sample/features/column_types') }}</li>
+                        <li>{{ _('csv-sample/features/person_groups') }}</li>
+                        <li>{{ _('csv-sample/features/templates') }}</li>
+                        <li>{{ _('csv-sample/features/row_count') }}</li>
+                        <li>{{ _('csv-sample/features/locale_support') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

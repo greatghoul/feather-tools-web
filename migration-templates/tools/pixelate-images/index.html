@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    {% from 'helpers.html' import register_tool_assets, register_messages %}
+    {{ register_tool_assets('pixelate-images', 'v1.4', [
+        'components/InputCard.js',
+        'components/EditorCard.js',
+        'services/Pixelator.js'
+    ]) }}
+    {{ register_messages(messages, [
+        'pixelate-images/button/upload_images',
+        'pixelate-images/button/clear_pixelations',
+        'pixelate-images/button/square',
+        'pixelate-images/button/circle',
+        'pixelate-images/button/brush',
+        'pixelate-images/button/download'
+    ]) }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+    <div class="row row-gap-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('pixelate-images/how_to_use/title') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ol>
+                        <li><strong>{{ _('pixelate-images/how_to_use/upload_images') }}</strong> {{ _('pixelate-images/how_to_use/upload_images_desc') }}</li>
+                        <li>{{ _('pixelate-images/how_to_use/select_tool') }} <strong>{{ _('pixelate-images/how_to_use/select_tool_desc') }}</strong>
+                            <ul>
+                                <li><strong>{{ _('pixelate-images/how_to_use/tool_square') }}</strong> {{ _('pixelate-images/how_to_use/tool_square_desc') }}</li>
+                                <li><strong>{{ _('pixelate-images/how_to_use/tool_circle') }}</strong> {{ _('pixelate-images/how_to_use/tool_circle_desc') }}</li>
+                                <li><strong>{{ _('pixelate-images/how_to_use/tool_brush') }}</strong> {{ _('pixelate-images/how_to_use/tool_brush_desc') }}</li>
+                            </ul>
+                        </li>
+                        <li><strong>{{ _('pixelate-images/how_to_use/apply_pixelation') }}</strong> {{ _('pixelate-images/how_to_use/apply_pixelation_desc') }}</li>
+                        <li><strong>{{ _('pixelate-images/how_to_use/clear_pixelations') }}</strong> {{ _('pixelate-images/how_to_use/clear_pixelations_desc') }}</li>
+                        <li><strong>{{ _('pixelate-images/how_to_use/download') }}</strong> {{ _('pixelate-images/how_to_use/download_desc') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('pixelate-images/tips/title') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="bi bi-info-circle text-primary me-1"></i> {{ _('pixelate-images/tips/undo') }}</li>
+                        <li class="mb-2"><i class="bi bi-info-circle text-primary me-1"></i> {{ _('pixelate-images/tips/shift_key') }}</li>
+                        <li class="mb-2"><i class="bi bi-info-circle text-primary me-1"></i> {{ _('pixelate-images/tips/brush_size') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

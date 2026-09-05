@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'text-ascii-art/input/title',
+        'text-ascii-art/input/placeholder',
+        'text-ascii-art/options/style_slant',
+        'text-ascii-art/options/style_block',
+        'text-ascii-art/options/style_doom',
+        'text-ascii-art/options/style_script',
+        'text-ascii-art/options/style_chunky',
+        'text-ascii-art/options/style_nancyj',
+        'text-ascii-art/options/style_rectangles',
+        'text-ascii-art/options/style_roman',
+        'text-ascii-art/options/style_shadow',
+        'text-ascii-art/options/style_speed',
+        'text-ascii-art/options/style_stop',
+        'text-ascii-art/button/generate',
+        'text-ascii-art/button/clear',
+        'text-ascii-art/message/copied',
+    ]) }}
+    {{ register_tool_assets('text-ascii-art', 'v0.5') }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+{% endblock %}

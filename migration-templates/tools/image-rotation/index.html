@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% from "helpers.html" import register_tool_assets, register_messages with context %}
+
+{% block head %}
+    {{ register_tool_assets('image-rotation', 'v1.0', [
+        'components/ImagePreview.js',
+        'components/ResultCard.js',
+        'components/InputCard.js',
+        'services/ImageRotator.js'
+    ]) }}
+    {{
+        register_messages(messages, [
+            'image-rotation/input/images',
+            'image-rotation/result/no_images',
+            'image-rotation/result/upload_hint',
+            'image-rotation/result/download_all',
+            'image-rotation/result/download',
+            'image-rotation/result/processing',
+            'image-rotation/result/rotate_left',
+            'image-rotation/result/rotate_right',
+            'image-rotation/result/flip_horizontal',
+            'image-rotation/result/flip_vertical',
+            'image-rotation/result/reset'
+        ])
+    }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+{% endblock %}

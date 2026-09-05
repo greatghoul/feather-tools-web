@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <!-- Home page -->
+    <url>
+        <loc>{{ base_url }}/</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="{{ base_url }}/?lang=en" />
+        <xhtml:link rel="alternate" hreflang="zh" href="{{ base_url }}/?lang=zh" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="{{ base_url }}/" />
+        <lastmod>{{ current_date }}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    {% for page in static_pages %}
+    <!-- {{ page.key }} -->
+    <url>
+        <loc>{{ base_url }}/{{ page.key }}</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="{{ base_url }}/{{ page.key }}?lang=en" />
+        <xhtml:link rel="alternate" hreflang="zh" href="{{ base_url }}/{{ page.key }}?lang=zh" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="{{ base_url }}/{{ page.key }}" />
+        <lastmod>{{ current_date }}</lastmod>
+        <changefreq>{{ page.changefreq }}</changefreq>
+        <priority>{{ page.priority }}</priority>
+    </url>
+    {% endfor %}
+
+    <!-- Tool pages -->
+    {% for tool_key, tool_data in tools.items() %}
+    <url>
+        <loc>{{ base_url }}/{{ tool_key }}</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="{{ base_url }}/{{ tool_key }}?lang=en" />
+        <xhtml:link rel="alternate" hreflang="zh" href="{{ base_url }}/{{ tool_key }}?lang=zh" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="{{ base_url }}/{{ tool_key }}" />
+        <lastmod>{{ current_date }}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    {% endfor %}
+
+    <!-- Sitemap itself -->
+    <url>
+        <loc>{{ base_url }}/sitemap.xml</loc>
+        <lastmod>{{ current_date }}</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+    </url>
+</urlset>

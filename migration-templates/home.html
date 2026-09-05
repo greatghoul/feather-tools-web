@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1 class="mb-4">{{ _('home/welcome_title') }}</h1>
+    <p class="lead mb-5">{{ _('home/welcome_note') | safe }}</p>
+
+    {% for category in ['text', 'image', 'video', 'printable', 'extension'] %}
+    <h2 class="fs-3 mb-2" id="{{ category }}-tools">{{ _('category/' + category + '/name') }}</h2>
+    <p class="lead">{{ _('category/' + category + '/note') | safe }}</p>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 mb-3">
+        {% for tool in tools | selectattr('category', 'equalto', category) | map(attribute='tool') %}
+            <div class="col">
+            {% include "shared/tool_card.html" %}
+            </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+{% endblock %}

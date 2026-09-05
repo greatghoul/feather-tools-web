@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% from "helpers.html" import register_tool_assets, register_messages with context %}
+
+{% block head %}
+    {{ register_tool_assets('image-shadow', 'v1.0', [
+        'components/ResultCard.js',
+        'components/InputCard.js',
+        'components/ShadowSetting.js',
+        'services/ImageShadow.js'
+    ]) }}
+    {{
+        register_messages(messages, [
+            'image-shadow/input/images',
+            'image-shadow/input/settings',
+            'image-shadow/setting/offset',
+            'image-shadow/setting/blur_radius',
+            'image-shadow/setting/spread_radius',
+            'image-shadow/setting/shadow_color',
+            'image-shadow/setting/padding',
+            'image-shadow/result/not_processed',
+            'image-shadow/result/upload_hint',
+            'image-shadow/result/process_images',
+            'image-shadow/result/download',
+            'image-shadow/result/download_all'
+        ])
+    }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+{% endblock %}

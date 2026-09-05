@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% from "helpers.html" import register_tool_assets, register_messages with context %}
+
+{% block head %}
+    {{ register_tool_assets('image-grayscale', 'v1.0', [
+        'components/InputCard.js',
+        'components/ResultCard.js',
+        'services/ImageGrayscale.js'
+    ]) }}
+    {{
+        register_messages(messages, [
+            'image-grayscale/input/images',
+            'image-grayscale/result/title',
+            'image-grayscale/result/not_processed',
+            'image-grayscale/result/upload_hint',
+            'image-grayscale/result/process_images',
+            'image-grayscale/result/download',
+            'image-grayscale/result/download_all'
+        ])
+    }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+{% endblock %}

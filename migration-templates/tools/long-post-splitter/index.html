@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='long-post-splitter/long-post-splitter.css') }}?v1.0">
+    {{ register_messages(messages, [
+        'long-post-splitter/name',
+        'long-post-splitter/note',
+        'long-post-splitter/input/title',
+        'long-post-splitter/input/placeholder',
+        'long-post-splitter/output/title',
+        'long-post-splitter/settings/title',
+        'long-post-splitter/options/limit',
+        'long-post-splitter/options/limit_x_post',
+        'long-post-splitter/options/limit_custom',
+        'long-post-splitter/options/custom_limit',
+        'long-post-splitter/options/split_mode',
+        'long-post-splitter/options/split_paragraph',
+        'long-post-splitter/options/split_sentence',
+        'long-post-splitter/options/split_word',
+        'long-post-splitter/options/split_char',
+        'long-post-splitter/options/numbering_format',
+        'long-post-splitter/options/numbering_none',
+        'long-post-splitter/options/numbering_prefix',
+        'long-post-splitter/options/numbering_paren',
+        'long-post-splitter/options/numbering_break',
+        'long-post-splitter/options/numbering_break_none',
+        'long-post-splitter/options/numbering_break_newline',
+        'long-post-splitter/options/numbering_break_blank',
+        'long-post-splitter/button/split',
+        'long-post-splitter/button/clear',
+        'long-post-splitter/button/copy',
+        'long-post-splitter/button/copy_all',
+        'long-post-splitter/button/example',
+        'long-post-splitter/message/copied',
+        'long-post-splitter/message/copied_all',
+        'long-post-splitter/segment/over_limit',
+        'long-post-splitter/segment/text_weight',
+        'long-post-splitter/stats/weighted',
+        'long-post-splitter/stats/urls',
+        'long-post-splitter/stats/estimated_segments',
+        'long-post-splitter/stats/actual_segments',
+        'long-post-splitter/how_to_use/step1',
+        'long-post-splitter/how_to_use/step2',
+        'long-post-splitter/how_to_use/step3',
+        'long-post-splitter/how_to_use/step4',
+        'long-post-splitter/how_to_use/step5',
+        'long-post-splitter/features/weighted_counting',
+        'long-post-splitter/features/split_modes',
+        'long-post-splitter/features/numbering',
+    ]) }}
+    {{ register_tool_assets('long-post-splitter', 'v1.0', [
+        'components/InputCard.js',
+        'components/SettingsCard.js',
+        'components/OutputCard.js',
+        'components/SegmentCard.js',
+        'services/XTextSplitter.js'
+    ]) }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+    <div class="row row-gap-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('tool/how_to_use') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ol>
+                        <li>{{ _('long-post-splitter/how_to_use/step1') }}</li>
+                        <li>{{ _('long-post-splitter/how_to_use/step2') }}</li>
+                        <li>{{ _('long-post-splitter/how_to_use/step3') }}</li>
+                        <li>{{ _('long-post-splitter/how_to_use/step4') }}</li>
+                        <li>{{ _('long-post-splitter/how_to_use/step5') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('tool/features') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>{{ _('long-post-splitter/features/weighted_counting') }}</li>
+                        <li>{{ _('long-post-splitter/features/split_modes') }}</li>
+                        <li>{{ _('long-post-splitter/features/numbering') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

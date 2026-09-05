@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block head %}
+    {% from 'helpers.html' import register_tool_assets, register_messages %}
+    {{ register_tool_assets('image-annotation', 'v1.0', [
+        'components/AnnotationCanvas.js',
+        'services/AnnotationEngine.js'
+    ]) }}
+    {{ register_messages(messages, [
+        'image-annotation/upload/title',
+        'image-annotation/toolbar/select',
+        'image-annotation/toolbar/line',
+        'image-annotation/toolbar/arrow',
+        'image-annotation/toolbar/circle',
+        'image-annotation/toolbar/rect',
+        'image-annotation/toolbar/rounded_rect',
+        'image-annotation/toolbar/highlighter',
+        'image-annotation/toolbar/pen',
+        'image-annotation/toolbar/mosaic',
+        'image-annotation/toolbar/block_size',
+        'image-annotation/toolbar/delete',
+        'image-annotation/toolbar/download',
+        'image-annotation/toolbar/copy',
+        'image-annotation/toolbar/clear_all',
+        'image-annotation/toolbar/color',
+        'image-annotation/toolbar/stroke_width',
+        'image-annotation/toolbar/corner_radius',
+        'image-annotation/annotations/title',
+        'image-annotation/annotations/empty',
+        'image-annotation/annotations/type',
+        'image-annotation/settings/fill',
+        'image-annotation/settings/fill_opacity'
+    ]) }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+{% endblock %}

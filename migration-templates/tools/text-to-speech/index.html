@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'text-to-speech/name',
+        'text-to-speech/note',
+        'text-to-speech/input/title',
+        'text-to-speech/input/placeholder',
+        'text-to-speech/controls/play',
+        'text-to-speech/controls/pause',
+        'text-to-speech/controls/resume',
+        'text-to-speech/controls/stop',
+        'text-to-speech/controls/rate',
+        'text-to-speech/controls/pitch',
+        'text-to-speech/controls/voice',
+        'text-to-speech/controls/auto_voice',
+        'text-to-speech/status/speaking',
+        'text-to-speech/status/paused',
+        'text-to-speech/status/stopped',
+        'text-to-speech/status/no_text',
+        'text-to-speech/status/duration',
+        'text-to-speech/body/paragraphs',
+        'text-to-speech/button/clear',
+        'text-to-speech/button/example',
+        'text-to-speech/example',
+        'text-to-speech/message/not_supported',
+        'text-to-speech/message/loading_voices',
+    ]) }}
+    {{ register_tool_assets('text-to-speech', 'v1.0', [
+        'components/InputCard.js',
+        'components/ControlsCard.js',
+        'services/ttsService.js'
+    ]) }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+{% endblock %}

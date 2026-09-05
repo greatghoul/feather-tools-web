@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{
+        register_messages(messages, [
+            'image-watermark/name',
+            'image-watermark/note',
+            'image-watermark/input/images',
+            'image-watermark/input/settings',
+            'image-watermark/result/no_images',
+            'image-watermark/result/upload_hint',
+            'image-watermark/result/process_images',
+            'image-watermark/result/download',
+            'image-watermark/result/download_all',
+            'image-watermark/result/download_zip',
+            'image-watermark/result/processing',
+            'image-watermark/settings/watermark_type',
+            'image-watermark/settings/type_text',
+            'image-watermark/settings/type_image',
+            'image-watermark/settings/text_content',
+            'image-watermark/settings/text_placeholder',
+            'image-watermark/settings/font_size',
+            'image-watermark/settings/font_color',
+            'image-watermark/settings/opacity',
+            'image-watermark/settings/position',
+            'image-watermark/settings/position_top_left',
+            'image-watermark/settings/position_top_center',
+            'image-watermark/settings/position_top_right',
+            'image-watermark/settings/position_middle_left',
+            'image-watermark/settings/position_middle_center',
+            'image-watermark/settings/position_middle_right',
+            'image-watermark/settings/position_bottom_left',
+            'image-watermark/settings/position_bottom_center',
+            'image-watermark/settings/position_bottom_right',
+            'image-watermark/settings/watermark_image',
+            'image-watermark/settings/watermark_scale',
+            'image-watermark/settings/watermark_scale_hint',
+            'image-watermark/settings/watermark_rotation',
+            'image-watermark/settings/watermark_rotation_hint',
+            'image-watermark/error/process_failed',
+            'image-watermark/error/load_failed',
+        ])
+    }}
+    {{ register_tool_assets('image-watermark', 'v1.0', [
+        'components/InputCard.js',
+        'components/ResultCard.js',
+        'components/SettingForm.js',
+        'services/WatermarkService.js'
+    ]) }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+{% endblock %}

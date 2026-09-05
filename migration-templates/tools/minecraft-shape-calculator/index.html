@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'minecraft-shape-calculator/name',
+        'minecraft-shape-calculator/note',
+        'minecraft-shape-calculator/settings/title',
+        'minecraft-shape-calculator/settings/shape',
+        'minecraft-shape-calculator/settings/circle',
+        'minecraft-shape-calculator/settings/rounded_rectangle',
+        'minecraft-shape-calculator/settings/mode',
+        'minecraft-shape-calculator/settings/solid',
+        'minecraft-shape-calculator/settings/outline',
+        'minecraft-shape-calculator/settings/diameter',
+        'minecraft-shape-calculator/settings/width',
+        'minecraft-shape-calculator/settings/height',
+        'minecraft-shape-calculator/settings/corner_radius',
+        'minecraft-shape-calculator/settings/thickness',
+        'minecraft-shape-calculator/settings/calculate',
+        'minecraft-shape-calculator/result/title',
+        'minecraft-shape-calculator/result/empty',
+        'minecraft-shape-calculator/result/total_blocks',
+        'minecraft-shape-calculator/result/groups',
+        'minecraft-shape-calculator/result/zoom_in',
+        'minecraft-shape-calculator/result/zoom_out',
+        'minecraft-shape-calculator/message/radius_too_large',
+        'minecraft-shape-calculator/message/too_small',
+        'minecraft-shape-calculator/message/thickness_invalid',
+    ]) }}
+    {{ register_tool_assets('minecraft-shape-calculator', 'v1.0', [
+        'components/SettingsCard.js',
+        'components/ResultCard.js',
+        'services/ShapeCalculator.js'
+    ]) }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='minecraft-shape-calculator/minecraft-shape-calculator.css') }}?v1.0">
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4 d-flex align-items-center gap-2">
+        {% if tool_logo %}
+            <img src="{{ url_for('static', filename=tool_logo) }}"
+                 alt="Minecraft"
+                 width="32"
+                 height="32"
+                 class="rounded">
+        {% endif %}
+        <span>{{ page_name }}</span>
+    </h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+    <div class="row row-gap-4 mb-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('tool/how_to_use') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ol>
+                        <li>{{ _('minecraft-shape-calculator/how_to_use/step1') }}</li>
+                        <li>{{ _('minecraft-shape-calculator/how_to_use/step2') }}</li>
+                        <li>{{ _('minecraft-shape-calculator/how_to_use/step3') }}</li>
+                        <li>{{ _('minecraft-shape-calculator/how_to_use/step4') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('tool/features') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul>
+                        <li>{{ _('minecraft-shape-calculator/features/accuracy') }}</li>
+                        <li>{{ _('minecraft-shape-calculator/features/coordinates') }}</li>
+                        <li>{{ _('minecraft-shape-calculator/features/preview') }}</li>
+                        <li>{{ _('minecraft-shape-calculator/features/privacy') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

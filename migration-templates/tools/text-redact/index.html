@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'text-redact/name',
+        'text-redact/note',
+        'text-redact/input/title',
+        'text-redact/input/placeholder',
+        'text-redact/output/title',
+        'text-redact/options/types',
+        'text-redact/options/email',
+        'text-redact/options/phone',
+        'text-redact/options/id_card',
+        'text-redact/options/url',
+        'text-redact/options/ip',
+        'text-redact/options/custom',
+        'text-redact/options/custom_placeholder',
+        'text-redact/options/replacement',
+        'text-redact/options/replacement_asterisk',
+        'text-redact/options/replacement_redacted',
+        'text-redact/button/redact',
+        'text-redact/button/clear',
+        'text-redact/button/load_example',
+        'text-redact/button/copy',
+        'text-redact/message/copied',
+        'text-redact/stats/title',
+        'text-redact/stats/redacted_count',
+    ]) }}
+    {{ register_tool_assets('text-redact', 'v1.0', [
+        'components/InputCard.js',
+        'components/OutputCard.js',
+        'services/RedactService.js'
+    ]) }}
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+
+    {% include 'shared/app.html' %}
+
+{% endblock %}

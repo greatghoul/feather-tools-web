@@ -1,0 +1,79 @@
+{% extends "layout.html" %}
+{% from 'helpers.html' import register_tool_assets, register_messages %}
+
+{% block head %}
+    {{ register_messages(messages, [
+        'video-to-mp3/name',
+        'video-to-mp3/note',
+        'video-to-mp3/button/load',
+        'video-to-mp3/button/convert',
+        'video-to-mp3/button/clear',
+        'video-to-mp3/button/download',
+        'video-to-mp3/options/quality',
+        'video-to-mp3/message/processing',
+        'video-to-mp3/message/progress',
+        'video-to-mp3/message/complete',
+        'video-to-mp3/message/error',
+        'video-to-mp3/message/no_audio',
+        'video-to-mp3/message/no_video',
+        'video-to-mp3/message/loading_engine',
+        'video-to-mp3/message/preview_error',
+        'video-to-mp3/result/title',
+        'video-to-mp3/file_info/name',
+        'video-to-mp3/file_info/duration',
+        'video-to-mp3/file_info/audio',
+    ]) }}
+    <script type="importmap">
+    {
+        "imports": {
+            "@ffmpeg/ffmpeg": "{{ url_for('static', filename='video-to-mp3/ffmpeg/index.js') }}?v1.0"
+        }
+    }
+    </script>
+    {{ register_tool_assets('video-to-mp3', 'v1.0', [
+    ]) }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='video-to-mp3/video-to-mp3.css') }}?v1.0">
+    <script src="https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js"></script>
+{% endblock %}
+
+{% block content %}
+    {% include 'shared/security_badge.html' %}
+    <h1 class="mb-4">{{ page_name }}</h1>
+    <p class="lead mb-5">{{ page_note }}</p>
+    {% include 'shared/app.html' %}
+
+    <div class="row row-gap-4 my-4">
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('tool/how_to_use') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ol class="mb-0">
+                        <li>{{ _('video-to-mp3/how_to_use/step1') }}</li>
+                        <li>{{ _('video-to-mp3/how_to_use/step2') }}</li>
+                        <li>{{ _('video-to-mp3/how_to_use/step3') }}</li>
+                        <li>{{ _('video-to-mp3/how_to_use/step4') }}</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h2 class="h5 mb-0">{{ _('tool/features') }}</h2>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li>{{ _('video-to-mp3/features/browser_based') }}</li>
+                        <li>{{ _('video-to-mp3/features/dual_engine') }}</li>
+                        <li>{{ _('video-to-mp3/features/multi_format') }}</li>
+                        <li>{{ _('video-to-mp3/features/fast_small') }}</li>
+                        <li>{{ _('video-to-mp3/features/privacy_first') }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

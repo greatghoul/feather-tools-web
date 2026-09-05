@@ -1,4 +1,5 @@
 import { t } from '~/helpers/i18n';
+import { T } from '~/helpers/T';
 
 export const SectionsBefore = () => (
     <>
@@ -14,14 +15,14 @@ export const SectionsAfter = () => (
         <div className="col-lg-6">
             <div className="card h-100">
                 <div className="card-header">
-                    <h2 className="h5 mb-0">{t('tool/how_to_use')}</h2>
+                    <h2 className="h5 mb-0"><T k='tool/how_to_use' /></h2>
                 </div>
                 <div className="card-body">
                     <ol>
-                        <li>{t('text-line-numbers/how_to_use/step1')}</li>
-                        <li>{t('text-line-numbers/how_to_use/step2')}</li>
-                        <li>{t('text-line-numbers/how_to_use/step3')}</li>
-                        <li>{t('text-line-numbers/how_to_use/step4')}</li>
+                        <li><T k='text-line-numbers/how_to_use/step1' /></li>
+                        <li><T k='text-line-numbers/how_to_use/step2' /></li>
+                        <li><T k='text-line-numbers/how_to_use/step3' /></li>
+                        <li><T k='text-line-numbers/how_to_use/step4' /></li>
                     </ol>
                 </div>
             </div>
@@ -29,13 +30,13 @@ export const SectionsAfter = () => (
         <div className="col-lg-6">
             <div className="card h-100">
                 <div className="card-header">
-                    <h2 className="h5 mb-0">{t('tool/features')}</h2>
+                    <h2 className="h5 mb-0"><T k='tool/features' /></h2>
                 </div>
                 <div className="card-body">
                     <ul>
-                        <li>{t('text-line-numbers/features/line_types')}</li>
-                        <li>{t('text-line-numbers/features/formatting')}</li>
-                        <li>{t('text-line-numbers/features/advanced')}</li>
+                        <li><T k='text-line-numbers/features/line_types' /></li>
+                        <li><T k='text-line-numbers/features/formatting' /></li>
+                        <li><T k='text-line-numbers/features/advanced' /></li>
                     </ul>
                 </div>
             </div>

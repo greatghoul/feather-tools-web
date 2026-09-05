@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import siteFiles from './src/integrations/site-files';
 
 const rootDir = dirname(fileURLToPath(import.meta.url));
 
@@ -20,7 +21,7 @@ export default defineConfig({
         defaultLocale: 'en',
         routing: { prefixDefaultLocale: true },
     },
-    integrations: [react()],
+    integrations: [react(), siteFiles()],
     vite: {
         resolve: {
             alias: {

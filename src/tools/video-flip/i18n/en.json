@@ -1,0 +1,19 @@
+{
+    "video-flip/button/clear": "Clear",
+    "video-flip/button/download": "Download",
+    "video-flip/button/flip": "Flip & Export",
+    "video-flip/button/load": "Load Video",
+    "video-flip/message/complete": "Video flip complete",
+    "video-flip/message/error": "An error occurred while processing the video",
+    "video-flip/message/no_video": "No video loaded",
+    "video-flip/message/processing": "Processing...",
+    "video-flip/message/progress": "Exporting video...",
+    "video-flip/mode/both": "Both",
+    "video-flip/mode/horizontal": "Horizontal",
+    "video-flip/mode/vertical": "Vertical",
+    "video-flip/name": "Video Flip",
+    "video-flip/note": "Flip videos horizontally or vertically, right in your browser.",
+    "video-flip/preview/title": "Preview",
+    "video-flip/tags": "video, flip, mirror, horizontal, vertical",
+    "video-flip/upload/hint": "Click or drop to load a video"
+}

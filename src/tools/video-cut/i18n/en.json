@@ -1,0 +1,19 @@
+{
+    "video-cut/button/clear": "Clear",
+    "video-cut/button/cut": "Cut",
+    "video-cut/button/download": "Download",
+    "video-cut/button/load": "Load Video",
+    "video-cut/button/preview": "Preview",
+    "video-cut/button/stop": "Stop",
+    "video-cut/controls/duration": "Duration",
+    "video-cut/controls/end_time": "End Time",
+    "video-cut/controls/start_time": "Start Time",
+    "video-cut/message/complete": "Video cut complete",
+    "video-cut/message/error": "An error occurred while processing the video",
+    "video-cut/message/no_video": "No video loaded",
+    "video-cut/message/processing": "Processing...",
+    "video-cut/name": "Video Cut",
+    "video-cut/note": "Trim and cut video files by selecting start and end times.",
+    "video-cut/preview/title": "Preview",
+    "video-cut/tags": "video, cut, trim, editor, clip"
+}

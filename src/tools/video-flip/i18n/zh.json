@@ -1,0 +1,19 @@
+{
+    "video-flip/button/clear": "清除",
+    "video-flip/button/download": "下载",
+    "video-flip/button/flip": "翻转导出",
+    "video-flip/button/load": "加载视频",
+    "video-flip/message/complete": "视频翻转完成",
+    "video-flip/message/error": "处理视频时发生错误",
+    "video-flip/message/no_video": "未加载视频",
+    "video-flip/message/processing": "处理中...",
+    "video-flip/message/progress": "正在导出视频...",
+    "video-flip/mode/both": "水平+垂直",
+    "video-flip/mode/horizontal": "水平翻转",
+    "video-flip/mode/vertical": "垂直翻转",
+    "video-flip/name": "视频翻转",
+    "video-flip/note": "在浏览器中水平或垂直翻转视频。",
+    "video-flip/preview/title": "预览",
+    "video-flip/tags": "视频, 翻转, 镜像, 水平, 垂直",
+    "video-flip/upload/hint": "点击或拖拽加载视频"
+}

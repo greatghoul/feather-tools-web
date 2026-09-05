@@ -1,0 +1,98 @@
+import { useState, useEffect } from 'react';
+import { t } from '~/helpers/i18n';
+
+const VOLUME_PRESETS = [
+    { value: 0, labelKey: 'video-volume/preset/mute' },
+    { value: 25, label: '25%' },
+    { value: 50, label: '50%' },
+    { value: 75, label: '75%' },
+    { value: 100, label: '100%' },
+    { value: 125, label: '125%' },
+    { value: 150, label: '150%' },
+    { value: 175, label: '175%' },
+    { value: 200, label: '200%' },
+];
+
+const MIN_VOLUME = 0;
+const MAX_VOLUME = 200;
+
+const VolumeControls = ({ volume, onVolumeChange, disabled }) => {
+    const [customValue, setCustomValue] = useState('');
+
+    useEffect(() => {
+        const isPreset = VOLUME_PRESETS.some((p) => p.value === volume);
+        setCustomValue(isPreset ? '' : String(volume));
+    }, [volume]);
+
+    const handlePresetClick = (value) => {
+        onVolumeChange(value);
+    };
+
+    const handleSliderChange = (e) => {
+        onVolumeChange(parseInt(e.target.value, 10));
+    };
+
+    const handleCustomChange = (e) => {
+        setCustomValue(e.target.value);
+    };
+
+    const applyCustom = () => {
+        const value = parseFloat(customValue);
+        if (isNaN(value)) {
+            setCustomValue(String(volume));
+            return;
+        }
+        const clamped = Math.max(MIN_VOLUME, Math.min(MAX_VOLUME, Math.round(value)));
+        onVolumeChange(clamped);
+        setCustomValue(String(clamped));
+    };
+
+    const handleCustomBlur = () => {
+        if (customValue === '' || customValue === String(volume)) {
+            setCustomValue('');
+            return;
+        }
+        applyCustom();
+    };
+
+    const handleCustomKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            e.target.blur();
+        }
+    };
+
+    const formatLabel = (v) => (v === 0 ? t('video-volume/preset/mute') : `${v}%`);
+
+    return (
+<>
+
+        <div className="volume-controls">
+            <label className="form-label fw-bold mb-2">{t('video-volume/settings/volume')}</label>
+            <div className="d-flex flex-wrap gap-1 mb-3">
+                {VOLUME_PRESETS.map((preset) => (
+<>
+
+                    <button key={preset.value} type="button" className={`btn btn-sm ${volume === preset.value ? 'btn-primary' : 'btn-outline-secondary'}`} onClick={() => handlePresetClick(preset.value)} disabled={disabled}>
+                        {preset.labelKey ? t(preset.labelKey) : preset.label}
+                    </button>
+                
+</>
+))}
+            </div>
+            <div className="d-flex align-items-center gap-3 mb-2">
+                <i className="bi bi-volume-mute-fill text-muted"></i>
+                <input type="range" className="form-range volume-slider" min={MIN_VOLUME} max={MAX_VOLUME} step="1" value={volume} onInput={handleSliderChange} disabled={disabled} />
+                <i className="bi bi-volume-up-fill text-muted"></i>
+                <span className="badge bg-primary fs-6 volume-badge">{formatLabel(volume)}</span>
+            </div>
+            <div className="d-flex align-items-center gap-2">
+                <input type="number" className="form-control form-control-sm" style={{ maxWidth: '100px' }} min={MIN_VOLUME} max={MAX_VOLUME} step="1" value={customValue} placeholder={String(volume)} onInput={handleCustomChange} onBlur={handleCustomBlur} onKeyDown={handleCustomKeyDown} disabled={disabled} />
+                <small className="text-muted">{t('video-volume/settings/custom_hint')}</small>
+            </div>
+        </div>
+    
+</>
+);
+};
+
+export default VolumeControls;

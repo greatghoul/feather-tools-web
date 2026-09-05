@@ -1,0 +1,10 @@
+---
+// Port of the legacy helpers/T.tsx: render a translation as plain text, or as
+// HTML when the string contains markup (some strings embed <strong> and co).
+import type { Translate } from '../helpers/i18n-server';
+
+const { k, t } = Astro.props as { k: string; t: Translate };
+const text = t(k);
+const isHtml = /<[a-z][^>]*>/i.test(text);
+---
+{isHtml ? <span set:html={text} /> : text}

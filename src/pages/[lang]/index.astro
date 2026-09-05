@@ -1,0 +1,49 @@
+---
+// Home page (both locales) — Astro i18n routing renders /en/ and /zh/.
+import Layout from '../../layouts/Layout.astro';
+import ToolCard from '../../components/ToolCard.astro';
+import { createT, buildKeywords } from '../../helpers/i18n-server';
+import { CATEGORY_ORDER, TOOL_MAP } from '../../data/tools';
+import { MIGRATED_TOOLS } from '../../data/migrated-tools';
+import { SITE, type Locale } from '../../data/site';
+
+export function getStaticPaths() {
+    return SITE.locales.map((lang) => ({ params: { lang } }));
+}
+
+const locale = Astro.params.lang as Locale;
+const t = createT(locale);
+const path = `/${locale}/`;
+const alternates: Record<Locale, string> = { en: '/en/', zh: '/zh/' };
+---
+<Layout
+    locale={locale}
+    path={path}
+    alternates={alternates}
+    title={t('site/title')}
+    description={t('site/description')}
+    keywords={buildKeywords(t)}
+    disqusKey="home"
+>
+    <h1 class="mb-4">{t('home/welcome_title')}</h1>
+    <p class="lead mb-5" set:html={t('home/welcome_note')} />
+    {CATEGORY_ORDER.map((category) => {
+        const categoryTools = MIGRATED_TOOLS.filter(
+            (slug) => TOOL_MAP[slug]?.category === category
+        );
+        if (categoryTools.length === 0) return null;
+        return (
+            <div>
+                <h2 class="fs-3 mb-2" id={`${category}-tools`}>{t(`category/${category}/name`)}</h2>
+                <p class="lead" set:html={t(`category/${category}/note`)} />
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 mb-3">
+                    {categoryTools.map((slug) => (
+                        <div class="col">
+                            <ToolCard slug={slug} locale={locale} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        );
+    })}
+</Layout>

@@ -6,13 +6,13 @@
     "license": "MIT",
     "description": "Feather Tools - pure static build for Cloudflare Pages",
     "scripts": {
-        "dev": "vite",
+        "dev": "astro dev",
+        "astro": "astro",
         "typecheck": "tsc --noEmit",
         "convert-i18n": "node scripts/convert-i18n.mjs",
-        "build:bundles": "tsx scripts/build-bundles.ts",
-        "build:pages": "tsx scripts/generate-pages.tsx",
-        "build": "npm run typecheck && npm run build:bundles && npm run build:pages",
-        "preview": "vite preview"
+        "compare": "node scripts/compare-astro.mjs",
+        "build": "astro build",
+        "preview": "astro preview"
     },
     "dependencies": {
         "@codemirror/commands": "^6.11.0",
@@ -34,12 +34,14 @@
         "upng-js": "^2.1.0"
     },
     "devDependencies": {
+        "@astrojs/react": "^6.0.5",
         "@types/figlet": "^1.7.0",
         "@types/node": "^26.4.1",
         "@types/qrcode": "^1.5.6",
         "@types/react": "^18.3.12",
         "@types/react-dom": "^18.3.1",
         "@vitejs/plugin-react": "^4.3.4",
+        "astro": "^7.3.1",
         "gettext-parser": "^8.0.0",
         "tsx": "^4.19.2",
         "typescript": "5.7.2",

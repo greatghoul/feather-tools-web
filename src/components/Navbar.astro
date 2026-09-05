@@ -1,0 +1,56 @@
+---
+// Ported from the legacy src/pages/Navbar.tsx.
+import { createT } from '../helpers/i18n-server';
+import type { Locale } from '../data/site';
+
+const { locale, alternates } = Astro.props as { locale: Locale; alternates: Record<Locale, string> };
+const t = createT(locale);
+
+const NAV_ITEMS: { anchor: string; key: string }[] = [
+    { anchor: 'text-tools', key: 'nav/text' },
+    { anchor: 'image-tools', key: 'nav/image' },
+    { anchor: 'video-tools', key: 'nav/video' },
+    { anchor: 'printable-tools', key: 'nav/printable' },
+    { anchor: 'extension-tools', key: 'nav/extension' },
+];
+---
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href={`/${locale}/`}>
+            <img src="/static/favicon-32x32.png" alt="Logo" width={24} height={24} class="me-2" />
+            {t('site/title')}
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon" />
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                {NAV_ITEMS.map(({ anchor, key }) => (
+                    <li class="nav-item">
+                        <a class="nav-link" href={`/${locale}/#${anchor}`}>
+                            {t(key)}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="languageDropdown"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        <i class="bi bi-translate" /> {t('site/language')}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                        <li><a class="dropdown-item" href={alternates.en}>English</a></li>
+                        <li><a class="dropdown-item" href={alternates.zh}>简体中文</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

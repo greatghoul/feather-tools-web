@@ -29,6 +29,31 @@ export default defineConfig({
                 '~': resolve(rootDir, 'src'),
             },
         },
+        optimizeDeps: {
+            // Pre-bundle every runtime dependency at dev server start. Without
+            // this, Vite optimizes heavy/tool-specific deps (simple-notify,
+            // @ffmpeg/ffmpeg, konva, ...) on first request, which can abort
+            // with "504 Outdated Optimize Dep" and break the tool at runtime.
+            include: [
+                'react',
+                'react-dom',
+                'simple-notify',
+                '@ffmpeg/ffmpeg',
+                '@codemirror/commands',
+                '@codemirror/state',
+                '@codemirror/view',
+                '@faker-js/faker',
+                'axios',
+                'figlet',
+                'gifuct-js',
+                'html2canvas',
+                'jsqr',
+                'jszip',
+                'konva',
+                'qrcode',
+                'upng-js',
+            ],
+        },
         build: {
             // Legacy pipeline minified CSS with esbuild, which tolerates the
             // loose nesting/declaration syntax some tool CSS uses. Astro's

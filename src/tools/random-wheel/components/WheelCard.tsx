@@ -129,6 +129,7 @@ const WheelCard = ({ items, spinning, onSpinChange, onResult }: WheelCardProps) 
     const offRef = useRef<HTMLCanvasElement | null>(null);
     const rafRef = useRef(0);
     const rotationRef = useRef(0);
+    const spinningRef = useRef(false);
     const sizeRef = useRef(0);
     const dprRef = useRef(1);
     const [size, setSize] = useState(0);
@@ -187,7 +188,13 @@ const WheelCard = ({ items, spinning, onSpinChange, onResult }: WheelCardProps) 
     }, [size, items, highlight, render]);
 
     const handleSpin = () => {
-        if (spinning || items.length === 0) return;
+        if (spinningRef.current || items.length === 0) return;
+        // The prop-based lock only updates after a re-render, and a stale
+        // animation loop (e.g. resumed after the tab was frozen) could keep
+        // driving the wheel underneath a new spin — cancel any leftover frame
+        // and guard with a synchronous ref so two loops can never interleave.
+        cancelAnimationFrame(rafRef.current);
+        spinningRef.current = true;
         setResult(null);
         onSpinChange(true);
         const seg = TWO_PI / items.length;
@@ -211,10 +218,15 @@ const WheelCard = ({ items, spinning, onSpinChange, onResult }: WheelCardProps) 
             } else {
                 rotationRef.current = startRot + delta;
                 render();
-                setWinnerIndex(winner);
-                setResult(items[winner]);
+                // Announce the slice actually under the pointer instead of the
+                // pre-picked one, so the result can never disagree with the
+                // picture even if an old animation frame slipped in.
+                const landed = Math.floor(mod2pi(-rotationRef.current) / seg) % items.length;
+                spinningRef.current = false;
+                setWinnerIndex(landed);
+                setResult(items[landed]);
                 onSpinChange(false);
-                onResult(items[winner]);
+                onResult(items[landed]);
             }
         };
         rafRef.current = requestAnimationFrame(frame);

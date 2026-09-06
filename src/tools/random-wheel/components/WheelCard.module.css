@@ -52,6 +52,5 @@
 }
 
 .spinBtn:disabled {
-    opacity: 0.65;
-    cursor: not-allowed;
+    cursor: default;
 }

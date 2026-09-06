@@ -67,15 +67,18 @@ const App = () => {
 
     const handleResult = useCallback((item: string) => {
         setHistory((prev) => [item, ...prev].slice(0, MAX_HISTORY));
-        if (settings.removeWinner) {
-            setText((prev) => {
-                const lines = prev.split('\n');
-                const idx = lines.findIndex((line) => line.trim() === item);
-                if (idx >= 0) lines.splice(idx, 1);
-                return lines.join('\n');
-            });
-        }
-    }, [settings.removeWinner]);
+    }, []);
+
+    // Called after the removal animation finishes so the wheel keeps the drawn
+    // slice visible until it has flashed and collapsed.
+    const handleRemoveItem = useCallback((item: string) => {
+        setText((prev) => {
+            const lines = prev.split('\n');
+            const idx = lines.findIndex((line) => line.trim() === item);
+            if (idx >= 0) lines.splice(idx, 1);
+            return lines.join('\n');
+        });
+    }, []);
 
     return (
         <div className="row row-gap-4 mb-4">
@@ -93,8 +96,10 @@ const App = () => {
                 <WheelCard
                     items={items}
                     spinning={spinning}
+                    removeWinner={settings.removeWinner}
                     onSpinChange={setSpinning}
                     onResult={handleResult}
+                    onRemoveItem={handleRemoveItem}
                 />
                 <HistoryCard history={history} onClear={() => setHistory([])} />
             </div>

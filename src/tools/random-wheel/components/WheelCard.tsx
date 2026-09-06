@@ -9,6 +9,10 @@ const PALETTE = [
     '#f15bb5', '#00bbf9',
 ];
 const TWO_PI = Math.PI * 2;
+// Remove-winner animation: flash the drawn slice, then collapse it while the
+// neighbors glide into their new spans (2s in total).
+const REMOVAL_FLASH_MS = 700;
+const REMOVAL_SHRINK_MS = 1300;
 
 const mod2pi = (a: number) => ((a % TWO_PI) + TWO_PI) % TWO_PI;
 
@@ -26,6 +30,113 @@ const isLightColor = (hex: string) => {
     return 0.2126 * r + 0.7152 * g + 0.0722 * b > 0.6;
 };
 
+const lerpColor = (a: string, b: string, t: number) => {
+    const ca = [parseInt(a.slice(1, 3), 16), parseInt(a.slice(3, 5), 16), parseInt(a.slice(5, 7), 16)];
+    const cb = [parseInt(b.slice(1, 3), 16), parseInt(b.slice(3, 5), 16), parseInt(b.slice(5, 7), 16)];
+    const mixed = ca.map((v, i) => Math.round(v + (cb[i] - v) * t));
+    return `rgb(${mixed[0]}, ${mixed[1]}, ${mixed[2]})`;
+};
+
+interface PaintSlice {
+    label: string;
+    color: string;
+    textColor: string;
+    start: number;
+    end: number;
+    /** Gold overlay alpha — highlights and the removal flash. */
+    overlay: number;
+    /** Gold edge stroke for the landed-winner highlight. */
+    stroke: boolean;
+    labelAlpha: number;
+}
+
+function drawRadialLabel(
+    ctx: CanvasRenderingContext2D,
+    R: number,
+    maxW: number,
+    baseSize: number,
+    mid: number,
+    label: string,
+    textColor: string,
+    alpha: number,
+) {
+    if (alpha <= 0.02) return;
+    let fontSize = baseSize;
+    let text = label;
+    ctx.font = `600 ${fontSize}px ${FONT_STACK}`;
+    while (fontSize > 9 && ctx.measureText(text).width > maxW) {
+        fontSize -= 1;
+        ctx.font = `600 ${fontSize}px ${FONT_STACK}`;
+    }
+    if (ctx.measureText(text).width > maxW) {
+        while (text.length > 1 && ctx.measureText(`${text}…`).width > maxW) {
+            text = text.slice(0, -1);
+        }
+        text = `${text}…`;
+    }
+    // Slices on the left half get flipped so labels never read upside down.
+    const flip = Math.cos(mid) < 0;
+    ctx.save();
+    ctx.rotate(mid + (flip ? Math.PI : 0));
+    ctx.textAlign = flip ? 'left' : 'right';
+    ctx.fillStyle = textColor;
+    ctx.globalAlpha = alpha;
+    ctx.fillText(text, flip ? -(R - 10) : R - 10, 0);
+    ctx.restore();
+}
+
+// Paints the wheel in center-relative coordinates (the caller sets up the
+// DPR scale and the center translation). Used both for the static offscreen
+// render and for the per-frame removal transition.
+function paintWheel(ctx: CanvasRenderingContext2D, size: number, slices: PaintSlice[]) {
+    const R = size / 2 - 6;
+    const n = slices.length;
+    ctx.beginPath();
+    ctx.arc(0, 0, R + 4, 0, TWO_PI);
+    ctx.fillStyle = n > 0 ? '#495057' : '#e9ecef';
+    ctx.fill();
+
+    if (n > 0) {
+        const baseSize = n <= 8 ? 16 : n <= 14 ? 14 : n <= 22 ? 12 : 10;
+        // Radial room between the rim and the center hub button.
+        const maxW = R - 10 - Math.max(size * 0.16, 52);
+        ctx.textBaseline = 'middle';
+        for (const s of slices) {
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.arc(0, 0, R, s.start, s.end);
+            ctx.closePath();
+            ctx.fillStyle = s.color;
+            ctx.fill();
+            ctx.lineWidth = 1.5;
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+            ctx.stroke();
+            if (s.overlay > 0) {
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.arc(0, 0, R, s.start, s.end);
+                ctx.closePath();
+                ctx.fillStyle = `rgba(255, 193, 7, ${s.overlay})`;
+                ctx.fill();
+            }
+            if (s.stroke) {
+                ctx.lineWidth = 3;
+                ctx.strokeStyle = '#ffc107';
+                ctx.stroke();
+            }
+            if (n <= 36) {
+                drawRadialLabel(ctx, R, maxW, baseSize, (s.start + s.end) / 2, s.label, s.textColor, s.labelAlpha);
+            }
+        }
+    }
+
+    ctx.beginPath();
+    ctx.arc(0, 0, R, 0, TWO_PI);
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = '#495057';
+    ctx.stroke();
+}
+
 // Renders the full wheel (slices + labels + highlight) into an offscreen
 // canvas; the live canvas only rotates and blits it each animation frame.
 function buildWheelCanvas(size: number, dpr: number, items: string[], highlight: number | null): HTMLCanvasElement {
@@ -33,97 +144,36 @@ function buildWheelCanvas(size: number, dpr: number, items: string[], highlight:
     canvas.width = canvas.height = Math.max(1, Math.round(size * dpr));
     const ctx = canvas.getContext('2d')!;
     ctx.scale(dpr, dpr);
-    const c = size / 2;
-    const R = size / 2 - 6;
+    ctx.translate(size / 2, size / 2);
     const n = items.length;
-    const seg = TWO_PI / n;
-
-    if (n === 0) {
-        ctx.beginPath();
-        ctx.arc(c, c, R + 4, 0, TWO_PI);
-        ctx.fillStyle = '#e9ecef';
-        ctx.fill();
-    } else {
-        ctx.beginPath();
-        ctx.arc(c, c, R + 4, 0, TWO_PI);
-        ctx.fillStyle = '#495057';
-        ctx.fill();
-    }
-
-    for (let i = 0; i < n; i++) {
-        const start = -Math.PI / 2 + i * seg;
-        ctx.beginPath();
-        ctx.moveTo(c, c);
-        ctx.arc(c, c, R, start, start + seg);
-        ctx.closePath();
-        ctx.fillStyle = sliceColor(i, n);
-        ctx.fill();
-        ctx.lineWidth = 1.5;
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
-        ctx.stroke();
-    }
-
-    if (n <= 36) {
-        const baseSize = n <= 8 ? 16 : n <= 14 ? 14 : n <= 22 ? 12 : 10;
-        // Radial room between the rim and the center hub button.
-        const maxW = R - 10 - Math.max(size * 0.16, 52);
-        ctx.textBaseline = 'middle';
-        for (let i = 0; i < n; i++) {
-            const mid = -Math.PI / 2 + (i + 0.5) * seg;
-            // Slices on the left half get flipped so labels never read upside down.
-            const flip = Math.cos(mid) < 0;
-            let fontSize = baseSize;
-            let label = items[i];
-            ctx.font = `600 ${fontSize}px ${FONT_STACK}`;
-            while (fontSize > 9 && ctx.measureText(label).width > maxW) {
-                fontSize -= 1;
-                ctx.font = `600 ${fontSize}px ${FONT_STACK}`;
-            }
-            if (ctx.measureText(label).width > maxW) {
-                while (label.length > 1 && ctx.measureText(`${label}…`).width > maxW) {
-                    label = label.slice(0, -1);
-                }
-                label = `${label}…`;
-            }
-            ctx.save();
-            ctx.translate(c, c);
-            ctx.rotate(mid + (flip ? Math.PI : 0));
-            ctx.textAlign = flip ? 'left' : 'right';
-            ctx.fillStyle = isLightColor(sliceColor(i, n)) ? '#212529' : '#ffffff';
-            ctx.fillText(label, flip ? -(R - 10) : R - 10, 0);
-            ctx.restore();
-        }
-    }
-
-    if (highlight !== null && highlight < n) {
-        const start = -Math.PI / 2 + highlight * seg;
-        ctx.beginPath();
-        ctx.moveTo(c, c);
-        ctx.arc(c, c, R, start, start + seg);
-        ctx.closePath();
-        ctx.fillStyle = 'rgba(255, 193, 7, 0.45)';
-        ctx.fill();
-        ctx.lineWidth = 3;
-        ctx.strokeStyle = '#ffc107';
-        ctx.stroke();
-    }
-
-    ctx.beginPath();
-    ctx.arc(c, c, R, 0, TWO_PI);
-    ctx.lineWidth = 6;
-    ctx.strokeStyle = '#495057';
-    ctx.stroke();
+    const seg = TWO_PI / Math.max(n, 1);
+    const slices: PaintSlice[] = items.map((label, i) => {
+        const color = sliceColor(i, n);
+        return {
+            label,
+            color,
+            textColor: isLightColor(color) ? '#212529' : '#ffffff',
+            start: -Math.PI / 2 + i * seg,
+            end: -Math.PI / 2 + (i + 1) * seg,
+            overlay: highlight === i ? 0.45 : 0,
+            stroke: highlight === i,
+            labelAlpha: 1,
+        };
+    });
+    paintWheel(ctx, size, slices);
     return canvas;
 }
 
 interface WheelCardProps {
     items: string[];
     spinning: boolean;
+    removeWinner: boolean;
     onSpinChange: (spinning: boolean) => void;
     onResult: (item: string) => void;
+    onRemoveItem: (item: string) => void;
 }
 
-const WheelCard = ({ items, spinning, onSpinChange, onResult }: WheelCardProps) => {
+const WheelCard = ({ items, spinning, removeWinner, onSpinChange, onResult, onRemoveItem }: WheelCardProps) => {
     const wrapRef = useRef<HTMLDivElement | null>(null);
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const offRef = useRef<HTMLCanvasElement | null>(null);
@@ -135,6 +185,7 @@ const WheelCard = ({ items, spinning, onSpinChange, onResult }: WheelCardProps) 
     const [size, setSize] = useState(0);
     const [winnerIndex, setWinnerIndex] = useState<number | null>(null);
     const [result, setResult] = useState<string | null>(null);
+    const [removing, setRemoving] = useState(false);
 
     const render = useCallback(() => {
         const canvas = canvasRef.current;
@@ -150,6 +201,74 @@ const WheelCard = ({ items, spinning, onSpinChange, onResult }: WheelCardProps) 
         ctx.rotate(rotationRef.current);
         ctx.drawImage(off, -size / 2, -size / 2, size, size);
     }, []);
+
+    // One frame of the remove-winner transition, painted in screen coordinates
+    // so the pointer (at -π/2) never moves and the wheel face stays put. The
+    // drawn slice flashes in place (k=0), then both its edges converge onto
+    // the pointer line while every survivor grows from seg to its new width,
+    // ending in exactly the layout the rebuilt (n-1)-slice wheel will render —
+    // the handoff to the offscreen is invisible.
+    const drawRemovalFrame = useCallback((w: number, f: number, k: number, flashT: number) => {
+        const canvas = canvasRef.current;
+        const size = sizeRef.current;
+        if (!canvas || !size) return;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        const dpr = dprRef.current;
+        const n = items.length;
+        const seg = TWO_PI / n;
+        const seg2 = TWO_PI / (n - 1);
+        const P = -Math.PI / 2;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.setTransform(dpr, 0, 0, dpr, (size / 2) * dpr, (size / 2) * dpr);
+        const width = seg + (seg2 - seg) * k;
+        // Winner edges collapse onto the pointer line; f is how far the
+        // winner's start edge sits behind the pointer (jitter from the spin).
+        const startW = P - f * (1 - k);
+        const endW = P + (seg - f) * (1 - k);
+        const seam = startW - w * width;
+        const flash = k === 0 ? (Math.floor(flashT * 4) % 2 === 0 ? 0.55 : 0.1) : 0;
+        const winnerColor = sliceColor(w, n);
+        const slices: PaintSlice[] = [];
+        for (let i = 0; i < n; i++) {
+            if (i === w) {
+                if (k < 1) {
+                    slices.push({
+                        label: items[i],
+                        color: winnerColor,
+                        textColor: isLightColor(winnerColor) ? '#212529' : '#ffffff',
+                        start: startW,
+                        end: endW,
+                        overlay: flash,
+                        stroke: false,
+                        labelAlpha: 1 - k,
+                    });
+                }
+                continue;
+            }
+            const newIdx = i < w ? i : i - 1;
+            let start: number;
+            if (i < w) {
+                start = seam + i * width;
+            } else {
+                start = endW + (i - w - 1) * width;
+            }
+            const from = sliceColor(i, n);
+            const to = sliceColor(newIdx, n - 1);
+            slices.push({
+                label: items[i],
+                color: lerpColor(from, to, k),
+                textColor: isLightColor(from) ? '#212529' : '#ffffff',
+                start,
+                end: start + width,
+                overlay: 0,
+                stroke: false,
+                labelAlpha: 1,
+            });
+        }
+        paintWheel(ctx, size, slices);
+    }, [items]);
 
     useEffect(() => {
         const el = wrapRef.current;
@@ -209,6 +328,36 @@ const WheelCard = ({ items, spinning, onSpinChange, onResult }: WheelCardProps) 
         const startTime = performance.now();
         const easeOutQuart = (x: number) => 1 - Math.pow(1 - x, 4);
 
+        const startRemoval = (w: number) => {
+            const seg = TWO_PI / items.length;
+            // Offset of the winner's start edge behind the pointer at spin end.
+            const f = mod2pi(-rotationRef.current) - w * seg;
+            const removalStart = performance.now();
+            const easeOutCubic = (x: number) => 1 - Math.pow(1 - x, 3);
+            const frame = (now: number) => {
+                const elapsed = now - removalStart;
+                if (elapsed < REMOVAL_FLASH_MS) {
+                    drawRemovalFrame(w, f, 0, elapsed / REMOVAL_FLASH_MS);
+                    rafRef.current = requestAnimationFrame(frame);
+                } else if (elapsed < REMOVAL_FLASH_MS + REMOVAL_SHRINK_MS) {
+                    drawRemovalFrame(w, f, easeOutCubic((elapsed - REMOVAL_FLASH_MS) / REMOVAL_SHRINK_MS), 1);
+                    rafRef.current = requestAnimationFrame(frame);
+                } else {
+                    // Paint the exact final layout (low-framerate steps can
+                    // skip past k=1), then rotate to where the rebuilt
+                    // (n-1)-slice wheel places the seam — identical frames,
+                    // so the handoff to the offscreen is invisible.
+                    drawRemovalFrame(w, f, 1, 1);
+                    rotationRef.current = mod2pi(-w * (TWO_PI / (items.length - 1)));
+                    spinningRef.current = false;
+                    setRemoving(false);
+                    onSpinChange(false);
+                    onRemoveItem(items[w]);
+                }
+            };
+            rafRef.current = requestAnimationFrame(frame);
+        };
+
         const frame = (now: number) => {
             const progress = Math.min((now - startTime) / duration, 1);
             rotationRef.current = startRot + delta * easeOutQuart(progress);
@@ -222,11 +371,17 @@ const WheelCard = ({ items, spinning, onSpinChange, onResult }: WheelCardProps) 
                 // pre-picked one, so the result can never disagree with the
                 // picture even if an old animation frame slipped in.
                 const landed = Math.floor(mod2pi(-rotationRef.current) / seg) % items.length;
-                spinningRef.current = false;
                 setWinnerIndex(landed);
                 setResult(items[landed]);
-                onSpinChange(false);
                 onResult(items[landed]);
+                if (removeWinner && items.length > 1) {
+                    setRemoving(true);
+                    startRemoval(landed);
+                } else {
+                    if (removeWinner) onRemoveItem(items[landed]);
+                    spinningRef.current = false;
+                    onSpinChange(false);
+                }
             }
         };
         rafRef.current = requestAnimationFrame(frame);
@@ -248,7 +403,7 @@ const WheelCard = ({ items, spinning, onSpinChange, onResult }: WheelCardProps) 
                     </button>
                 </div>
                 <div className="mt-3 text-center" aria-live="polite">
-                    {spinning ? (
+                    {spinning && !removing ? (
                         <span className="text-muted">{t('random-wheel/result/spinning')}</span>
                     ) : result ? (
                         <div className="fs-5 fw-bold text-success">

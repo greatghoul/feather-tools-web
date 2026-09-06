@@ -27,6 +27,11 @@ export default defineConfig({
                 '~': resolve(rootDir, 'src'),
             },
         },
+        server: {
+            // Allow dev access through ngrok tunnels (free plan rotates the
+            // subdomain, so allow the whole suffix instead of one host).
+            allowedHosts: ['.ngrok-free.app'],
+        },
         optimizeDeps: {
             // Pre-bundle every runtime dependency at dev server start. Without
             // this, Vite optimizes heavy/tool-specific deps (simple-notify,

@@ -180,6 +180,7 @@ const WheelCard = ({ items, spinning, removeWinner, onSpinChange, onResult, onRe
     const rafRef = useRef(0);
     const rotationRef = useRef(0);
     const spinningRef = useRef(false);
+    const removingRef = useRef(false);
     const sizeRef = useRef(0);
     const dprRef = useRef(1);
     const [size, setSize] = useState(0);
@@ -297,6 +298,10 @@ const WheelCard = ({ items, spinning, removeWinner, onSpinChange, onResult, onRe
     }, [items]);
 
     useEffect(() => {
+        // The removal animation paints the live canvas itself; rebuilding the
+        // offscreen here (triggered by the highlight state change right at
+        // spin end) would cost a frame exactly where the wheel comes to rest.
+        if (removingRef.current) return;
         const canvas = canvasRef.current;
         if (!canvas || !size) return;
         const dpr = Math.min(window.devicePixelRatio || 1, 3);
@@ -326,7 +331,10 @@ const WheelCard = ({ items, spinning, removeWinner, onSpinChange, onResult, onRe
         const delta = desired - current + TWO_PI * (5 + Math.random() * 3);
         const duration = 4200 + Math.random() * 1000;
         const startTime = performance.now();
-        const easeOutQuart = (x: number) => 1 - Math.pow(1 - x, 4);
+        // easeOutCubic keeps the final half second at a visible crawl — a
+        // quartic tail drops below a pixel per frame and reads as stutter
+        // right before the stop.
+        const easeOutCubic = (x: number) => 1 - Math.pow(1 - x, 3);
 
         const startRemoval = (w: number) => {
             const seg = TWO_PI / items.length;
@@ -350,6 +358,7 @@ const WheelCard = ({ items, spinning, removeWinner, onSpinChange, onResult, onRe
                     drawRemovalFrame(w, f, 1, 1);
                     rotationRef.current = mod2pi(-w * (TWO_PI / (items.length - 1)));
                     spinningRef.current = false;
+                    removingRef.current = false;
                     setRemoving(false);
                     onSpinChange(false);
                     onRemoveItem(items[w]);
@@ -360,7 +369,7 @@ const WheelCard = ({ items, spinning, removeWinner, onSpinChange, onResult, onRe
 
         const frame = (now: number) => {
             const progress = Math.min((now - startTime) / duration, 1);
-            rotationRef.current = startRot + delta * easeOutQuart(progress);
+            rotationRef.current = startRot + delta * easeOutCubic(progress);
             render();
             if (progress < 1) {
                 rafRef.current = requestAnimationFrame(frame);
@@ -375,6 +384,7 @@ const WheelCard = ({ items, spinning, removeWinner, onSpinChange, onResult, onRe
                 setResult(items[landed]);
                 onResult(items[landed]);
                 if (removeWinner && items.length > 1) {
+                    removingRef.current = true;
                     setRemoving(true);
                     startRemoval(landed);
                 } else {

@@ -4,7 +4,6 @@
     "random-wheel/button/remove_history": "Clear History",
     "random-wheel/button/spin": "SPIN",
     "random-wheel/features/auto_dedup": "Optional de-duplication and remove-after-draw modes",
-    "random-wheel/features/draw_history": "Draw history keeps track of past results",
     "random-wheel/features/simple_fast": "Simple, fast, and client-side",
     "random-wheel/history/empty": "No draws yet.",
     "random-wheel/history/title": "Draw History",

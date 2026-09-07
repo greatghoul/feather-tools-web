@@ -36,7 +36,6 @@ export const SectionsAfter = () => (
                     <ul>
                         <li><T k='random-wheel/features/simple_fast' /></li>
                         <li><T k='random-wheel/features/auto_dedup' /></li>
-                        <li><T k='random-wheel/features/draw_history' /></li>
                     </ul>
                 </div>
             </div>

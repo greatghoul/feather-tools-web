@@ -1204,7 +1204,6 @@
     "random-wheel/button/remove_history": "清空记录",
     "random-wheel/button/spin": "开始",
     "random-wheel/features/auto_dedup": "支持自动去重与抽中后移除模式",
-    "random-wheel/features/draw_history": "抽取记录保存历史结果",
     "random-wheel/features/simple_fast": "简单、快速、客户端处理",
     "random-wheel/history/empty": "还没有抽取记录。",
     "random-wheel/history/title": "抽取记录",

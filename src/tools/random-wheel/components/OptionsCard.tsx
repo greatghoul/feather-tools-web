@@ -14,7 +14,15 @@ interface OptionsCardProps {
 const OptionsCard = ({ settings, onSettingsChange, disabled }: OptionsCardProps) => {
     return (
         <div className="card">
-            <div className="card-header bg-light">{t('random-wheel/options/title')}</div>
+            <div className="card-header">
+                <ul className="nav nav-tabs card-header-tabs">
+                    <li className="nav-item">
+                        <a className="nav-link active" href="#" onClick={(e) => e.preventDefault()}>
+                            {t('random-wheel/options/title')}
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <div className="card-body">
                 <div className="form-check form-switch">
                     <input

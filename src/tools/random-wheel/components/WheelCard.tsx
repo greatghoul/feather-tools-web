@@ -9,9 +9,9 @@ const PALETTE = [
     '#f15bb5', '#00bbf9',
 ];
 const TWO_PI = Math.PI * 2;
-// Remove-winner animation: flash the drawn slice, then collapse it while the
-// neighbors glide into their new spans (2s in total).
-const REMOVAL_FLASH_MS = 700;
+// The drawn slice flashes in place (both modes), then — in remove-after-draw
+// mode — collapses while the neighbors glide into their new spans (2s total).
+const WINNER_FLASH_MS = 700;
 const REMOVAL_SHRINK_MS = 1300;
 
 const mod2pi = (a: number) => ((a % TWO_PI) + TWO_PI) % TWO_PI;
@@ -203,13 +203,14 @@ const WheelCard = ({ items, spinning, removeWinner, onSpinChange, onResult, onRe
         ctx.drawImage(off, -size / 2, -size / 2, size, size);
     }, []);
 
-    // One frame of the remove-winner transition, painted in screen coordinates
-    // so the pointer (at -π/2) never moves and the wheel face stays put. The
-    // drawn slice flashes in place (k=0), then both its edges converge onto
-    // the pointer line while every survivor grows from seg to its new width,
-    // ending in exactly the layout the rebuilt (n-1)-slice wheel will render —
-    // the handoff to the offscreen is invisible.
-    const drawRemovalFrame = useCallback((w: number, f: number, k: number, flashT: number) => {
+    // One frame of the winner feedback, painted in the pattern frame (the
+    // un-rotated layout the static offscreen uses) under an interpolated
+    // rotation rho: the drawn slice flashes in place (k=0), then its edges
+    // converge onto the pointer while every survivor grows into the new even
+    // layout. Label flips are decided from pattern angles — the same rule as
+    // the static render — so text never changes direction mid-effect, and the
+    // final frame matches the rebuilt (n-1)-slice wheel exactly.
+    const drawRemovalFrame = useCallback((w: number, f: number, r0: number, k: number, flashT: number) => {
         const canvas = canvasRef.current;
         const size = sizeRef.current;
         if (!canvas || !size) return;
@@ -220,14 +221,23 @@ const WheelCard = ({ items, spinning, removeWinner, onSpinChange, onResult, onRe
         const seg = TWO_PI / n;
         const seg2 = TWO_PI / (n - 1);
         const P = -Math.PI / 2;
+        // The whole pattern glides to the rotation the rebuilt wheel will use,
+        // taking the shortest path around.
+        let drift = mod2pi(-w * seg2) - r0;
+        if (drift > Math.PI) drift -= TWO_PI;
+        if (drift < -Math.PI) drift += TWO_PI;
+        const rho = r0 + drift * k;
         ctx.setTransform(1, 0, 0, 1, 0, 0);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.setTransform(dpr, 0, 0, dpr, (size / 2) * dpr, (size / 2) * dpr);
+        ctx.rotate(rho);
         const width = seg + (seg2 - seg) * k;
-        // Winner edges collapse onto the pointer line; f is how far the
-        // winner's start edge sits behind the pointer (jitter from the spin).
-        const startW = P - f * (1 - k);
-        const endW = P + (seg - f) * (1 - k);
+        // Winner edges collapse onto the pointer (whose pattern-frame position
+        // is P - rho); f is how far the winner's start edge sits behind it at
+        // spin end.
+        const pointer = P - rho;
+        const startW = pointer - f * (1 - k);
+        const endW = pointer + (seg - f) * (1 - k);
         const seam = startW - w * width;
         const flash = k === 0 ? (Math.floor(flashT * 4) % 2 === 0 ? 0.55 : 0.1) : 0;
         const winnerColor = sliceColor(w, n);
@@ -336,26 +346,37 @@ const WheelCard = ({ items, spinning, removeWinner, onSpinChange, onResult, onRe
         // right before the stop.
         const easeOutCubic = (x: number) => 1 - Math.pow(1 - x, 3);
 
-        const startRemoval = (w: number) => {
-            const seg = TWO_PI / items.length;
-            // Offset of the winner's start edge behind the pointer at spin end.
-            const f = mod2pi(-rotationRef.current) - w * seg;
-            const removalStart = performance.now();
+        // The drawn slice flashes in place before anything else (both modes).
+        // f is the winner's start-edge offset behind the pointer at spin end,
+        // r0 the wheel rotation at that moment.
+        const startFlash = (w: number, f: number, r0: number, onDone: () => void) => {
+            const flashStart = performance.now();
+            const frame = (now: number) => {
+                const elapsed = now - flashStart;
+                if (elapsed < WINNER_FLASH_MS) {
+                    drawRemovalFrame(w, f, r0, 0, elapsed / WINNER_FLASH_MS);
+                    rafRef.current = requestAnimationFrame(frame);
+                } else {
+                    onDone();
+                }
+            };
+            rafRef.current = requestAnimationFrame(frame);
+        };
+
+        const startShrink = (w: number, f: number, r0: number) => {
+            const shrinkStart = performance.now();
             const easeOutCubic = (x: number) => 1 - Math.pow(1 - x, 3);
             const frame = (now: number) => {
-                const elapsed = now - removalStart;
-                if (elapsed < REMOVAL_FLASH_MS) {
-                    drawRemovalFrame(w, f, 0, elapsed / REMOVAL_FLASH_MS);
-                    rafRef.current = requestAnimationFrame(frame);
-                } else if (elapsed < REMOVAL_FLASH_MS + REMOVAL_SHRINK_MS) {
-                    drawRemovalFrame(w, f, easeOutCubic((elapsed - REMOVAL_FLASH_MS) / REMOVAL_SHRINK_MS), 1);
+                const elapsed = now - shrinkStart;
+                if (elapsed < REMOVAL_SHRINK_MS) {
+                    drawRemovalFrame(w, f, r0, easeOutCubic(elapsed / REMOVAL_SHRINK_MS), 1);
                     rafRef.current = requestAnimationFrame(frame);
                 } else {
                     // Paint the exact final layout (low-framerate steps can
                     // skip past k=1), then rotate to where the rebuilt
                     // (n-1)-slice wheel places the seam — identical frames,
                     // so the handoff to the offscreen is invisible.
-                    drawRemovalFrame(w, f, 1, 1);
+                    drawRemovalFrame(w, f, r0, 1, 1);
                     rotationRef.current = mod2pi(-w * (TWO_PI / (items.length - 1)));
                     spinningRef.current = false;
                     removingRef.current = false;
@@ -383,14 +404,18 @@ const WheelCard = ({ items, spinning, removeWinner, onSpinChange, onResult, onRe
                 setWinnerIndex(landed);
                 setResult(items[landed]);
                 onResult(items[landed]);
+                // Offset of the winner's start edge behind the pointer here.
+                const r0 = mod2pi(rotationRef.current);
+                const f = mod2pi(-rotationRef.current) - landed * seg;
                 if (removeWinner && items.length > 1) {
                     removingRef.current = true;
                     setRemoving(true);
-                    startRemoval(landed);
+                    startFlash(landed, f, r0, () => startShrink(landed, f, r0));
                 } else {
                     if (removeWinner) onRemoveItem(items[landed]);
                     spinningRef.current = false;
                     onSpinChange(false);
+                    startFlash(landed, f, r0, render);
                 }
             }
         };
@@ -399,7 +424,15 @@ const WheelCard = ({ items, spinning, removeWinner, onSpinChange, onResult, onRe
 
     return (
         <div className="card">
-            <div className="card-header bg-light">{t('random-wheel/wheel/title')}</div>
+            <div className="card-header">
+                <ul className="nav nav-tabs card-header-tabs">
+                    <li className="nav-item">
+                        <a className="nav-link active" href="#" onClick={(e) => e.preventDefault()}>
+                            {t('random-wheel/wheel/title')}
+                        </a>
+                    </li>
+                </ul>
+            </div>
             <div className="card-body d-flex flex-column align-items-center">
                 <div className={styles.wheelWrap} ref={wrapRef}>
                     <canvas ref={canvasRef} />

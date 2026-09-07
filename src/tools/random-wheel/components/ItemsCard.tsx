@@ -11,8 +11,14 @@ interface ItemsCardProps {
 const ItemsCard = ({ text, onTextChange, itemsCount, truncated, disabled }: ItemsCardProps) => {
     return (
         <div className="card">
-            <div className="card-header bg-light d-flex justify-content-between align-items-center">
-                <span>{t('random-wheel/input/title')}</span>
+            <div className="card-header d-flex justify-content-between align-items-center">
+                <ul className="nav nav-tabs card-header-tabs">
+                    <li className="nav-item">
+                        <a className="nav-link active" href="#" onClick={(e) => e.preventDefault()}>
+                            {t('random-wheel/input/title')}
+                        </a>
+                    </li>
+                </ul>
                 <div className="d-flex gap-2">
                     <button
                         className="btn btn-sm btn-outline-info"

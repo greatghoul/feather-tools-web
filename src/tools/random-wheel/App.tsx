@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import ItemsCard from './components/ItemsCard';
 import OptionsCard, { type WheelSettings } from './components/OptionsCard';
 import WheelCard from './components/WheelCard';
-import HistoryCard from './components/HistoryCard';
+import HistoryCard, { type HistoryEntry } from './components/HistoryCard';
 
 const MAX_ITEMS = 100;
 const MAX_HISTORY = 50;
@@ -41,7 +41,7 @@ const App = () => {
     const [text, setText] = useState(loadSavedText);
     const [settings, setSettings] = useState<WheelSettings>(loadSavedSettings);
     const [spinning, setSpinning] = useState(false);
-    const [history, setHistory] = useState<string[]>([]);
+    const [history, setHistory] = useState<HistoryEntry[]>([]);
 
     useEffect(() => {
         try {
@@ -66,7 +66,8 @@ const App = () => {
     }, [text, settings.dedup]);
 
     const handleResult = useCallback((item: string) => {
-        setHistory((prev) => [item, ...prev].slice(0, MAX_HISTORY));
+        const time = new Date().toLocaleTimeString([], { hour12: false });
+        setHistory((prev) => [{ item, time }, ...prev].slice(0, MAX_HISTORY));
     }, []);
 
     // Called after the removal animation finishes so the wheel keeps the drawn

@@ -81,8 +81,8 @@ const App = () => {
     }, []);
 
     return (
-        <div className="row row-gap-4 mb-4">
-            <div className="col-md-6 col-lg-4 d-flex flex-column gap-4">
+        <div className="row row-gap-4 mb-4 align-items-start">
+            <div className="col-md-6 col-xl-3">
                 <ItemsCard
                     text={text}
                     onTextChange={setText}
@@ -90,9 +90,11 @@ const App = () => {
                     truncated={truncated}
                     disabled={spinning}
                 />
+            </div>
+            <div className="col-md-6 col-xl-3">
                 <OptionsCard settings={settings} onSettingsChange={setSettings} disabled={spinning} />
             </div>
-            <div className="col-lg-8 d-flex flex-column gap-4">
+            <div className="col-md-6 col-xl-3">
                 <WheelCard
                     items={items}
                     spinning={spinning}
@@ -101,6 +103,8 @@ const App = () => {
                     onResult={handleResult}
                     onRemoveItem={handleRemoveItem}
                 />
+            </div>
+            <div className="col-md-6 col-xl-3">
                 <HistoryCard history={history} onClear={() => setHistory([])} />
             </div>
         </div>

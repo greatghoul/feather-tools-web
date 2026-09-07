@@ -1,6 +1,6 @@
 {
     "random-wheel/button/clear": "Clear",
-    "random-wheel/button/load_example": "Load Example",
+    "random-wheel/button/load_example": "Example",
     "random-wheel/button/remove_history": "Clear History",
     "random-wheel/button/spin": "SPIN",
     "random-wheel/features/auto_dedup": "Optional de-duplication and remove-after-draw modes",

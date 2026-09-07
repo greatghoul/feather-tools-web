@@ -1200,7 +1200,7 @@
     "qrcode-decode/result/upload_hint": "Upload images containing QR codes to decode",
     "qrcode-decode/tags": "qr code, decoder, qr scanner, batch processing, privacy, client-side",
     "random-wheel/button/clear": "Clear",
-    "random-wheel/button/load_example": "Load Example",
+    "random-wheel/button/load_example": "Example",
     "random-wheel/button/remove_history": "Clear History",
     "random-wheel/button/spin": "SPIN",
     "random-wheel/features/auto_dedup": "Optional de-duplication and remove-after-draw modes",

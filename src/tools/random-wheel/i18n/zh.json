@@ -1,6 +1,6 @@
 {
     "random-wheel/button/clear": "清空",
-    "random-wheel/button/load_example": "加载示例",
+    "random-wheel/button/load_example": "示例",
     "random-wheel/button/remove_history": "清空记录",
     "random-wheel/button/spin": "开始",
     "random-wheel/features/auto_dedup": "支持自动去重与抽中后移除模式",

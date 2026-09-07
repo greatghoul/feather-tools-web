@@ -378,11 +378,30 @@ const WheelCard = ({ items, spinning, removeWinner, onSpinChange, onResult, onRe
                     // so the handoff to the offscreen is invisible.
                     drawRemovalFrame(w, f, r0, 1, 1);
                     rotationRef.current = mod2pi(-w * (TWO_PI / (items.length - 1)));
-                    spinningRef.current = false;
                     removingRef.current = false;
                     setRemoving(false);
-                    onSpinChange(false);
-                    onRemoveItem(items[w]);
+                    if (items.length === 2) {
+                        // One slice remains and its draw is a foregone
+                        // conclusion — highlight it, record it and empty the
+                        // wheel without asking for another spin. The spin lock
+                        // stays engaged until the sequence finishes.
+                        const last = items[1 - w];
+                        onRemoveItem(items[w]);
+                        setTimeout(() => {
+                            setResult(last);
+                            setWinnerIndex(0);
+                            onResult(last);
+                        }, 600);
+                        setTimeout(() => {
+                            spinningRef.current = false;
+                            onSpinChange(false);
+                            onRemoveItem(last);
+                        }, 1600);
+                    } else {
+                        spinningRef.current = false;
+                        onSpinChange(false);
+                        onRemoveItem(items[w]);
+                    }
                 }
             };
             rafRef.current = requestAnimationFrame(frame);

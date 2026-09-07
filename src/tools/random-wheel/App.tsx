@@ -82,7 +82,7 @@ const App = () => {
 
     return (
         <div className="row row-gap-4 mb-4 align-items-start">
-            <div className="col-md-6 col-lg-4 d-flex flex-column gap-4">
+            <div className="col-md-6 col-lg-3 d-flex flex-column gap-4">
                 <ItemsCard
                     text={text}
                     onTextChange={setText}
@@ -92,7 +92,7 @@ const App = () => {
                 />
                 <OptionsCard settings={settings} onSettingsChange={setSettings} disabled={spinning} />
             </div>
-            <div className="col-md-6 col-lg-4">
+            <div className="col-md-6 col-lg-6">
                 <WheelCard
                     items={items}
                     spinning={spinning}
@@ -102,7 +102,7 @@ const App = () => {
                     onRemoveItem={handleRemoveItem}
                 />
             </div>
-            <div className="col-md-12 col-lg-4">
+            <div className="col-md-12 col-lg-3">
                 <HistoryCard history={history} onClear={() => setHistory([])} />
             </div>
         </div>

@@ -82,7 +82,7 @@ const App = () => {
 
     return (
         <div className="row row-gap-4 mb-4">
-            <div className="col-lg-5 d-flex flex-column gap-4">
+            <div className="col-md-6 col-lg-4 d-flex flex-column gap-4">
                 <ItemsCard
                     text={text}
                     onTextChange={setText}
@@ -92,7 +92,7 @@ const App = () => {
                 />
                 <OptionsCard settings={settings} onSettingsChange={setSettings} disabled={spinning} />
             </div>
-            <div className="col-lg-7 d-flex flex-column gap-4">
+            <div className="col-lg-8 d-flex flex-column gap-4">
                 <WheelCard
                     items={items}
                     spinning={spinning}

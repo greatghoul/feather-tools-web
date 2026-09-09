@@ -69,6 +69,7 @@ export const TOOLS: ToolDef[] = [
     { slug: 'line-paper', category: 'printable' },
     { slug: 'hanzi-paper', category: 'printable' },
     { slug: 'sudoku-generator', category: 'printable' },
+    { slug: 'sign-in-sheet', category: 'printable' },
     { slug: 'video-cut', category: 'video' },
     { slug: 'video-to-mp3', category: 'video' },
     { slug: 'video-flip', category: 'video' },

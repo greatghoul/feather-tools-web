@@ -4,6 +4,7 @@
  */
 class CanvasPrinter  {
     private canvas: any;
+    private canvases: any[];
         private settings: any;
         private format: any;
         private quality: any;
@@ -13,7 +14,8 @@ class CanvasPrinter  {
         private dpi: any;
 
     constructor(canvas, settings: any = {}) {
-        this.canvas = canvas;
+        this.canvases = Array.isArray(canvas) ? canvas : [canvas];
+        this.canvas = this.canvases[0];
         this.settings = settings;
         this.format = settings.format || 'jpeg'; // Default format
         this.quality = settings.quality || 0.9;  // Default quality
@@ -32,7 +34,11 @@ class CanvasPrinter  {
             console.error('Canvas element is required for printing');
             return Promise.reject(new Error('Canvas element is required'));
         }
-        
+
+        if (this.canvases.length > 1) {
+            return this._printMultiple();
+        }
+
         return new Promise<void>((resolve) => {
             this.canvas.toBlob((blob) => {
                 if (!blob) {
@@ -53,6 +59,37 @@ class CanvasPrinter  {
     }
 
 
+
+    /**
+     * Print multiple canvases, one page per canvas
+     */
+    _printMultiple() {
+        return new Promise<void>((resolve) => {
+            const images = this.canvases
+                .filter((c) => !!c)
+                .map((c) => c.toDataURL(`image/${this.format}`, this.quality));
+
+            const printWindow = window.open('', '_blank');
+            printWindow!.document.open();
+            printWindow!.document.write(
+                `<!DOCTYPE html><html><head><style>${this._getMultiPageStyle()}</style></head><body>` +
+                images.map((src) => `<img src="${src}">`).join('') +
+                '</body></html>'
+            );
+            printWindow!.document.close();
+
+            const imgs = Array.from(printWindow!.document.querySelectorAll('img'));
+            Promise.all(imgs.map((img) => img.complete
+                ? Promise.resolve()
+                : new Promise((done) => { img.onload = done; img.onerror = done; })
+            )).then(() => {
+                printWindow!.focus();
+                printWindow!.print();
+                printWindow!.onafterprint = () => printWindow!.close();
+                resolve();
+            });
+        });
+    }
 
     /**
      * Set up print styles
@@ -102,6 +139,36 @@ class CanvasPrinter  {
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
+            }
+        `;
+    }
+
+    /**
+     * Get print CSS styles for multiple pages, one image per page
+     */
+    _getMultiPageStyle() {
+        const { widthMm, heightMm } = this._getPageDimensions();
+        return `
+            @page {
+                size: ${widthMm}mm ${heightMm}mm;
+                margin: 0;
+            }
+            body {
+                margin: 0;
+                padding: 0;
+                background-color: white !important;
+            }
+            img {
+                display: block;
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                page-break-after: always;
+                break-after: page;
+            }
+            img:last-child {
+                page-break-after: auto;
+                break-after: auto;
             }
         `;
     }

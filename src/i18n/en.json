@@ -2124,5 +2124,9 @@
     "sign-in-sheet/how_to_use/step1": "Upload a CSV file or paste its content; the first row is used as the header.",
     "sign-in-sheet/how_to_use/step2": "Map columns to name, phone, email, or extra fields, and toggle masking as needed.",
     "sign-in-sheet/how_to_use/step3": "Fill in the sheet title, date and location, then choose signature or checkbox sign-off.",
-    "sign-in-sheet/how_to_use/step4": "Check the paginated preview, then download the PDF or print it."
+    "sign-in-sheet/how_to_use/step4": "Check the paginated preview, then download the PDF or print it.",
+    "sign-in-sheet/view/table": "Table",
+    "sign-in-sheet/view/text": "Text",
+    "sign-in-sheet/view/empty": "empty",
+    "sign-in-sheet/view/row_limit": "Showing first {count} rows."
 }

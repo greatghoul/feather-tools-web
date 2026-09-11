@@ -104,14 +104,27 @@ const App = () => {
     };
 
     const loadExample = () => {
-        const surnames = '王李张刘陈杨赵黄周吴'.split('');
-        const givens = ['伟', '芳', '娜', '敏', '静', '磊', '军', '洋', '勇', '艳', '杰', '涛'];
-        const departments = ['研发部', '市场部', '人事部', '财务部'];
-        const lines = ['姓名,手机号,邮箱,部门'];
+        const isChinese = window.LOCALE === 'zh';
+        const surnames = isChinese
+            ? '王李张刘陈杨赵黄周吴'.split('')
+            : ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Wilson', 'Anderson', 'Taylor', 'Thomas'];
+        const givens = isChinese
+            ? ['伟', '芳', '娜', '敏', '静', '磊', '军', '洋', '勇', '艳', '杰', '涛']
+            : ['James', 'Mary', 'Robert', 'Patricia', 'John', 'Jennifer', 'Michael', 'Linda', 'David', 'Elizabeth', 'William', 'Susan'];
+        const departments = isChinese
+            ? ['研发部', '市场部', '人事部', '财务部']
+            : ['Engineering', 'Marketing', 'HR', 'Finance'];
+        const lines = [isChinese ? '姓名,手机号,邮箱,部门' : 'Name,Phone,Email,Department'];
         for (let i = 0; i < 38; i++) {
-            const name = `${surnames[i % surnames.length]}${givens[i % givens.length]}`;
-            const phone = `138${String(10000000 + i * 137)}`;
-            const email = `user${i + 1}@example.com`;
+            const given = givens[i % givens.length];
+            const surname = surnames[Math.floor(i / givens.length) % surnames.length];
+            const name = isChinese ? `${surname}${given}` : `${given} ${surname}`;
+            const phone = isChinese
+                ? `138${String(10000000 + i * 137)}`
+                : `555-${String(200 + i).padStart(3, '0')}-${String(1000 + i * 13).padStart(4, '0')}`;
+            const email = isChinese
+                ? `user${i + 1}@example.com`
+                : `${given.toLowerCase()}.${surname.toLowerCase()}${i + 1}@example.com`;
             lines.push(`${name},${phone},${email},${departments[i % departments.length]}`);
         }
         setCsvText(lines.join('\n'));

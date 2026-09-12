@@ -17,7 +17,7 @@
     "sign-in-sheet/settings/mask_email": "Mask email addresses",
     "sign-in-sheet/settings/blank_rows": "Extra Blank Rows",
     "sign-in-sheet/settings/blank_rows_hint": "Blank rows appended after the list for on-site walk-ins.",
-    "sign-in-sheet/csv/card_title": "Attendee List (CSV)",
+    "sign-in-sheet/csv/card_title": "Attendee List",
     "sign-in-sheet/csv/load_example": "Load Sample",
     "sign-in-sheet/csv/mapping_title": "Field Mapping",
     "sign-in-sheet/csv/mapping_hint": "Choose what each column is used for. Unmapped columns can still be printed as extra columns.",

@@ -26,9 +26,9 @@ const ROLE_PATTERNS: { role: FieldRole; patterns: RegExp[] }[] = [
 ];
 
 const SheetService = {
-    parseCsv(text: string, includeHeader: boolean): ParsedCsv {
-        const delimiter = MaskService.detectDelimiter(text);
-        const parsed = MaskService.parse(text, delimiter, includeHeader);
+    parseCsv(text: string, includeHeader: boolean, delimiter = ''): ParsedCsv {
+        const delim = delimiter || MaskService.detectDelimiter(text);
+        const parsed = MaskService.parse(text, delim, includeHeader);
         return { headers: parsed.headers, rows: parsed.rows };
     },
 

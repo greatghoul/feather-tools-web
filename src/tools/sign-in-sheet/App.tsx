@@ -14,6 +14,8 @@ const BLANK_PARSED: ParsedCsv = { headers: [], rows: [] };
 const App = () => {
     const [csvText, setCsvText] = useState('');
     const [includeHeader, setIncludeHeader] = useState(true);
+    const [delimiter, setDelimiter] = useState('auto');
+    const [customDelimiter, setCustomDelimiter] = useState('');
     const [roles, setRoles] = useState<FieldRole[]>([]);
     const [title, setTitle] = useState(t('sign-in-sheet/settings/default_title'));
     const [date, setDate] = useState('');
@@ -30,18 +32,19 @@ const App = () => {
     const parsed: ParsedCsv = useMemo(() => {
         if (!csvText.trim()) return BLANK_PARSED;
         try {
-            return SheetService.parseCsv(csvText, includeHeader);
+            const delim = delimiter === 'auto' ? '' : delimiter === 'custom' ? customDelimiter.trim() : delimiter;
+            return SheetService.parseCsv(csvText, includeHeader, delim);
         } catch {
             return BLANK_PARSED;
         }
-    }, [csvText, includeHeader]);
+    }, [csvText, includeHeader, delimiter, customDelimiter]);
 
     const hasCsv = parsed.headers.length > 0 || parsed.rows.length > 0;
 
     // Re-guess the field mapping whenever a new list is loaded.
     useEffect(() => {
         setRoles(hasCsv ? SheetService.guessRoles(parsed.headers) : SheetService.blankSheetRoles());
-    }, [csvText, includeHeader]);
+    }, [csvText, includeHeader, delimiter, customDelimiter]);
 
     const handleRoleChange = (index: number, role: FieldRole) => {
         setRoles((prev) => {
@@ -142,6 +145,10 @@ const App = () => {
                     parsed={parsed}
                     includeHeader={includeHeader}
                     onIncludeHeaderChange={setIncludeHeader}
+                    delimiter={delimiter}
+                    onDelimiterChange={setDelimiter}
+                    customDelimiter={customDelimiter}
+                    onCustomDelimiterChange={setCustomDelimiter}
                     onLoadExample={loadExample}
                     titleKey="sign-in-sheet/csv/card_title"
                     emptyHintKey="sign-in-sheet/csv/no_data"

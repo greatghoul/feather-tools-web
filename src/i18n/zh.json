@@ -2084,7 +2084,7 @@
     "sign-in-sheet/settings/mask_email": "掩码邮箱",
     "sign-in-sheet/settings/blank_rows": "追加空白行",
     "sign-in-sheet/settings/blank_rows_hint": "在名单末尾追加空白行，供现场人员签到。",
-    "sign-in-sheet/csv/card_title": "名单（CSV）",
+    "sign-in-sheet/csv/card_title": "名单",
     "sign-in-sheet/csv/load_example": "加载示例",
     "sign-in-sheet/csv/mapping_title": "字段映射",
     "sign-in-sheet/csv/mapping_hint": "为每一列选择用途，未映射的列可作为附加列打印。",
@@ -2121,7 +2121,7 @@
     "sign-in-sheet/how_to_use/step3": "填写表格标题、日期和地点，选择手写签名或打钩签到。",
     "sign-in-sheet/how_to_use/step4": "检查分页预览，下载 PDF 或直接打印。",
     "common/csv_input/title": "CSV 输入",
-    "common/csv_input/upload": "上传 CSV",
+    "common/csv_input/upload": "打开 CSV",
     "common/csv_input/load_example": "加载示例",
     "common/csv_input/clear": "清空",
     "common/csv_input/placeholder": "粘贴 CSV 内容，第一行作为表头。",
@@ -2131,5 +2131,12 @@
     "common/csv_input/view/table": "表格",
     "common/csv_input/view/text": "文本",
     "common/csv_input/view/empty": "空",
-    "common/csv_input/view/row_limit": "仅显示前 {count} 条。"
+    "common/csv_input/view/row_limit": "仅显示前 {count} 条。",
+    "common/csv_input/delimiter": "分隔符",
+    "common/csv_input/delimiter/auto": "自动检测",
+    "common/csv_input/delimiter/comma": "逗号",
+    "common/csv_input/delimiter/tab": "制表符",
+    "common/csv_input/delimiter/pipe": "竖线",
+    "common/csv_input/delimiter/semicolon": "分号",
+    "common/csv_input/delimiter/custom": "自定义"
 }

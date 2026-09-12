@@ -47,7 +47,7 @@
     "habitica/settings/privacy_note": "Your API User ID and Token are stored only in your browser and sent directly to Habitica. They are never uploaded to this site.",
     "habitica/settings/title": "Habitica API Settings",
     "common/csv_input/title": "CSV Input",
-    "common/csv_input/upload": "Upload CSV",
+    "common/csv_input/upload": "Open CSV",
     "common/csv_input/load_example": "Load Sample",
     "common/csv_input/clear": "Clear",
     "common/csv_input/placeholder": "Paste CSV content here. The first row is treated as the header.",
@@ -57,5 +57,12 @@
     "common/csv_input/view/table": "Table",
     "common/csv_input/view/text": "Text",
     "common/csv_input/view/empty": "empty",
-    "common/csv_input/view/row_limit": "Showing first {count} rows."
+    "common/csv_input/view/row_limit": "Showing first {count} rows.",
+    "common/csv_input/delimiter": "Delimiter",
+    "common/csv_input/delimiter/auto": "Auto detect",
+    "common/csv_input/delimiter/comma": "Comma",
+    "common/csv_input/delimiter/tab": "Tab",
+    "common/csv_input/delimiter/pipe": "Pipe",
+    "common/csv_input/delimiter/semicolon": "Semicolon",
+    "common/csv_input/delimiter/custom": "Custom"
 }

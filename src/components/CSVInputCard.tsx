@@ -98,7 +98,10 @@ const CSVInputCard = ({
                     >
                         <i className="bi bi-list"></i>
                     </button>
-                    <ul className={`dropdown-menu dropdown-menu-end${actionsOpen ? ' show' : ''}`}>
+                    <ul
+                        className={`dropdown-menu dropdown-menu-end${actionsOpen ? ' show' : ''}`}
+                        style={{ right: 0, left: 'auto' }}
+                    >
                         <li>
                             <button className="dropdown-item" onClick={() => { setActionsOpen(false); fileInputRef.current?.click(); }}>
                                 <i className="bi bi-upload me-2"></i>{t('common/csv_input/upload')}

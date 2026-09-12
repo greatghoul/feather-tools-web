@@ -84,8 +84,11 @@ class CanvasPrinter  {
                 : new Promise((done) => { img.onload = done; img.onerror = done; })
             )).then(() => {
                 printWindow!.focus();
-                printWindow!.print();
+                // Register before print(): afterprint fires while the blocking
+                // print() call is still on the stack, so a late assignment
+                // would miss it and leave the about:blank tab behind.
                 printWindow!.onafterprint = () => printWindow!.close();
+                printWindow!.print();
                 resolve();
             });
         });
@@ -186,10 +189,13 @@ class CanvasPrinter  {
      * Execute print and cleanup resources
      */
     _executePrint(printWindow, url) {
-        printWindow.print();
+        // Register before print(): afterprint fires while the blocking
+        // print() call is still on the stack, so a late assignment would
+        // miss it and leave the tab behind.
         printWindow.onafterprint = () => {
             this._cleanupResources(url, printWindow);
         };
+        printWindow.print();
     }
 
     /**

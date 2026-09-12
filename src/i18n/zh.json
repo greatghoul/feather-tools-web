@@ -2136,5 +2136,6 @@
     "common/csv_input/delimiter/tab": "制表符",
     "common/csv_input/delimiter/pipe": "竖线",
     "common/csv_input/delimiter/semicolon": "分号",
-    "common/csv_input/delimiter/custom": "自定义"
+    "common/csv_input/delimiter/custom": "自定义",
+    "sign-in-sheet/button/generate": "生成"
 }

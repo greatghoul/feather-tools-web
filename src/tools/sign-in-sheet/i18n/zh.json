@@ -51,5 +51,6 @@
     "sign-in-sheet/how_to_use/step1": "上传 CSV 文件或直接粘贴内容，第一行作为表头。",
     "sign-in-sheet/how_to_use/step2": "将各列映射为姓名、手机号、邮箱或附加列，并按需开启掩码。",
     "sign-in-sheet/how_to_use/step3": "填写表格标题、日期和地点，选择手写签名或打钩签到。",
-    "sign-in-sheet/how_to_use/step4": "检查分页预览，下载 PDF 或直接打印。"
+    "sign-in-sheet/how_to_use/step4": "检查分页预览，下载 PDF 或直接打印。",
+    "sign-in-sheet/button/generate": "生成"
 }

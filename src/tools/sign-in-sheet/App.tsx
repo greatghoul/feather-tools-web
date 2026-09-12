@@ -24,6 +24,17 @@ const App = () => {
     const [maskPhone, setMaskPhone] = useState(true);
     const [maskEmail, setMaskEmail] = useState(true);
     const [blankRows, setBlankRows] = useState(0);
+
+    // Settings are drafts: the preview only follows the snapshot committed by 生成.
+    const [applied, setApplied] = useState({
+        title: t('sign-in-sheet/settings/default_title'),
+        date: '',
+        location: '',
+        signMode: 'signature' as SignMode,
+        maskPhone: true,
+        maskEmail: true,
+        blankRows: 0,
+    });
     const [previews, setPreviews] = useState<string[]>([]);
     const [truncated, setTruncated] = useState(false);
     const [isExporting, setIsExporting] = useState(false);
@@ -55,15 +66,23 @@ const App = () => {
     };
 
     const { rows: signRows, hasPhone, hasEmail } = useMemo(() => (
-        SheetService.buildRows(parsed, roles, { maskPhone, maskEmail, blankRows })
-    ), [parsed, roles, maskPhone, maskEmail, blankRows]);
+        SheetService.buildRows(parsed, roles, {
+            maskPhone: applied.maskPhone,
+            maskEmail: applied.maskEmail,
+            blankRows: applied.blankRows,
+        })
+    ), [parsed, roles, applied]);
+
+    const handleGenerate = () => {
+        setApplied({ title, date, location, signMode, maskPhone, maskEmail, blankRows });
+    };
 
     const buildSheets = useCallback(() => {
         const result = SheetRenderer.render({
-            title,
-            date,
-            location,
-            signMode,
+            title: applied.title,
+            date: applied.date,
+            location: applied.location,
+            signMode: applied.signMode,
             rows: signRows,
             showPhone: hasPhone,
             showEmail: hasEmail,
@@ -81,7 +100,7 @@ const App = () => {
         canvasesRef.current = result.canvases;
         setTruncated(result.truncated);
         setPreviews(result.canvases.map((canvas) => canvas.toDataURL('image/jpeg', 0.85)));
-    }, [title, date, location, signMode, signRows, hasPhone, hasEmail]);
+    }, [applied, signRows, hasPhone, hasEmail]);
 
     useEffect(() => {
         buildSheets();
@@ -176,6 +195,7 @@ const App = () => {
                     maskEmailEnabled={hasCsv && hasEmail}
                     blankRows={blankRows}
                     onBlankRowsChange={setBlankRows}
+                    onGenerate={handleGenerate}
                     onPrint={handlePrint}
                     onDownloadPdf={handleDownloadPdf}
                     isExporting={isExporting}

@@ -9,6 +9,7 @@ const SettingsCard = ({
     maskPhone, onMaskPhoneChange, maskPhoneEnabled,
     maskEmail, onMaskEmailChange, maskEmailEnabled,
     blankRows, onBlankRowsChange,
+    onGenerate,
     onPrint, onDownloadPdf, isExporting,
 }) => {
     return (
@@ -67,6 +68,11 @@ const SettingsCard = ({
                     <input type="number" id="sisBlankRows" className="form-control" min={0} max={500} value={blankRows} onInput={(e) => onBlankRowsChange(Math.max(0, Math.min(500, Number((e.target as HTMLInputElement).value) || 0)))} />
                     <div className="text-muted mt-1" style={{ fontSize: '0.82rem' }}>{t('sign-in-sheet/settings/blank_rows_hint')}</div>
                 </div>
+            </div>
+            <div className="card-footer bg-light">
+                <button className="btn btn-primary w-100" onClick={onGenerate}>
+                    <i className="bi bi-magic me-1"></i>{t('sign-in-sheet/button/generate')}
+                </button>
             </div>
         </div>
 

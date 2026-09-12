@@ -59,7 +59,7 @@ const CSVInputCard = ({
 
         <div className="d-flex gap-2 flex-wrap mb-3">
             <button className="btn btn-sm btn-outline-info" onClick={() => fileInputRef.current?.click()} disabled={isLoading}>
-                {isLoading ? <span className="spinner-border spinner-border-sm me-1"></span> : <i className="bi bi-upload me-1"></i>}
+                {isLoading ? <span className="spinner-border spinner-border-sm me-1"></span> : <i className="bi bi-folder2-open me-1"></i>}
                 {t('common/csv_input/upload')}
             </button>
             {onLoadExample ? (

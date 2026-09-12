@@ -73,7 +73,7 @@ class CanvasPrinter  {
             printWindow!.document.open();
             printWindow!.document.write(
                 `<!DOCTYPE html><html><head><style>${this._getMultiPageStyle()}</style></head><body>` +
-                images.map((src) => `<img src="${src}">`).join('') +
+                images.map((src) => `<div class="page"><img src="${src}"></div>`).join('') +
                 '</body></html>'
             );
             printWindow!.document.close();
@@ -144,7 +144,11 @@ class CanvasPrinter  {
     }
 
     /**
-     * Get print CSS styles for multiple pages, one image per page
+     * Get print CSS styles for multiple pages, one fixed-size sheet per canvas.
+     * The wrapper carries the exact page dimensions (height: 100% on img would
+     * resolve to auto against an auto-height body and overflow each page),
+     * and the height is shaved by a hair so sub-pixel rounding can never spill
+     * a blank page.
      */
     _getMultiPageStyle() {
         const { widthMm, heightMm } = this._getPageDimensions();
@@ -153,22 +157,27 @@ class CanvasPrinter  {
                 size: ${widthMm}mm ${heightMm}mm;
                 margin: 0;
             }
-            body {
+            html, body {
                 margin: 0;
                 padding: 0;
                 background-color: white !important;
             }
-            img {
+            .page {
+                width: ${widthMm}mm;
+                height: calc(${heightMm}mm - 0.2mm);
+                overflow: hidden;
+                page-break-after: always;
+                break-after: page;
+            }
+            .page:last-child {
+                page-break-after: auto;
+                break-after: auto;
+            }
+            .page img {
                 display: block;
                 width: 100%;
                 height: 100%;
                 object-fit: contain;
-                page-break-after: always;
-                break-after: page;
-            }
-            img:last-child {
-                page-break-after: auto;
-                break-after: auto;
             }
         `;
     }

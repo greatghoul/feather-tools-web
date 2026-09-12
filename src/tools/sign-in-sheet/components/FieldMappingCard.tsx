@@ -23,13 +23,13 @@ const FieldMappingCard = ({ parsed, roles, onRolesChange }) => {
             </div>
             <div className="card-body">
                 <p className="text-muted mb-2" style={{ fontSize: '0.82rem' }}>{t('sign-in-sheet/csv/mapping_hint')}</p>
-                <div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', columnGap: '1.5rem', rowGap: '0.5rem' }}>
                     {Array.from({ length: columnCount }, (_, i) => {
                         const header = String(parsed.headers[i] ?? '').trim();
                         const label = header || `#${i + 1}`;
                         const sample = String(samples[i] ?? '').trim();
                         return (
-                            <div key={i} className="d-flex align-items-center gap-2 mb-1">
+                            <div key={i} className="d-flex align-items-center gap-2">
                                 <div className="flex-grow-1 text-truncate" title={label}>
                                     <span className="small fw-bold">{i + 1}. {label}</span>
                                     {sample ? <span className="text-muted ms-2 small">{sample}</span> : null}

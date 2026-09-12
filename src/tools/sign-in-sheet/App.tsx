@@ -196,17 +196,16 @@ const App = () => {
                     blankRows={blankRows}
                     onBlankRowsChange={setBlankRows}
                     onGenerate={handleGenerate}
-                    onPrint={handlePrint}
-                    onDownloadPdf={handleDownloadPdf}
-                    isExporting={isExporting}
                 />
             </div>
             <div className="col-lg-8">
                 <PreviewPanel
                     previews={previews}
-                    pageCount={signRows.length > 0 ? previews.length : 0}
                     truncated={truncated}
                     empty={signRows.length === 0}
+                    onPrint={handlePrint}
+                    onDownloadPdf={handleDownloadPdf}
+                    isExporting={isExporting}
                 />
             </div>
         </div>

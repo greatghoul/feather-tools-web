@@ -10,7 +10,6 @@ const SettingsCard = ({
     maskEmail, onMaskEmailChange, maskEmailEnabled,
     blankRows, onBlankRowsChange,
     onGenerate,
-    onPrint, onDownloadPdf, isExporting,
 }) => {
     return (
 <>
@@ -74,16 +73,6 @@ const SettingsCard = ({
                     <i className="bi bi-magic me-1"></i>{t('sign-in-sheet/button/generate')}
                 </button>
             </div>
-        </div>
-
-        <div className="d-flex gap-2">
-            <button className="btn btn-outline-secondary flex-fill" onClick={onDownloadPdf} disabled={isExporting}>
-                {isExporting ? <span className="spinner-border spinner-border-sm me-1"></span> : <i className="bi bi-download me-1"></i>}
-                {t('sign-in-sheet/button/download_pdf')}
-            </button>
-            <button className="btn btn-primary flex-fill" onClick={onPrint}>
-                <i className="bi bi-printer me-1"></i>{t('common/print')}
-            </button>
         </div>
 
 </>

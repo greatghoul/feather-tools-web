@@ -25,7 +25,9 @@ const CSVInputCard = ({
     delimiter = 'auto', onDelimiterChange,
     customDelimiter = '', onCustomDelimiterChange,
     onLoadExample,
+    onClear = undefined as (() => void) | undefined,
     titleKey = 'common/csv_input/title',
+    placeholderKey = 'common/csv_input/placeholder',
     defaultViewMode = 'table',
 }) => {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -67,7 +69,7 @@ const CSVInputCard = ({
                     <i className="bi bi-filetype-csv me-1"></i>{t('common/csv_input/load_example')}
                 </button>
             ) : null}
-            <button className="btn btn-sm btn-outline-secondary" onClick={() => onTextChange('')} disabled={!text}>
+            <button className="btn btn-sm btn-outline-secondary" onClick={() => (onClear ? onClear() : onTextChange(''))} disabled={!text}>
                 <i className="bi bi-eraser me-1"></i>{t('common/csv_input/clear')}
             </button>
             <input ref={fileInputRef} type="file" className="d-none" accept=".csv,.tsv,.txt,text/plain,text/csv" onChange={handleFileChange} aria-label={t('common/csv_input/upload')} />
@@ -96,13 +98,13 @@ const CSVInputCard = ({
             {!hasData || viewMode === 'text' ? (
 <>
 
-                <textarea
-                    className="form-control border-0 rounded-0 font-monospace"
-                    style={{ minHeight: '140px', resize: 'vertical', fontSize: '0.82rem' }}
-                    placeholder={t('common/csv_input/placeholder')}
-                    value={text}
-                    onInput={(e) => onTextChange((e.target as HTMLTextAreaElement).value)}
-                ></textarea>
+                    <textarea
+                        className="form-control border-0 rounded-0 font-monospace"
+                        style={{ minHeight: '140px', resize: 'vertical', fontSize: '0.82rem' }}
+                        placeholder={t(placeholderKey)}
+                        value={text}
+                        onInput={(e) => onTextChange((e.target as HTMLTextAreaElement).value)}
+                    ></textarea>
 
 </>
 ) : (

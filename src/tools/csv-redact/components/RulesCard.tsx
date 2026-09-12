@@ -58,7 +58,7 @@ const RulesCard = ({ rules, setRules, columns, headers, nextRuleId, onRedact, is
     return (
 <>
 
-        <div className="card">
+        <div className="card mb-3">
             <div className="card-header bg-light d-flex justify-content-between align-items-center">
                 <span>{t('csv-redact/rules/title')}</span>
                 <button className="btn btn-sm btn-primary" onClick={addRule} disabled={columns === 0}>
@@ -123,7 +123,7 @@ const RulesCard = ({ rules, setRules, columns, headers, nextRuleId, onRedact, is
 )}
                                 </div>
                                 <div className="col-md-1">
-                                    <button className="btn btn-sm btn-outline-danger w-100" title={t('csv-redact/rules/remove')} onClick={() => removeRule(rule.id)}>\u00D7</button>
+                                    <button className="btn btn-sm btn-outline-danger w-100" title={t('csv-redact/rules/remove')} onClick={() => removeRule(rule.id)}>×</button>
                                 </div>
                             </div>
                         ))}

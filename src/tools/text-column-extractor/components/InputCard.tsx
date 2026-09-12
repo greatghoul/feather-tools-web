@@ -99,7 +99,7 @@ const TagsInput = ({ selectedColumns, setSelectedColumns, totalColumns, previewH
                     : selectedColumns.map((col, i) => (
                         <span key={i} className="badge bg-primary d-inline-flex align-items-center gap-1" style={{ fontSize: '0.8rem' }}>
                             {getTagLabel(col)}
-                            <span className="tag-remove" onClick={(e) => { e.stopPropagation(); handleRemove(col); }} style={{ cursor: 'pointer', opacity: '0.7', lineHeight: '1' }}>\u00D7</span>
+                            <span className="tag-remove" onClick={(e) => { e.stopPropagation(); handleRemove(col); }} style={{ cursor: 'pointer', opacity: '0.7', lineHeight: '1' }}>×</span>
                         </span>
 ))
                 }

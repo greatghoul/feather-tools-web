@@ -191,7 +191,7 @@ const ColumnRow = ({ column, index, total, onUpdate, onRemove, onMoveUp, onMoveD
                     <button className="btn btn-sm btn-outline-primary" title={t('csv-sample/columns/insert_after')} onClick={onInsertAfter}>
                         <i className="bi bi-plus-lg me-1"></i>{t('csv-sample/columns/insert_after')}
                     </button>
-                    <button className="btn btn-sm btn-outline-danger" title={t('csv-sample/button/remove_column')} onClick={() => onRemove(column.id)} disabled={!canRemove}>\u00D7</button>
+                    <button className="btn btn-sm btn-outline-danger" title={t('csv-sample/button/remove_column')} onClick={() => onRemove(column.id)} disabled={!canRemove}>×</button>
                 </div>
             </div>
             <div className="row g-2 align-items-start">

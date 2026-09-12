@@ -34,13 +34,13 @@ const OutputCard = ({ headers, rows, outputViewMode, setOutputViewMode, delimite
     return (
 <>
 
-        <div className="card">
+        <div className="card mb-3">
             <div className="card-header bg-light d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <span>{t('csv-redact/output/title')}</span>
                 <div className="d-flex gap-2 flex-wrap justify-content-end">
                     <div className="btn-group btn-group-sm">
-                        <button className={`btn btn-sm ${outputViewMode === 'table' ? 'btn-primary' : 'btn-outline-primary'}`} onClick={() => setOutputViewMode('table')} disabled={!hasContent}>{t('csv-redact/view/table')}</button>
-                        <button className={`btn btn-sm ${outputViewMode === 'text' ? 'btn-primary' : 'btn-outline-primary'}`} onClick={() => setOutputViewMode('text')} disabled={!hasContent}>{t('csv-redact/view/text')}</button>
+                        <button className={`btn btn-sm ${outputViewMode === 'table' ? 'btn-primary' : 'btn-outline-primary'}`} onClick={() => setOutputViewMode('table')} disabled={!hasContent}>{t('common/csv_input/view/table')}</button>
+                        <button className={`btn btn-sm ${outputViewMode === 'text' ? 'btn-primary' : 'btn-outline-primary'}`} onClick={() => setOutputViewMode('text')} disabled={!hasContent}>{t('common/csv_input/view/text')}</button>
                     </div>
                     <button className="btn btn-sm btn-outline-primary" onClick={handleCopy} disabled={!hasContent || isCopying}>{t('csv-redact/button/copy')}</button>
                     <button className="btn btn-sm btn-outline-primary" onClick={handleDownload} disabled={!hasContent}>{t('csv-redact/button/download')}</button>
@@ -82,7 +82,7 @@ const OutputCard = ({ headers, rows, outputViewMode, setOutputViewMode, delimite
                                                 {row.map((cell, ci) => (
                                                     <td key={ci} className="font-monospace small" style={{ whiteSpace: 'pre-wrap' }}>{cell !== '' ? cell : (
 <>
-<span className="text-muted fst-italic">{t('csv-redact/view/empty')}</span>
+<span className="text-muted fst-italic">{t('common/csv_input/view/empty')}</span>
 </>
 )}</td>
                                                 ))}

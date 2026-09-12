@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react';
-import InputCard from './components/InputCard';
+import CSVInputCard from '~/components/CSVInputCard';
 import RulesCard from './components/RulesCard';
 import OutputCard from './components/OutputCard';
 import MaskService from './services/MaskService';
@@ -9,10 +9,9 @@ const nextRuleId = () => ++ruleIdCounter;
 
 const App = () => {
     const [inputText, setInputText] = useState('');
-    const [delimiter, setDelimiter] = useState(',');
+    const [delimiter, setDelimiter] = useState('auto');
     const [customDelimiter, setCustomDelimiter] = useState('');
     const [includeHeader, setIncludeHeader] = useState(true);
-    const [inputViewMode, setInputViewMode] = useState('table');
     const [outputViewMode, setOutputViewMode] = useState('table');
     const [rules, setRules] = useState<any[]>([]);
     const [committed, setCommitted] = useState<any>({ headers: [], rows: [] });
@@ -20,6 +19,7 @@ const App = () => {
     const redactingRef = useRef(false);
 
     const resolveDelimiter = () => {
+        if (delimiter === 'auto') return MaskService.detectDelimiter(inputText) || ',';
         if (delimiter === 'custom') return customDelimiter || ',';
         return delimiter;
     };
@@ -41,11 +41,6 @@ const App = () => {
         }
         setCommitted(MaskService.mask(parsedData, rules));
     }, [parsedData, rules, isLarge, hasData]);
-
-    const maskedColumnIndices = useMemo(
-        () => [...new Set(rules.map((r) => r.column - 1))].sort((a, b) => a - b),
-        [rules]
-    );
 
     const handleClear = () => {
         setInputText('');
@@ -93,20 +88,23 @@ const App = () => {
     return (
 <>
 
-        <div className="csv-redact-container">
-            <div className="row g-4">
-                <div className="col-12">
-                    <InputCard text={inputText} onTextChange={setInputText} onClear={handleClear} onLoadExample={handleLoadExample} delimiter={delimiter} setDelimiter={setDelimiter} customDelimiter={customDelimiter} setCustomDelimiter={setCustomDelimiter} includeHeader={includeHeader} setIncludeHeader={setIncludeHeader} inputViewMode={inputViewMode} setInputViewMode={setInputViewMode} parsedData={parsedData} maskedColumnIndices={maskedColumnIndices} />
-                </div>
-                <div className="col-12">
-                    <RulesCard rules={rules} setRules={setRules} columns={parsedData.columns} headers={parsedData.headers} nextRuleId={nextRuleId} onRedact={handleRedact} isLarge={isLarge} isRedacting={isRedacting} />
-                </div>
-                <div className="col-12">
-                    <OutputCard headers={committed.headers} rows={committed.rows} outputViewMode={outputViewMode} setOutputViewMode={setOutputViewMode} delimiter={sep} ruleCount={rules.length} isLarge={isLarge} />
-                </div>
-            </div>
-        </div>
-    
+        <CSVInputCard
+            text={inputText}
+            onTextChange={setInputText}
+            onClear={handleClear}
+            parsed={parsedData}
+            includeHeader={includeHeader}
+            onIncludeHeaderChange={setIncludeHeader}
+            delimiter={delimiter}
+            onDelimiterChange={setDelimiter}
+            customDelimiter={customDelimiter}
+            onCustomDelimiterChange={setCustomDelimiter}
+            onLoadExample={handleLoadExample}
+            titleKey="csv-redact/input/title"
+        />
+        <RulesCard rules={rules} setRules={setRules} columns={parsedData.columns} headers={parsedData.headers} nextRuleId={nextRuleId} onRedact={handleRedact} isLarge={isLarge} isRedacting={isRedacting} />
+        <OutputCard headers={committed.headers} rows={committed.rows} outputViewMode={outputViewMode} setOutputViewMode={setOutputViewMode} delimiter={sep} ruleCount={rules.length} isLarge={isLarge} />
+
 </>
 );
 };

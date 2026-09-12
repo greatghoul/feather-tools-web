@@ -36,7 +36,7 @@ const FieldMappingCard = ({ parsed, roles, onRolesChange }) => {
                                 </div>
                                 <select
                                     className="form-select form-select-sm"
-                                    style={{ width: 'auto', minWidth: '108px' }}
+                                    style={{ flex: '0 0 128px' }}
                                     value={roles[i] ?? 'extra'}
                                     onChange={(e) => onRolesChange(i, e.target.value as FieldRole)}
                                     aria-label={`${t('sign-in-sheet/csv/mapping_title')}: ${label}`}

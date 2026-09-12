@@ -134,7 +134,7 @@ const App = () => {
 <>
 
         <div className="row">
-            <div className="col-lg-4 mb-4">
+            <div className="col-12 mb-4">
                 <CsvImportCard
                     csvText={csvText}
                     onTextChange={setCsvText}
@@ -145,6 +145,10 @@ const App = () => {
                     onRolesChange={handleRoleChange}
                     onLoadExample={loadExample}
                 />
+            </div>
+        </div>
+        <div className="row">
+            <div className="col-lg-4 mb-4">
                 <SettingsCard
                     title={title}
                     onTitleChange={setTitle}
@@ -176,7 +180,7 @@ const App = () => {
                 />
             </div>
         </div>
-    
+
 </>
     );
 };

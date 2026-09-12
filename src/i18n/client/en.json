@@ -45,5 +45,17 @@
     "habitica/settings/credentials_hint": "Where can I find my User ID and API Token?",
     "habitica/settings/credentials_link": "Habitica Settings / Site Data",
     "habitica/settings/privacy_note": "Your API User ID and Token are stored only in your browser and sent directly to Habitica. They are never uploaded to this site.",
-    "habitica/settings/title": "Habitica API Settings"
+    "habitica/settings/title": "Habitica API Settings",
+    "common/csv_input/title": "CSV Input",
+    "common/csv_input/upload": "Upload CSV",
+    "common/csv_input/load_example": "Load Sample",
+    "common/csv_input/clear": "Clear",
+    "common/csv_input/placeholder": "Paste CSV content here. The first row is treated as the header.",
+    "common/csv_input/include_header": "First row is header",
+    "common/csv_input/no_data": "No data yet. Upload a file or paste content.",
+    "common/csv_input/rows_count": "{count} records",
+    "common/csv_input/view/table": "Table",
+    "common/csv_input/view/text": "Text",
+    "common/csv_input/view/empty": "empty",
+    "common/csv_input/view/row_limit": "Showing first {count} rows."
 }

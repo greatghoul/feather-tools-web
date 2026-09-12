@@ -3,8 +3,9 @@ import { t } from '~/helpers/i18n';
 import SheetService, { type ParsedCsv, type FieldRole } from './services/SheetService';
 import SheetRenderer, { type SignMode } from './services/SheetRenderer';
 import PdfExporter from './services/PdfExporter';
+import CSVInputCard from '~/components/CSVInputCard';
+import FieldMappingCard from './components/FieldMappingCard';
 import SettingsCard from './components/SettingsCard';
-import CsvImportCard from './components/CsvImportCard';
 import PreviewPanel from './components/PreviewPanel';
 import CanvasPrinter from '~/services/CanvasPrinter';
 
@@ -135,16 +136,23 @@ const App = () => {
 
         <div className="row">
             <div className="col-12 mb-4">
-                <CsvImportCard
-                    csvText={csvText}
+                <CSVInputCard
+                    text={csvText}
                     onTextChange={setCsvText}
+                    parsed={parsed}
                     includeHeader={includeHeader}
                     onIncludeHeaderChange={setIncludeHeader}
-                    parsed={parsed}
-                    roles={roles}
-                    onRolesChange={handleRoleChange}
                     onLoadExample={loadExample}
+                    titleKey="sign-in-sheet/csv/card_title"
+                    emptyHintKey="sign-in-sheet/csv/no_data"
                 />
+                {hasCsv ? (
+                    <FieldMappingCard
+                        parsed={parsed}
+                        roles={roles}
+                        onRolesChange={handleRoleChange}
+                    />
+                ) : null}
             </div>
         </div>
         <div className="row">

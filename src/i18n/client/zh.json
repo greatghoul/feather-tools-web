@@ -45,5 +45,17 @@
     "habitica/settings/credentials_hint": "在哪里可以找到我的用户 ID 和 API 令牌？",
     "habitica/settings/credentials_link": "Habitica Settings / Site Data",
     "habitica/settings/privacy_note": "您的 API 用户 ID 和令牌仅保存在您的浏览器中，并直接发送给 Habitica。绝不会上传到本站服务器。",
-    "habitica/settings/title": "Habitica API 设置"
+    "habitica/settings/title": "Habitica API 设置",
+    "common/csv_input/title": "CSV 输入",
+    "common/csv_input/upload": "上传 CSV",
+    "common/csv_input/load_example": "加载示例",
+    "common/csv_input/clear": "清空",
+    "common/csv_input/placeholder": "粘贴 CSV 内容，第一行作为表头。",
+    "common/csv_input/include_header": "首行为表头",
+    "common/csv_input/no_data": "尚未导入数据，可上传文件或粘贴内容。",
+    "common/csv_input/rows_count": "共 {count} 条记录",
+    "common/csv_input/view/table": "表格",
+    "common/csv_input/view/text": "文本",
+    "common/csv_input/view/empty": "空",
+    "common/csv_input/view/row_limit": "仅显示前 {count} 条。"
 }

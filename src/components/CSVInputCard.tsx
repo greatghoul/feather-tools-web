@@ -87,7 +87,7 @@ const CSVInputCard = ({
                             </button>
                         ) : null}
                         <button className="btn btn-sm btn-outline-secondary" onClick={() => onTextChange('')} disabled={!text}>
-                            {t('common/csv_input/clear')}
+                            <i className="bi bi-eraser me-1"></i>{t('common/csv_input/clear')}
                         </button>
                     </div>
                     <div className="dropdown d-md-none" ref={actionsRef}>
@@ -115,7 +115,7 @@ const CSVInputCard = ({
                                     className={`dropdown-item${text ? '' : ' disabled'}`}
                                     onClick={() => { if (text) { setActionsOpen(false); onTextChange(''); } }}
                                 >
-                                    {t('common/csv_input/clear')}
+                                    <i className="bi bi-eraser me-2"></i>{t('common/csv_input/clear')}
                                 </button>
                             </li>
                         </ul>

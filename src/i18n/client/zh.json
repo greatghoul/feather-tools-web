@@ -52,7 +52,6 @@
     "common/csv_input/clear": "清空",
     "common/csv_input/placeholder": "粘贴 CSV 内容，第一行作为表头。",
     "common/csv_input/include_header": "首行为表头",
-    "common/csv_input/no_data": "尚未导入数据，可上传文件或粘贴内容。",
     "common/csv_input/rows_count": "共 {count} 条记录",
     "common/csv_input/view/table": "表格",
     "common/csv_input/view/text": "文本",

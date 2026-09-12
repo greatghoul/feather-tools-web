@@ -21,7 +21,6 @@
     "sign-in-sheet/csv/load_example": "Load Sample",
     "sign-in-sheet/csv/mapping_title": "Field Mapping",
     "sign-in-sheet/csv/mapping_hint": "Choose what each column is used for. Unmapped columns can still be printed as extra columns.",
-    "sign-in-sheet/csv/no_data": "No data yet. Upload a file, paste content, or load the sample list.",
     "sign-in-sheet/role/name": "Name",
     "sign-in-sheet/role/phone": "Phone",
     "sign-in-sheet/role/email": "Email",

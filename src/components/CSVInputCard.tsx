@@ -26,7 +26,6 @@ const CSVInputCard = ({
     customDelimiter = '', onCustomDelimiterChange,
     onLoadExample,
     titleKey = 'common/csv_input/title',
-    emptyHintKey = 'common/csv_input/no_data',
     defaultViewMode = 'table',
 }) => {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -77,75 +76,68 @@ const CSVInputCard = ({
         <div className="card overflow-hidden">
             <div className="card-header d-flex justify-content-between align-items-center">
                 <h5 className="mb-0">{t(titleKey)}</h5>
-                <div className="btn-group btn-group-sm">
-                    <button
-                        className={`btn btn-sm ${viewMode === 'table' ? 'btn-primary' : 'btn-outline-primary'}`}
-                        onClick={() => setViewMode('table')}
-                        disabled={!hasData}
-                    >
-                        {t('common/csv_input/view/table')}
-                    </button>
-                    <button
-                        className={`btn btn-sm ${viewMode === 'text' ? 'btn-primary' : 'btn-outline-primary'}`}
-                        onClick={() => setViewMode('text')}
-                    >
-                        {t('common/csv_input/view/text')}
-                    </button>
-                </div>
+                {hasData ? (
+                    <div className="btn-group btn-group-sm">
+                        <button
+                            className={`btn btn-sm ${viewMode === 'table' ? 'btn-primary' : 'btn-outline-primary'}`}
+                            onClick={() => setViewMode('table')}
+                        >
+                            {t('common/csv_input/view/table')}
+                        </button>
+                        <button
+                            className={`btn btn-sm ${viewMode === 'text' ? 'btn-primary' : 'btn-outline-primary'}`}
+                            onClick={() => setViewMode('text')}
+                        >
+                            {t('common/csv_input/view/text')}
+                        </button>
+                    </div>
+                ) : null}
             </div>
-            {viewMode === 'table' ? (
-                hasData ? (
+            {!hasData || viewMode === 'text' ? (
 <>
 
-                    <div className={`table-responsive ${styles.scrollArea}`}>
-                        <table className="table table-bordered table-striped table-sm mb-0 w-100">
-                            <thead className="table-light">
-                                <tr>
-                                    {displayHeaders.map((header, i) => (
-                                        <th key={i} className="text-nowrap">{header}</th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {tableRows.map((row, ri) => (
-                                    <tr key={ri}>
-                                        {displayHeaders.map((_, ci) => {
-                                            const cell = String(row[ci] ?? '').trim();
-                                            return (
-                                                <td key={ci} className="font-monospace small">
-                                                    {cell || <span className="text-muted fst-italic">{t('common/csv_input/view/empty')}</span>}
-                                                </td>
-                                            );
-                                        })}
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                    {parsed.rows.length > MAX_TABLE_ROWS ? (
-                        <div className="text-muted px-3 py-2 border-top" style={{ fontSize: '0.82rem' }}>
-                            {t('common/csv_input/view/row_limit').replace('{count}', String(MAX_TABLE_ROWS))}
-                        </div>
-                    ) : null}
+                <textarea
+                    className="form-control border-0 rounded-0 font-monospace"
+                    style={{ minHeight: '140px', resize: 'vertical', fontSize: '0.82rem' }}
+                    placeholder={t('common/csv_input/placeholder')}
+                    value={text}
+                    onInput={(e) => onTextChange((e.target as HTMLTextAreaElement).value)}
+                ></textarea>
 
 </>
 ) : (
 <>
 
-                    <div className="text-muted text-center py-4">{t(emptyHintKey)}</div>
-
-</>
-)
-                ) : (
-<>
-
-                    <textarea
-                        className="form-control border-0 rounded-0 font-monospace"
-                        style={{ minHeight: '140px', resize: 'vertical', fontSize: '0.82rem' }}
-                        placeholder={t('common/csv_input/placeholder')}
-                        value={text}
-                        onInput={(e) => onTextChange((e.target as HTMLTextAreaElement).value)}
-                    ></textarea>
+                <div className={`table-responsive ${styles.scrollArea}`}>
+                    <table className="table table-bordered table-striped table-sm mb-0 w-100">
+                        <thead className="table-light">
+                            <tr>
+                                {displayHeaders.map((header, i) => (
+                                    <th key={i} className="text-nowrap">{header}</th>
+                                ))}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {tableRows.map((row, ri) => (
+                                <tr key={ri}>
+                                    {displayHeaders.map((_, ci) => {
+                                        const cell = String(row[ci] ?? '').trim();
+                                        return (
+                                            <td key={ci} className="font-monospace small">
+                                                {cell || <span className="text-muted fst-italic">{t('common/csv_input/view/empty')}</span>}
+                                            </td>
+                                        );
+                                    })}
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                {parsed.rows.length > MAX_TABLE_ROWS ? (
+                    <div className="text-muted px-3 py-2 border-top" style={{ fontSize: '0.82rem' }}>
+                        {t('common/csv_input/view/row_limit').replace('{count}', String(MAX_TABLE_ROWS))}
+                    </div>
+                ) : null}
 
 </>
 )

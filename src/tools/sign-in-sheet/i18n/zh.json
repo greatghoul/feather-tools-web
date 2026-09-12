@@ -21,7 +21,6 @@
     "sign-in-sheet/csv/load_example": "加载示例",
     "sign-in-sheet/csv/mapping_title": "字段映射",
     "sign-in-sheet/csv/mapping_hint": "为每一列选择用途，未映射的列可作为附加列打印。",
-    "sign-in-sheet/csv/no_data": "尚未导入数据，可上传文件、粘贴内容或加载示例名单。",
     "sign-in-sheet/role/name": "姓名",
     "sign-in-sheet/role/phone": "手机号",
     "sign-in-sheet/role/email": "邮箱",

@@ -151,7 +151,6 @@ const App = () => {
                     onCustomDelimiterChange={setCustomDelimiter}
                     onLoadExample={loadExample}
                     titleKey="sign-in-sheet/csv/card_title"
-                    emptyHintKey="sign-in-sheet/csv/no_data"
                 />
                 {hasCsv ? (
                     <FieldMappingCard

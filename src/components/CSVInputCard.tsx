@@ -75,55 +75,51 @@ const CSVInputCard = ({
         <div className="card mb-3 overflow-hidden">
             <div className="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <h5 className="mb-0">{t(titleKey)}</h5>
-                <div className="d-none d-md-flex gap-2 flex-wrap">
+                <div className="d-flex gap-2 flex-wrap align-items-center">
                     <button className="btn btn-sm btn-outline-info" onClick={() => fileInputRef.current?.click()} disabled={isLoading}>
                         {isLoading ? <span className="spinner-border spinner-border-sm me-1"></span> : <i className="bi bi-upload me-1"></i>}
                         {t('common/csv_input/upload')}
                     </button>
-                    {onLoadExample ? (
-                        <button className="btn btn-sm btn-outline-info" onClick={onLoadExample}>
-                            <i className="bi bi-filetype-csv me-1"></i>{t('common/csv_input/load_example')}
-                        </button>
-                    ) : null}
-                    <button className="btn btn-sm btn-outline-secondary" onClick={() => onTextChange('')} disabled={!text}>
-                        {t('common/csv_input/clear')}
-                    </button>
-                </div>
-                <div className="dropdown d-md-none" ref={actionsRef}>
-                    <button
-                        className="btn btn-sm btn-outline-info dropdown-toggle"
-                        onClick={() => setActionsOpen((v) => !v)}
-                        aria-expanded={actionsOpen}
-                        aria-label={t('common/csv_input/actions')}
-                    >
-                        <i className="bi bi-list"></i>
-                    </button>
-                    <ul
-                        className={`dropdown-menu dropdown-menu-end${actionsOpen ? ' show' : ''}`}
-                        style={{ right: 0, left: 'auto' }}
-                    >
-                        <li>
-                            <button className="dropdown-item" onClick={() => { setActionsOpen(false); fileInputRef.current?.click(); }}>
-                                <i className="bi bi-upload me-2"></i>{t('common/csv_input/upload')}
-                            </button>
-                        </li>
+                    <div className="d-none d-md-flex gap-2">
                         {onLoadExample ? (
+                            <button className="btn btn-sm btn-outline-info" onClick={onLoadExample}>
+                                <i className="bi bi-filetype-csv me-1"></i>{t('common/csv_input/load_example')}
+                            </button>
+                        ) : null}
+                        <button className="btn btn-sm btn-outline-secondary" onClick={() => onTextChange('')} disabled={!text}>
+                            {t('common/csv_input/clear')}
+                        </button>
+                    </div>
+                    <div className="dropdown d-md-none" ref={actionsRef}>
+                        <button
+                            className="btn btn-sm btn-outline-info dropdown-toggle"
+                            onClick={() => setActionsOpen((v) => !v)}
+                            aria-expanded={actionsOpen}
+                            aria-label={t('common/csv_input/actions')}
+                        >
+                            <i className="bi bi-list"></i>
+                        </button>
+                        <ul
+                            className={`dropdown-menu dropdown-menu-end${actionsOpen ? ' show' : ''}`}
+                            style={{ right: 0, left: 'auto' }}
+                        >
+                            {onLoadExample ? (
+                                <li>
+                                    <button className="dropdown-item" onClick={() => { setActionsOpen(false); onLoadExample(); }}>
+                                        <i className="bi bi-filetype-csv me-2"></i>{t('common/csv_input/load_example')}
+                                    </button>
+                                </li>
+                            ) : null}
                             <li>
-                                <button className="dropdown-item" onClick={() => { setActionsOpen(false); onLoadExample(); }}>
-                                    <i className="bi bi-filetype-csv me-2"></i>{t('common/csv_input/load_example')}
+                                <button
+                                    className={`dropdown-item${text ? '' : ' disabled'}`}
+                                    onClick={() => { if (text) { setActionsOpen(false); onTextChange(''); } }}
+                                >
+                                    {t('common/csv_input/clear')}
                                 </button>
                             </li>
-                        ) : null}
-                        <li><hr className="dropdown-divider" /></li>
-                        <li>
-                            <button
-                                className={`dropdown-item${text ? '' : ' disabled'}`}
-                                onClick={() => { if (text) { setActionsOpen(false); onTextChange(''); } }}
-                            >
-                                {t('common/csv_input/clear')}
-                            </button>
-                        </li>
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
                 <input ref={fileInputRef} type="file" className="d-none" accept=".csv,.tsv,.txt,text/plain,text/csv" onChange={handleFileChange} aria-label={t('common/csv_input/upload')} />
             </div>

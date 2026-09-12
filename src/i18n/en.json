@@ -2138,5 +2138,6 @@
     "common/csv_input/delimiter/tab": "Tab",
     "common/csv_input/delimiter/pipe": "Pipe",
     "common/csv_input/delimiter/semicolon": "Semicolon",
-    "common/csv_input/delimiter/custom": "Custom"
+    "common/csv_input/delimiter/custom": "Custom",
+    "common/csv_input/actions": "Actions"
 }

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { t } from '~/helpers/i18n';
 import styles from './CSVInputCard.module.css';
 
@@ -32,6 +32,20 @@ const CSVInputCard = ({
     const fileInputRef = useRef<HTMLInputElement | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [viewMode, setViewMode] = useState<'text' | 'table'>(defaultViewMode as 'text' | 'table');
+    const [actionsOpen, setActionsOpen] = useState(false);
+    const actionsRef = useRef<HTMLDivElement | null>(null);
+
+    // Close the mobile actions dropdown on outside clicks.
+    useEffect(() => {
+        if (!actionsOpen) return;
+        const onDocClick = (e: MouseEvent) => {
+            if (actionsRef.current && !actionsRef.current.contains(e.target as Node)) {
+                setActionsOpen(false);
+            }
+        };
+        document.addEventListener('click', onDocClick);
+        return () => document.removeEventListener('click', onDocClick);
+    }, [actionsOpen]);
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -61,7 +75,7 @@ const CSVInputCard = ({
         <div className="card mb-3 overflow-hidden">
             <div className="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
                 <h5 className="mb-0">{t(titleKey)}</h5>
-                <div className="d-flex gap-2 flex-wrap">
+                <div className="d-none d-md-flex gap-2 flex-wrap">
                     <button className="btn btn-sm btn-outline-info" onClick={() => fileInputRef.current?.click()} disabled={isLoading}>
                         {isLoading ? <span className="spinner-border spinner-border-sm me-1"></span> : <i className="bi bi-upload me-1"></i>}
                         {t('common/csv_input/upload')}
@@ -74,8 +88,41 @@ const CSVInputCard = ({
                     <button className="btn btn-sm btn-outline-secondary" onClick={() => onTextChange('')} disabled={!text}>
                         {t('common/csv_input/clear')}
                     </button>
-                    <input ref={fileInputRef} type="file" className="d-none" accept=".csv,.tsv,.txt,text/plain,text/csv" onChange={handleFileChange} aria-label={t('common/csv_input/upload')} />
                 </div>
+                <div className="dropdown d-md-none" ref={actionsRef}>
+                    <button
+                        className="btn btn-sm btn-outline-info dropdown-toggle"
+                        onClick={() => setActionsOpen((v) => !v)}
+                        aria-expanded={actionsOpen}
+                        aria-label={t('common/csv_input/actions')}
+                    >
+                        <i className="bi bi-list"></i>
+                    </button>
+                    <ul className={`dropdown-menu dropdown-menu-end${actionsOpen ? ' show' : ''}`}>
+                        <li>
+                            <button className="dropdown-item" onClick={() => { setActionsOpen(false); fileInputRef.current?.click(); }}>
+                                <i className="bi bi-upload me-2"></i>{t('common/csv_input/upload')}
+                            </button>
+                        </li>
+                        {onLoadExample ? (
+                            <li>
+                                <button className="dropdown-item" onClick={() => { setActionsOpen(false); onLoadExample(); }}>
+                                    <i className="bi bi-filetype-csv me-2"></i>{t('common/csv_input/load_example')}
+                                </button>
+                            </li>
+                        ) : null}
+                        <li><hr className="dropdown-divider" /></li>
+                        <li>
+                            <button
+                                className={`dropdown-item${text ? '' : ' disabled'}`}
+                                onClick={() => { if (text) { setActionsOpen(false); onTextChange(''); } }}
+                            >
+                                {t('common/csv_input/clear')}
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <input ref={fileInputRef} type="file" className="d-none" accept=".csv,.tsv,.txt,text/plain,text/csv" onChange={handleFileChange} aria-label={t('common/csv_input/upload')} />
             </div>
             <div className="card-body border-bottom d-flex justify-content-between align-items-center flex-wrap gap-2 py-2 px-3">
                 <div className="btn-group btn-group-sm">

@@ -137,30 +137,26 @@ const App = () => {
     return (
 <>
 
-        <div className="row">
-            <div className="col-12 mb-4">
-                <CSVInputCard
-                    text={csvText}
-                    onTextChange={setCsvText}
-                    parsed={parsed}
-                    includeHeader={includeHeader}
-                    onIncludeHeaderChange={setIncludeHeader}
-                    delimiter={delimiter}
-                    onDelimiterChange={setDelimiter}
-                    customDelimiter={customDelimiter}
-                    onCustomDelimiterChange={setCustomDelimiter}
-                    onLoadExample={loadExample}
-                    titleKey="sign-in-sheet/csv/card_title"
-                />
-                {hasCsv ? (
-                    <FieldMappingCard
-                        parsed={parsed}
-                        roles={roles}
-                        onRolesChange={handleRoleChange}
-                    />
-                ) : null}
-            </div>
-        </div>
+        <CSVInputCard
+            text={csvText}
+            onTextChange={setCsvText}
+            parsed={parsed}
+            includeHeader={includeHeader}
+            onIncludeHeaderChange={setIncludeHeader}
+            delimiter={delimiter}
+            onDelimiterChange={setDelimiter}
+            customDelimiter={customDelimiter}
+            onCustomDelimiterChange={setCustomDelimiter}
+            onLoadExample={loadExample}
+            titleKey="sign-in-sheet/csv/card_title"
+        />
+        {hasCsv ? (
+            <FieldMappingCard
+                parsed={parsed}
+                roles={roles}
+                onRolesChange={handleRoleChange}
+            />
+        ) : null}
         <div className="row">
             <div className="col-lg-4 mb-4">
                 <SettingsCard

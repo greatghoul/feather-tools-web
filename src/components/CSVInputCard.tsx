@@ -73,7 +73,7 @@ const CSVInputCard = ({
             <input ref={fileInputRef} type="file" className="d-none" accept=".csv,.tsv,.txt,text/plain,text/csv" onChange={handleFileChange} aria-label={t('common/csv_input/upload')} />
         </div>
 
-        <div className="card overflow-hidden">
+        <div className="card mb-3 overflow-hidden">
             <div className="card-header d-flex justify-content-between align-items-center">
                 <h5 className="mb-0">{t(titleKey)}</h5>
                 {hasData ? (

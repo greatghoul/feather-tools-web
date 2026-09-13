@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useLayoutEffect, useRef } from 'react';
 import { useStore } from '~/contexts/StoreContext';
 import { downloadFile } from '~/helpers/files';
 import { notify } from '~/helpers/messages';
@@ -15,6 +15,35 @@ const ResultCard = ({
 }) => {
     const [processedImages, setProcessedImages] = useState<any[]>([]);
     const { isProcessing, setIsProcessing, hasChanges, setHasChanges } = useStore() as any;
+    const previewRef: any = useRef(null);
+    const [previewWidth, setPreviewWidth] = useState(0);
+
+    // Track the preview area width so uniform-scale batches can be displayed
+    // at one common height (keeps the drawn numbers visually identical).
+    // Measured synchronously (not via ResizeObserver, whose callbacks depend
+    // on rendering frames) and refreshed on window resize.
+    useLayoutEffect(() => {
+        const el = previewRef.current;
+        if (!el) return;
+        const update = () => setPreviewWidth(el.clientWidth);
+        update();
+        window.addEventListener('resize', update);
+        return () => window.removeEventListener('resize', update);
+    }, [processedImages.length > 0]);
+
+    const uniformBatch = processedImages.length > 0 && processedImages.every(img => img.uniformScaled);
+    let displayHeight: any = null;
+    if (uniformBatch && previewWidth > 0) {
+        // card-body 左右各有 1rem 内边距
+        const usableWidth = Math.max(0, previewWidth - 32);
+        const commonHeight = processedImages[0].height;
+        const maxScaledWidth = Math.max(...processedImages.map(img => img.width));
+        if (usableWidth > 0 && commonHeight > 0 && maxScaledWidth > 0) {
+            // 最宽的图恰好占满可用宽度，其余图保持相同显示高度；
+            // 不超过原始高度，避免预览被放大
+            displayHeight = Math.min(commonHeight, Math.floor(usableWidth * commonHeight / maxScaledWidth));
+        }
+    }
 
     // Target size for uniform scaling, computed from the whole image list
     // (max/min baselines) or the custom value; null means no scaling.
@@ -104,7 +133,12 @@ const ResultCard = ({
 
         return (
             <div key={image.id} className={className}>
-                <img src={image.processedUrl || image.url} alt={image.name} className="w-100" />
+                <img
+                    src={image.processedUrl || image.url}
+                    alt={image.name}
+                    className={displayHeight ? 'd-block mx-auto' : 'w-100'}
+                    style={displayHeight ? { height: `${displayHeight}px`, width: 'auto', maxWidth: '100%' } : undefined}
+                />
             </div>
         );
     }
@@ -136,7 +170,9 @@ const ResultCard = ({
             </div>
             {processedImages.length > 0 ? (
 <>
+<div ref={previewRef}>
 {processedImages.map(renderImage)}
+</div>
 </>
 ) : renderEmpty()}
         </div>

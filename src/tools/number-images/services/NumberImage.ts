@@ -66,10 +66,14 @@ class NumberImage  {
         // Draw the sequence number
         this._drawNumber();
 
-        // 返回处理后的图片对象
+        // 返回处理后的图片对象（width/height 更新为缩放后的实际尺寸）
         const processedBlob = await this.getBlob();
+        const uniformScaled = this.targetSize > 0 && (scaleMode === 'same-height' || scaleMode === 'same-width');
         return {
             ...this.image,
+            width,
+            height,
+            uniformScaled,
             processedUrl: URL.createObjectURL(processedBlob!),
             processedBlob,
         };

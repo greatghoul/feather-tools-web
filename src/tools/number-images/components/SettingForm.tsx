@@ -77,7 +77,10 @@ export const DEFAULT_SETTINGS = {
     borderColor: '#e71414',
     backgroundColor: '#f9d20f',
     fontColor: '#e71414',
-    fontSize: 16
+    fontSize: 16,
+    scaleMode: 'original', // 'original' | 'same-height' | 'same-width'
+    scaleBaseline: 'max', // 'max' | 'min' | 'custom'
+    scaleSize: null // custom target size in px, used when scaleBaseline is 'custom'
 };
 
 // SettingForm 组件
@@ -109,13 +112,30 @@ const SettingForm = ({ settings, onChange }) => {
     const handleNumberStartChange = (e) => {
         const inputValue = e.target.value;
         let numberStart = parseInt(inputValue);
-        
+
         // Validate input: must be integer > 0
         if (isNaN(numberStart) || numberStart < 1) {
             numberStart = DEFAULT_SETTINGS.numberStart;
         }
-        
+
         updateSetting('numberStart', numberStart);
+    };
+
+    const handleScaleSizeChange = (e) => {
+        const inputValue = e.target.value;
+
+        // Allow clearing the field: empty means fall back to no scaling
+        if (inputValue === '') {
+            updateSetting('scaleSize', '');
+            return;
+        }
+
+        const scaleSize = parseInt(inputValue);
+        if (isNaN(scaleSize) || scaleSize < 1) {
+            return;
+        }
+
+        updateSetting('scaleSize', scaleSize);
     };
 
     // Render radio button
@@ -214,7 +234,36 @@ const SettingForm = ({ settings, onChange }) => {
                 </div>
             </div>
         </div>
-    
+
+        {/* Image scaling settings */}
+        <div className="mb-3">
+            <label className="form-label">{t('number-images/settings/scale_mode')}</label>
+            <select className="form-select form-select-sm" value={formSettings.scaleMode} onChange={(e) => updateSetting('scaleMode', e.target.value)}>
+                <option value="original">{t('number-images/settings/scale_original')}</option>
+                <option value="same-height">{t('number-images/settings/scale_same_height')}</option>
+                <option value="same-width">{t('number-images/settings/scale_same_width')}</option>
+            </select>
+        </div>
+
+        {formSettings.scaleMode !== 'original' && (
+            <div className="mb-3">
+                <label className="form-label">{t('number-images/settings/scale_baseline')}</label>
+                <select className="form-select form-select-sm" value={formSettings.scaleBaseline} onChange={(e) => updateSetting('scaleBaseline', e.target.value)}>
+                    <option value="max">{t('number-images/settings/scale_baseline_max')}</option>
+                    <option value="min">{t('number-images/settings/scale_baseline_min')}</option>
+                    <option value="custom">{t('number-images/settings/scale_baseline_custom')}</option>
+                </select>
+                {formSettings.scaleBaseline === 'custom' && (
+                    <>
+                        <input type="number" className="form-control mt-2" min="1" placeholder="px" value={formSettings.scaleSize ?? ''} onChange={handleScaleSizeChange} />
+                        <div className="form-text">
+                            <small className="text-muted">{t('number-images/settings/scale_size_hint')}</small>
+                        </div>
+                    </>
+                )}
+            </div>
+        )}
+
 </>
 );
 };

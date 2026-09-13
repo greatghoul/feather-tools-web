@@ -3,13 +3,15 @@ class NumberImage  {
     private image: any;
         private number: any;
         private settings: any;
+        private targetSize: any;
         private canvas: any;
         private ctx: any;
 
-    constructor(image, number, settings) {
+    constructor(image, number, settings, targetSize: any = null) {
         this.image = image;
         this.number = number;
         this.settings = settings;
+        this.targetSize = targetSize;
         this.canvas = null;
         this.ctx = null;
     }
@@ -39,12 +41,27 @@ class NumberImage  {
         this.canvas = document.createElement('canvas');
         this.ctx = this.canvas.getContext('2d');
 
+        // 计算目标尺寸：统一高度/宽度时等比缩放，否则保持原始尺寸
+        const { scaleMode } = this.settings;
+        let width = img.naturalWidth;
+        let height = img.naturalHeight;
+        if (this.targetSize > 0) {
+            if (scaleMode === 'same-height') {
+                width = Math.max(1, Math.round(width * this.targetSize / height));
+                height = this.targetSize;
+            } else if (scaleMode === 'same-width') {
+                height = Math.max(1, Math.round(height * this.targetSize / width));
+                width = this.targetSize;
+            }
+        }
+
         // 设置 canvas 尺寸
-        this.canvas.width = img.width;
-        this.canvas.height = img.height;
+        this.canvas.width = width;
+        this.canvas.height = height;
 
         // 绘制原始图片
-        this.ctx.drawImage(img, 0, 0);
+        this.ctx.imageSmoothingQuality = 'high';
+        this.ctx.drawImage(img, 0, 0, width, height);
 
         // Draw the sequence number
         this._drawNumber();

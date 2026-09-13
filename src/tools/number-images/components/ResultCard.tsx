@@ -9,12 +9,26 @@ import SequenceNumber from '../services/SequenceNumber';
 
 const sequenceService = new SequenceNumber();
 
-const ResultCard = ({ 
-    images, 
+const ResultCard = ({
+    images,
     settings
 }) => {
     const [processedImages, setProcessedImages] = useState<any[]>([]);
     const { isProcessing, setIsProcessing, hasChanges, setHasChanges } = useStore() as any;
+
+    // Target size for uniform scaling, computed from the whole image list
+    // (max/min baselines) or the custom value; null means no scaling.
+    const getScaleTargetSize = () => {
+        if (settings.scaleMode !== 'same-height' && settings.scaleMode !== 'same-width') {
+            return null;
+        }
+        if (settings.scaleBaseline === 'max' || settings.scaleBaseline === 'min') {
+            const dims = images.map((image) => settings.scaleMode === 'same-height' ? image.height : image.width);
+            return settings.scaleBaseline === 'max' ? Math.max(...dims) : Math.min(...dims);
+        }
+        const customSize = parseInt(settings.scaleSize);
+        return customSize > 0 ? customSize : null;
+    };
 
     const processImagesWithNumbers = async () => {
         if (images.length === 0) {
@@ -24,10 +38,11 @@ const ResultCard = ({
 
         setIsProcessing(true);
         try {
+            const scaleTargetSize = getScaleTargetSize();
             const processed = await Promise.all(
                 images.map(async (image, index) => {
                     const number = sequenceService.generateNumber(settings.numberType, index + settings.numberStart);
-                    const numberImage = new NumberImage(image, number, settings);
+                    const numberImage = new NumberImage(image, number, settings, scaleTargetSize);
                     try {
                         const processedImage = await numberImage.process();
                         return processedImage;

@@ -31,17 +31,27 @@ const ResultCard = ({
         return () => window.removeEventListener('resize', update);
     }, [processedImages.length > 0]);
 
-    const uniformBatch = processedImages.length > 0 && processedImages.every(img => img.uniformScaled);
+    const uniformBatch = processedImages.length > 0 && processedImages.every(img => img.uniformMode);
+    const uniformMode = uniformBatch ? processedImages[0].uniformMode : null;
     let displayHeight: any = null;
+    let displayWidth: any = null;
     if (uniformBatch && previewWidth > 0) {
         // card-body 左右各有 1rem 内边距
         const usableWidth = Math.max(0, previewWidth - 32);
-        const commonHeight = processedImages[0].height;
-        const maxScaledWidth = Math.max(...processedImages.map(img => img.width));
-        if (usableWidth > 0 && commonHeight > 0 && maxScaledWidth > 0) {
-            // 最宽的图恰好占满可用宽度，其余图保持相同显示高度；
-            // 不超过原始高度，避免预览被放大
-            displayHeight = Math.min(commonHeight, Math.floor(usableWidth * commonHeight / maxScaledWidth));
+        if (uniformMode === 'same-height') {
+            const commonHeight = processedImages[0].height;
+            const maxScaledWidth = Math.max(...processedImages.map(img => img.width));
+            if (usableWidth > 0 && commonHeight > 0 && maxScaledWidth > 0) {
+                // 最宽的图恰好占满可用宽度，其余图保持相同显示高度；
+                // 不超过原始高度，避免预览被放大
+                displayHeight = Math.min(commonHeight, Math.floor(usableWidth * commonHeight / maxScaledWidth));
+            }
+        } else if (uniformMode === 'same-width') {
+            const commonWidth = processedImages[0].width;
+            if (usableWidth > 0 && commonWidth > 0) {
+                // 所有图保持相同显示宽度；不超过可用宽度
+                displayWidth = Math.min(commonWidth, usableWidth);
+            }
         }
     }
 
@@ -136,8 +146,12 @@ const ResultCard = ({
                 <img
                     src={image.processedUrl || image.url}
                     alt={image.name}
-                    className={displayHeight ? 'd-block mx-auto' : 'w-100'}
-                    style={displayHeight ? { height: `${displayHeight}px`, width: 'auto', maxWidth: '100%' } : undefined}
+                    className={(displayHeight || displayWidth) ? 'd-block mx-auto' : 'w-100'}
+                    style={displayHeight
+                        ? { height: `${displayHeight}px`, width: 'auto', maxWidth: '100%' }
+                        : displayWidth
+                            ? { width: `${displayWidth}px`, height: 'auto', maxWidth: '100%' }
+                            : undefined}
                 />
             </div>
         );

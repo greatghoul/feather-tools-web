@@ -68,12 +68,12 @@ class NumberImage  {
 
         // 返回处理后的图片对象（width/height 更新为缩放后的实际尺寸）
         const processedBlob = await this.getBlob();
-        const uniformScaled = this.targetSize > 0 && (scaleMode === 'same-height' || scaleMode === 'same-width');
+        const uniformMode = this.targetSize > 0 && (scaleMode === 'same-height' || scaleMode === 'same-width') ? scaleMode : null;
         return {
             ...this.image,
             width,
             height,
-            uniformScaled,
+            uniformMode,
             processedUrl: URL.createObjectURL(processedBlob!),
             processedBlob,
         };

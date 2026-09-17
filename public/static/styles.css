@@ -2,6 +2,24 @@ html {
     scroll-behavior: smooth;
 }
 
+/* The header navbar has no navbar-expand-* class, so Bootstrap keeps
+   `.navbar-nav .dropdown-menu` static at every width, which pushes the
+   page down instead of overlaying when the language dropdown opens.
+   Alignment rules like .dropdown-menu-end only apply with Popper
+   ([data-bs-popper]), so right-align the Popper-less menu manually. */
+.navbar-nav .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: auto;
+    margin-top: var(--bs-dropdown-spacer);
+}
+
+/* Anchor the (Popper-less) dropdown menu to its toggle. */
+.navbar-nav .nav-item.dropdown {
+    position: relative;
+}
+
 /* Tag section titles on the home page link to the standalone tag pages. */
 .tag-section-title a {
     color: inherit;

@@ -1,3 +1,59 @@
+html {
+    scroll-behavior: smooth;
+}
+
+/* Home page tag sidebar */
+.tag-sidebar {
+    position: sticky;
+    top: 1rem;
+}
+
+.tag-sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.tag-sidebar a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    color: var(--bs-body-color);
+}
+
+.tag-sidebar a:hover {
+    background: rgba(13, 110, 253, 0.08);
+}
+
+.tag-sidebar a.active {
+    background: rgba(13, 110, 253, 0.12);
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+.tag-sidebar .tag-count {
+    color: var(--bs-secondary-color);
+    font-size: 0.8em;
+}
+
+@media (max-width: 991.98px) {
+    .tag-sidebar {
+        position: static;
+    }
+
+    .tag-sidebar ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
 .card-tool:hover {
     outline: 2px solid rgba(0, 123, 255, 0.3);
     border: 1px solid rgba(0, 123, 255, 0.3);

@@ -30,11 +30,17 @@ const alternates: Record<Locale, string> = { en: `/en/${slug}/`, zh: `/zh/${slug
 const { before, after } = await renderSections(slug, locale);
 const extras = (toolExtras as Record<string, ExtraTags>)[slug] ?? { scripts: [], cssLinks: [] };
 
-// Build-time random pick of same-category suggestions (mirrors legacy).
-const candidates = TOOLS.filter(
-    (x) => x.category === TOOL_MAP[slug]?.category && x.slug !== slug && MIGRATED_TOOLS.includes(x.slug)
-).map((x) => x.slug);
-const suggested = candidates.sort(() => Math.random() - 0.5).slice(0, 4);
+// Build-time suggestions: shuffle first, then stably sort by the number of
+// shared tags so ties keep the random order (mirrors legacy randomness).
+const current = TOOL_MAP[slug];
+const suggested = current
+    ? TOOLS.filter((x) => x.slug !== slug && MIGRATED_TOOLS.includes(x.slug))
+          .map((x) => ({ slug: x.slug, shared: x.tags.filter((t) => current.tags.includes(t)).length }))
+          .sort(() => Math.random() - 0.5)
+          .sort((a, b) => b.shared - a.shared)
+          .slice(0, 4)
+          .map((x) => x.slug)
+    : [];
 
 const tool = TOOL_MAP[slug];
 ---

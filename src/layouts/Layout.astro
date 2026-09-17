@@ -25,19 +25,14 @@ const t = createT(locale);
 const url = SITE.baseUrl + path;
 
 // Bump when public/static/styles.css changes.
-const STYLES_VERSION = '20260807';
+const STYLES_VERSION = '20260917';
 
-// Vanilla replacements for the two Bootstrap JS behaviors used by the layout:
-// the navbar collapse toggle and the language dropdown. Bootstrap ships no JS.
+// Vanilla replacement for the one Bootstrap JS behavior still used by the
+// layout (Bootstrap ships no JS): the language dropdown toggle. The navbar
+// itself no longer collapses — the header keeps only brand, source and
+// language; tag navigation lives in the home page sidebar.
 const NAV_SCRIPT = `
 (function () {
-    var toggler = document.querySelector('.navbar-toggler');
-    var collapse = document.getElementById('navbarNav');
-    if (toggler && collapse) {
-        toggler.addEventListener('click', function () {
-            collapse.classList.toggle('show');
-        });
-    }
     document.querySelectorAll('.dropdown-toggle').forEach(function (toggle) {
         toggle.addEventListener('click', function (e) {
             e.preventDefault();

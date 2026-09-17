@@ -1,9 +1,10 @@
 ---
 // Home page (both locales) — Astro i18n routing renders /en/ and /zh/.
+// Two-column layout: a sticky tag sidebar on the left, sections on the right.
 import Layout from '../../layouts/Layout.astro';
 import ToolCard from '../../components/ToolCard.astro';
 import { createT, buildKeywords } from '../../helpers/i18n-server';
-import { CATEGORY_ORDER, TOOL_MAP } from '../../data/tools';
+import { TAG_ORDER, TOOL_MAP } from '../../data/tools';
 import { MIGRATED_TOOLS } from '../../data/migrated-tools';
 import { SITE, type Locale } from '../../data/site';
 
@@ -15,6 +16,12 @@ const locale = Astro.params.lang as Locale;
 const t = createT(locale);
 const path = `/${locale}/`;
 const alternates: Record<Locale, string> = { en: '/en/', zh: '/zh/' };
+
+const tagsWithData = TAG_ORDER.map((tag) => ({
+    tag,
+    // Multi-tagged tools (e.g. video-to-gif) show up under every matching tag.
+    tools: MIGRATED_TOOLS.filter((slug) => TOOL_MAP[slug]?.tags.includes(tag)),
+})).filter(({ tools }) => tools.length > 0);
 ---
 <Layout
     locale={locale}
@@ -27,23 +34,61 @@ const alternates: Record<Locale, string> = { en: '/en/', zh: '/zh/' };
 >
     <h1 class="mb-4">{t('home/welcome_title')}</h1>
     <p class="lead mb-5" set:html={t('home/welcome_note')} />
-    {CATEGORY_ORDER.map((category) => {
-        const categoryTools = MIGRATED_TOOLS.filter(
-            (slug) => TOOL_MAP[slug]?.category === category
-        );
-        if (categoryTools.length === 0) return null;
-        return (
-            <div>
-                <h2 class="fs-3 mb-2" id={`${category}-tools`}>{t(`category/${category}/name`)}</h2>
-                <p class="lead" set:html={t(`category/${category}/note`)} />
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 mb-3">
-                    {categoryTools.map((slug) => (
-                        <div class="col">
-                            <ToolCard slug={slug} locale={locale} />
-                        </div>
+    <div class="row g-4">
+        <aside class="col-lg-2 d-print-none">
+            <nav class="tag-sidebar" aria-label={t('home/browse_by_tag')}>
+                <h2 class="h6 text-muted text-uppercase small fw-bold mb-2">{t('home/browse_by_tag')}</h2>
+                <ul class="mb-0">
+                    {tagsWithData.map(({ tag, tools }) => (
+                        <li>
+                            <a href={`#${tag}-tools`} data-tag={tag}>
+                                <span>{t(`nav/${tag}`)}</span>
+                                <span class="tag-count">{tools.length}</span>
+                            </a>
+                        </li>
                     ))}
+                </ul>
+            </nav>
+        </aside>
+        <div class="col-lg-10">
+            {tagsWithData.map(({ tag, tools }) => (
+                <div data-spy={tag}>
+                    <h2 class="fs-3 mb-2" id={`${tag}-tools`}>{t(`tag/${tag}/name`)}</h2>
+                    <p class="lead" set:html={t(`tag/${tag}/note`)} />
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 mb-3">
+                        {tools.map((slug) => (
+                            <div class="col">
+                                <ToolCard slug={slug} locale={locale} />
+                            </div>
+                        ))}
+                    </div>
                 </div>
-            </div>
-        );
-    })}
+            ))}
+        </div>
+    </div>
 </Layout>
+<script is:inline>
+// Highlight the sidebar entry of the section currently in view.
+(function () {
+    var links = document.querySelectorAll('.tag-sidebar a[data-tag]');
+    if (!links.length) return;
+    var sections = [];
+    links.forEach(function (link) {
+        var section = document.querySelector('[data-spy="' + link.dataset.tag + '"]');
+        if (section) sections.push({ link: link, el: section });
+    });
+    if (!sections.length) return;
+    var onScroll = function () {
+        var pos = window.scrollY + 140;
+        var current = sections[0];
+        sections.forEach(function (s) {
+            if (s.el.offsetTop <= pos) current = s;
+        });
+        sections.forEach(function (s) {
+            s.link.classList.toggle('active', s === current);
+        });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+})();
+</script>

@@ -213,6 +213,10 @@
         "scripts": [],
         "cssLinks": []
     },
+    "tip-calculator": {
+        "scripts": [],
+        "cssLinks": []
+    },
     "line-paper": {
         "scripts": [],
         "cssLinks": []

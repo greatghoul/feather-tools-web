@@ -1,0 +1,42 @@
+---
+// Shared tag navigation sidebar. On the home page it anchors to the tag
+// sections (scrollspy highlights the one in view); on tag pages it links
+// between the standalone tag pages with the current one pre-highlighted.
+import { createT } from '../helpers/i18n-server';
+import { TAG_ORDER, TOOL_MAP } from '../data/tools';
+import { MIGRATED_TOOLS } from '../data/migrated-tools';
+import type { Locale } from '../data/site';
+
+interface Props {
+    locale: Locale;
+    /** 'anchor' scrolls to home page sections, 'page' links to tag pages. */
+    mode?: 'anchor' | 'page';
+    /** Tag of the page being rendered; renders its entry as active. */
+    activeTag?: string;
+}
+
+const { locale, mode = 'anchor', activeTag = null } = Astro.props;
+const t = createT(locale);
+
+const tags = TAG_ORDER.map((tag) => ({
+    tag,
+    count: MIGRATED_TOOLS.filter((slug) => TOOL_MAP[slug]?.tags.includes(tag)).length,
+})).filter(({ count }) => count > 0);
+---
+<nav class="tag-sidebar" aria-label={t('home/browse_by_tag')}>
+    <h2 class="h6 text-muted text-uppercase small fw-bold mb-2">{t('home/browse_by_tag')}</h2>
+    <ul class="mb-0">
+        {tags.map(({ tag, count }) => (
+            <li>
+                <a
+                    href={mode === 'anchor' ? `#${tag}-tools` : `/${locale}/tag/${tag}/`}
+                    data-tag={tag}
+                    class:list={[{ active: tag === activeTag }]}
+                >
+                    <span>{t(`nav/${tag}`)}</span>
+                    <span class="tag-count">{count}</span>
+                </a>
+            </li>
+        ))}
+    </ul>
+</nav>

@@ -3,6 +3,7 @@
 // Two-column layout: a sticky tag sidebar on the left, sections on the right.
 import Layout from '../../layouts/Layout.astro';
 import ToolCard from '../../components/ToolCard.astro';
+import TagSidebar from '../../components/TagSidebar.astro';
 import { createT, buildKeywords } from '../../helpers/i18n-server';
 import { TAG_ORDER, TOOL_MAP } from '../../data/tools';
 import { MIGRATED_TOOLS } from '../../data/migrated-tools';
@@ -36,24 +37,14 @@ const tagsWithData = TAG_ORDER.map((tag) => ({
     <p class="lead mb-5" set:html={t('home/welcome_note')} />
     <div class="row g-4">
         <aside class="col-lg-2 d-print-none">
-            <nav class="tag-sidebar" aria-label={t('home/browse_by_tag')}>
-                <h2 class="h6 text-muted text-uppercase small fw-bold mb-2">{t('home/browse_by_tag')}</h2>
-                <ul class="mb-0">
-                    {tagsWithData.map(({ tag, tools }) => (
-                        <li>
-                            <a href={`#${tag}-tools`} data-tag={tag}>
-                                <span>{t(`nav/${tag}`)}</span>
-                                <span class="tag-count">{tools.length}</span>
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            </nav>
+            <TagSidebar locale={locale} />
         </aside>
         <div class="col-lg-10">
             {tagsWithData.map(({ tag, tools }) => (
                 <div data-spy={tag}>
-                    <h2 class="fs-3 mb-2" id={`${tag}-tools`}>{t(`tag/${tag}/name`)}</h2>
+                    <h2 class="fs-3 mb-2 tag-section-title" id={`${tag}-tools`}>
+                        <a href={`/${locale}/tag/${tag}/`}>{t(`tag/${tag}/name`)}</a>
+                    </h2>
                     <p class="lead" set:html={t(`tag/${tag}/note`)} />
                     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 mb-3">
                         {tools.map((slug) => (

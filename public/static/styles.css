@@ -2,6 +2,16 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Tag section titles on the home page link to the standalone tag pages. */
+.tag-section-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.tag-section-title a:hover {
+    color: #0d6efd;
+}
+
 /* Home page tag sidebar */
 .tag-sidebar {
     position: sticky;

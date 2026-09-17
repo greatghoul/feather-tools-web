@@ -1,0 +1,52 @@
+---
+// Standalone tag page: all tools carrying the tag, in the same two-column
+// layout as the home page with the tag sidebar highlighting this tag.
+import Layout from '../../../layouts/Layout.astro';
+import ToolCard from '../../../components/ToolCard.astro';
+import TagSidebar from '../../../components/TagSidebar.astro';
+import { createT, buildKeywords } from '../../../helpers/i18n-server';
+import { TAG_ORDER, TOOL_MAP, type ToolTag } from '../../../data/tools';
+import { MIGRATED_TOOLS } from '../../../data/migrated-tools';
+import { SITE, type Locale } from '../../../data/site';
+
+export function getStaticPaths() {
+    return SITE.locales.flatMap((lang) =>
+        TAG_ORDER.map((tag) => ({ params: { lang, tag } }))
+    );
+}
+
+const locale = Astro.params.lang as Locale;
+const tag = Astro.params.tag as ToolTag;
+const t = createT(locale);
+const tools = MIGRATED_TOOLS.filter((slug) => TOOL_MAP[slug]?.tags.includes(tag));
+const path = `/${locale}/tag/${tag}/`;
+const alternates: Record<Locale, string> = {
+    en: `/en/tag/${tag}/`,
+    zh: `/zh/tag/${tag}/`,
+};
+---
+<Layout
+    locale={locale}
+    path={path}
+    alternates={alternates}
+    title={`${t(`tag/${tag}/name`)} | ${t('site/title')}`}
+    description={t(`tag/${tag}/note`)}
+    keywords={buildKeywords(t)}
+>
+    <div class="row g-4">
+        <aside class="col-lg-2 d-print-none">
+            <TagSidebar locale={locale} mode="page" activeTag={tag} />
+        </aside>
+        <div class="col-lg-10">
+            <h1 class="mb-2">{t(`tag/${tag}/name`)}</h1>
+            <p class="lead mb-4" set:html={t(`tag/${tag}/note`)} />
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
+                {tools.map((slug) => (
+                    <div class="col">
+                        <ToolCard slug={slug} locale={locale} />
+                    </div>
+                ))}
+            </div>
+        </div>
+    </div>
+</Layout>

@@ -8,6 +8,7 @@ import { fileURLToPath } from 'node:url';
 import type { AstroIntegration } from 'astro';
 import { SITE } from '../data/site';
 import { MIGRATED_TOOLS } from '../data/migrated-tools';
+import { TAG_ORDER } from '../data/tools';
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(scriptDir, '..');
@@ -40,6 +41,7 @@ function buildSitemap(): string {
         sitemapUrl('', 'weekly', '1.0'),
         ...STATIC_PAGES.map((page) => sitemapUrl(`${page}/`, 'monthly', '0.8')),
         ...MIGRATED_TOOLS.map((slug) => sitemapUrl(`${slug}/`, 'weekly', '0.9')),
+        ...TAG_ORDER.map((tag) => sitemapUrl(`tag/${tag}/`, 'weekly', '0.7')),
     ];
     return [
         '<?xml version="1.0" encoding="UTF-8"?>',

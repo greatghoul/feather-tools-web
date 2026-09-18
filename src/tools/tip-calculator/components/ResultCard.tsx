@@ -113,19 +113,21 @@ const ResultCard = ({ billCents, rates, currency, rounding, onRatesChange }: Res
                             <p className="form-text small text-muted mb-2">{roundingNote}</p>
                         )}
                         <div className="d-flex flex-wrap gap-2 align-items-center">
-                            <input
-                                type="number"
-                                className="form-control form-control-sm"
-                                style={{ width: '7.5rem' }}
-                                min="0"
-                                max="100"
-                                step="0.5"
-                                aria-label={t('tip-calculator/rates/add')}
-                                placeholder={t('tip-calculator/rates/placeholder')}
-                                value={newRate}
-                                onChange={(e) => { setNewRate((e.target as HTMLInputElement).value); setErrorKey(null); }}
-                                onKeyDown={(e) => { if (e.key === 'Enter') handleAdd(); }}
-                            />
+                            <div className="input-group input-group-sm" style={{ width: '9.5rem' }}>
+                                <input
+                                    type="number"
+                                    className="form-control"
+                                    min="0"
+                                    max="100"
+                                    step="0.5"
+                                    aria-label={t('tip-calculator/rates/add')}
+                                    placeholder={t('tip-calculator/rates/placeholder')}
+                                    value={newRate}
+                                    onChange={(e) => { setNewRate((e.target as HTMLInputElement).value); setErrorKey(null); }}
+                                    onKeyDown={(e) => { if (e.key === 'Enter') handleAdd(); }}
+                                />
+                                <span className="input-group-text">%</span>
+                            </div>
                             <button type="button" className="btn btn-sm btn-outline-primary" onClick={handleAdd}>
                                 <i className="bi bi-plus-lg me-1"></i>{t('tip-calculator/rates/add')}
                             </button>

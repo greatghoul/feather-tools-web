@@ -31,6 +31,7 @@ export const SectionsAfter = () => (
                     <div className="card-body">
                         <ul>
                             <li><T k="tip-calculator/features/multi_rate" /></li>
+                            <li><T k="tip-calculator/features/change" /></li>
                             <li><T k="tip-calculator/features/rounding" /></li>
                             <li><T k="tip-calculator/features/currencies" /></li>
                             <li><T k="tip-calculator/features/persistent" /></li>

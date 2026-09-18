@@ -11,6 +11,8 @@ import {
 interface SettingsCardProps {
     amount: string;
     onAmountChange: (value: string) => void;
+    paidAmount: string;
+    onPaidAmountChange: (value: string) => void;
     currency: Currency;
     onCurrencyChange: (currency: Currency) => void;
     rounding: Record<Currency, RoundingConfig>;
@@ -19,7 +21,7 @@ interface SettingsCardProps {
 
 const parseStep = (value: string): number | null => (value === 'null' ? null : Number(value));
 
-const SettingsCard = ({ amount, onAmountChange, currency, onCurrencyChange, rounding, onRoundingChange }: SettingsCardProps) => {
+const SettingsCard = ({ amount, onAmountChange, paidAmount, onPaidAmountChange, currency, onCurrencyChange, rounding, onRoundingChange }: SettingsCardProps) => {
     const current = rounding[currency];
     const symbol = CURRENCY_SYMBOLS[currency];
 
@@ -64,6 +66,23 @@ const SettingsCard = ({ amount, onAmountChange, currency, onCurrencyChange, roun
                             <option value="USD">{t('tip-calculator/settings/currency_usd')}</option>
                             <option value="EUR">{t('tip-calculator/settings/currency_eur')}</option>
                         </select>
+                    </div>
+                    <div className="col-12">
+                        <label className="form-label small mb-1" htmlFor="tip-cash-paid">{t('tip-calculator/settings/paid')}</label>
+                        <div className="input-group input-group-sm">
+                            <span className="input-group-text">{symbol}</span>
+                            <input
+                                id="tip-cash-paid"
+                                type="number"
+                                className="form-control"
+                                min="0"
+                                step="0.01"
+                                inputMode="decimal"
+                                placeholder="0.00"
+                                value={paidAmount}
+                                onInput={(e) => onPaidAmountChange((e.target as HTMLInputElement).value)}
+                            />
+                        </div>
                     </div>
                     <div className="col-12">
                         <label className="form-label small mb-1" htmlFor="tip-rounding-step">{t('tip-calculator/settings/rounding_step')}</label>

@@ -51,6 +51,7 @@ const loadSettings = () => {
 
 const App = () => {
     const [amount, setAmount] = useState('');
+    const [paidAmount, setPaidAmount] = useState('');
     const [currency, setCurrency] = useState<Currency>('USD');
     const [rounding, setRounding] = useState<Record<Currency, RoundingConfig>>(defaultRounding());
     const [rates, setRates] = useState<number[]>([...DEFAULT_RATES]);
@@ -75,6 +76,7 @@ const App = () => {
     };
 
     const billCents = parseAmountToCents(amount);
+    const paidCents = parseAmountToCents(paidAmount);
 
     return (
         <div className="row g-4">
@@ -82,6 +84,8 @@ const App = () => {
                 <SettingsCard
                     amount={amount}
                     onAmountChange={setAmount}
+                    paidAmount={paidAmount}
+                    onPaidAmountChange={setPaidAmount}
                     currency={currency}
                     onCurrencyChange={setCurrency}
                     rounding={rounding}
@@ -91,6 +95,7 @@ const App = () => {
             <div className="col-md-6 col-lg-8">
                 <ResultCard
                     billCents={billCents}
+                    paidCents={paidCents}
                     rates={rates}
                     currency={currency}
                     rounding={rounding[currency]}

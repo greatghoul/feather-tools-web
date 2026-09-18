@@ -11,6 +11,8 @@ export interface RoundingConfig {
 export interface TipResult {
     tip: number;
     total: number;
+    /** Integer cents of the rounded total, for exact cash arithmetic. */
+    totalCents: number;
 }
 
 const CENTS = 100;
@@ -82,7 +84,7 @@ export function computeTip(billCents: number, ratePercent: number, rounding: Rou
     const ratePerMille = Math.round(ratePercent * 10);
     const exactTotalCents = (billCents * (1000 + ratePerMille)) / 1000;
     const totalCents = roundTotalCents(exactTotalCents, rounding);
-    return { tip: (totalCents - billCents) / CENTS, total: totalCents / CENTS };
+    return { tip: (totalCents - billCents) / CENTS, total: totalCents / CENTS, totalCents };
 }
 
 function roundTotalCents(exactTotalCents: number, rounding: RoundingConfig): number {

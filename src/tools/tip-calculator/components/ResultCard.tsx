@@ -12,6 +12,7 @@ import {
 
 interface ResultCardProps {
     billCents: number | null;
+    paidCents: number | null;
     rates: number[];
     currency: Currency;
     rounding: RoundingConfig;
@@ -23,7 +24,7 @@ const ratesEqual = (a: number[], b: number[]) =>
 
 const localeTag = () => ((window as any).LOCALE === 'zh' ? 'zh-CN' : 'en-US');
 
-const ResultCard = ({ billCents, rates, currency, rounding, onRatesChange }: ResultCardProps) => {
+const ResultCard = ({ billCents, paidCents, rates, currency, rounding, onRatesChange }: ResultCardProps) => {
     const [newRate, setNewRate] = useState('');
     const [errorKey, setErrorKey] = useState<string | null>(null);
 
@@ -56,6 +57,7 @@ const ResultCard = ({ billCents, rates, currency, rounding, onRatesChange }: Res
     };
 
     const showReset = !ratesEqual(rates, DEFAULT_RATES);
+    const showChange = paidCents !== null;
     const roundingNote = rounding.step !== null && billCents !== null
         ? t('tip-calculator/result/rounding_note').replace('{step}', formatDenomination(rounding.step, currency))
         : null;
@@ -81,17 +83,27 @@ const ResultCard = ({ billCents, rates, currency, rounding, onRatesChange }: Res
                                 <th scope="col">{t('tip-calculator/result/rate')}</th>
                                 <th scope="col" className="text-end">{t('tip-calculator/result/tip')}</th>
                                 <th scope="col" className="text-end">{t('tip-calculator/result/total')}</th>
+                                {showChange && <th scope="col" className="text-end">{t('tip-calculator/result/change')}</th>}
                                 <th scope="col" className="text-end"><span className="visually-hidden">{t('tip-calculator/rates/remove')}</span></th>
                             </tr>
                         </thead>
                         <tbody>
                             {rates.map((rate) => {
                                 const result = billCents !== null ? computeTip(billCents, rate, rounding) : null;
+                                const change = result && paidCents !== null ? paidCents - result.totalCents : null;
                                 return (
                                     <tr key={rate}>
                                         <td><span className="badge text-bg-primary">{rate}%</span></td>
                                         <td className="text-end">{result ? formatCurrency(result.tip) : '—'}</td>
                                         <td className="text-end fw-semibold">{result ? formatCurrency(result.total) : '—'}</td>
+                                        {showChange && (
+                                            <td
+                                                className={`text-end${change !== null && change < 0 ? ' text-danger' : ''}`}
+                                                title={change !== null && change < 0 ? t('tip-calculator/message/paid_too_low') : undefined}
+                                            >
+                                                {result ? formatCurrency((change ?? 0) / 100) : '—'}
+                                            </td>
+                                        )}
                                         <td className="text-end">
                                             <button
                                                 type="button"

@@ -41,8 +41,8 @@ const tagsWithData = TAG_ORDER.map((tag) => ({
         </aside>
         <div class="col-lg-10">
             {tagsWithData.map(({ tag, tools }) => (
-                <div data-spy={tag}>
-                    <h2 class="fs-3 mb-2 tag-section-title" id={`${tag}-tools`}>
+                <div>
+                    <h2 class="fs-3 mb-2 tag-section-title">
                         <a href={`/${locale}/tag/${tag}/`}>{t(`tag/${tag}/name`)}</a>
                     </h2>
                     <p class="lead" set:html={t(`tag/${tag}/note`)} />
@@ -58,28 +58,3 @@ const tagsWithData = TAG_ORDER.map((tag) => ({
         </div>
     </div>
 </Layout>
-<script is:inline>
-// Highlight the sidebar entry of the section currently in view.
-(function () {
-    var links = document.querySelectorAll('.tag-sidebar a[data-tag]');
-    if (!links.length) return;
-    var sections = [];
-    links.forEach(function (link) {
-        var section = document.querySelector('[data-spy="' + link.dataset.tag + '"]');
-        if (section) sections.push({ link: link, el: section });
-    });
-    if (!sections.length) return;
-    var onScroll = function () {
-        var pos = window.scrollY + 140;
-        var current = sections[0];
-        sections.forEach(function (s) {
-            if (s.el.offsetTop <= pos) current = s;
-        });
-        sections.forEach(function (s) {
-            s.link.classList.toggle('active', s === current);
-        });
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-})();
-</script>

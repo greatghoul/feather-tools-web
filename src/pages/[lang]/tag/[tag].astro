@@ -10,8 +10,12 @@ import { MIGRATED_TOOLS } from '../../../data/migrated-tools';
 import { SITE, type Locale } from '../../../data/site';
 
 export function getStaticPaths() {
+    // Skip tags whose tools are not live yet (nothing in MIGRATED_TOOLS),
+    // matching the home page sections and the sidebar.
     return SITE.locales.flatMap((lang) =>
-        TAG_ORDER.map((tag) => ({ params: { lang, tag } }))
+        TAG_ORDER.filter((tag) =>
+            MIGRATED_TOOLS.some((slug) => TOOL_MAP[slug]?.tags.includes(tag))
+        ).map((tag) => ({ params: { lang, tag } }))
     );
 }
 
@@ -35,7 +39,7 @@ const alternates: Record<Locale, string> = {
 >
     <div class="row g-4">
         <aside class="col-lg-2 d-print-none">
-            <TagSidebar locale={locale} mode="page" activeTag={tag} />
+            <TagSidebar locale={locale} activeTag={tag} />
         </aside>
         <div class="col-lg-10">
             <h1 class="mb-2">{t(`tag/${tag}/name`)}</h1>

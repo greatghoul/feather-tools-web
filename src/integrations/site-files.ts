@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url';
 import type { AstroIntegration } from 'astro';
 import { SITE } from '../data/site';
 import { MIGRATED_TOOLS } from '../data/migrated-tools';
-import { TAG_ORDER } from '../data/tools';
+import { TAG_ORDER, TOOL_MAP } from '../data/tools';
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(scriptDir, '..');
@@ -37,11 +37,16 @@ function sitemapUrl(path: string, changefreq: string, priority: string): string 
 }
 
 function buildSitemap(): string {
+    // Only tags whose tools are live get pages (see the tag page
+    // getStaticPaths); keep the sitemap in sync so it never lists a 404.
+    const liveTags = TAG_ORDER.filter((tag) =>
+        MIGRATED_TOOLS.some((slug) => TOOL_MAP[slug]?.tags.includes(tag))
+    );
     const entries = [
         sitemapUrl('', 'weekly', '1.0'),
         ...STATIC_PAGES.map((page) => sitemapUrl(`${page}/`, 'monthly', '0.8')),
         ...MIGRATED_TOOLS.map((slug) => sitemapUrl(`${slug}/`, 'weekly', '0.9')),
-        ...TAG_ORDER.map((tag) => sitemapUrl(`tag/${tag}/`, 'weekly', '0.7')),
+        ...liveTags.map((tag) => sitemapUrl(`tag/${tag}/`, 'weekly', '0.7')),
     ];
     return [
         '<?xml version="1.0" encoding="UTF-8"?>',

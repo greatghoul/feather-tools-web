@@ -1,7 +1,7 @@
 ---
-// Shared tag navigation sidebar. On the home page it anchors to the tag
-// sections (scrollspy highlights the one in view); on tag pages it links
-// between the standalone tag pages with the current one pre-highlighted.
+// Tag navigation sidebar. Every entry links to its page: "all" to the home
+// page, tags to their standalone tag pages. The entry of the page being
+// rendered renders highlighted — no active tag means the home page itself.
 import { createT } from '../helpers/i18n-server';
 import { TAG_ORDER, TOOL_MAP } from '../data/tools';
 import { MIGRATED_TOOLS } from '../data/migrated-tools';
@@ -9,13 +9,11 @@ import type { Locale } from '../data/site';
 
 interface Props {
     locale: Locale;
-    /** 'anchor' scrolls to home page sections, 'page' links to tag pages. */
-    mode?: 'anchor' | 'page';
-    /** Tag of the page being rendered; renders its entry as active. */
+    /** Tag of the page being rendered; its entry renders active. */
     activeTag?: string;
 }
 
-const { locale, mode = 'anchor', activeTag = null } = Astro.props;
+const { locale, activeTag = null } = Astro.props;
 const t = createT(locale);
 
 const tags = TAG_ORDER.map((tag) => ({
@@ -26,13 +24,15 @@ const tags = TAG_ORDER.map((tag) => ({
 <nav class="tag-sidebar" aria-label={t('home/browse_by_tag')}>
     <h2 class="h6 text-muted text-uppercase small fw-bold mb-2">{t('home/browse_by_tag')}</h2>
     <ul class="mb-0">
+        <li>
+            <a href={`/${locale}/`} class:list={[{ active: activeTag === null }]}>
+                <span>{t('nav/all')}</span>
+                <span class="tag-count">{MIGRATED_TOOLS.length}</span>
+            </a>
+        </li>
         {tags.map(({ tag, count }) => (
             <li>
-                <a
-                    href={mode === 'anchor' ? `#${tag}-tools` : `/${locale}/tag/${tag}/`}
-                    data-tag={tag}
-                    class:list={[{ active: tag === activeTag }]}
-                >
+                <a href={`/${locale}/tag/${tag}/`} class:list={[{ active: tag === activeTag }]}>
                     <span>{t(`nav/${tag}`)}</span>
                     <span class="tag-count">{count}</span>
                 </a>

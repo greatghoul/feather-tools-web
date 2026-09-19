@@ -1,7 +1,7 @@
 // Tool registry migrated from the old Flask app/tools.py.
 // A tool gets generated pages once scripts/gen-tool-pages.mjs has created its
 // ToolIsland.tsx (see src/data/migrated-tools.ts).
-export type ToolTag = 'text' | 'image' | 'video' | 'printable' | 'extension' | 'qrcode' | 'audio';
+export type ToolTag = 'text' | 'image' | 'video' | 'printable' | 'extension' | 'qrcode' | 'audio' | 'calculator';
 
 export interface ToolDef {
     slug: string;
@@ -14,7 +14,7 @@ export interface ToolDef {
 }
 
 // Display order of tags on the home page and in nav anchors.
-export const TAG_ORDER: ToolTag[] = ['text', 'image', 'video', 'printable', 'extension', 'qrcode', 'audio'];
+export const TAG_ORDER: ToolTag[] = ['text', 'image', 'video', 'printable', 'extension', 'qrcode', 'audio', 'calculator'];
 
 export const TOOLS: ToolDef[] = [
     { slug: 'simple-qrcode', tags: ['qrcode', 'image'] },
@@ -85,6 +85,7 @@ export const TOOLS: ToolDef[] = [
     { slug: 'habitica-batch-tasks', tags: ['extension'], logo: 'extensions/habitica/habitica-icon.svg' },
     { slug: 'habitica-egg-hatcher', tags: ['extension'], logo: 'extensions/habitica/habitica-icon.svg' },
     { slug: 'minecraft-shape-calculator', tags: ['extension'], logo: 'extensions/minecraft/minecraft-icon.svg' },
+    { slug: 'tip-calculator', tags: ['calculator'] },
 ];
 
 export const TOOL_MAP: Record<string, ToolDef> = Object.fromEntries(

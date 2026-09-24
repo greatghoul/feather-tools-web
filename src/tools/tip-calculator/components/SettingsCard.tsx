@@ -52,8 +52,10 @@ const SettingsCard = ({ amount, onAmountChange, paidAmount, onPaidAmountChange, 
                                 placeholder="0.00"
                                 value={amount}
                                 onInput={(e) => onAmountChange((e.target as HTMLInputElement).value)}
+                                aria-describedby="tip-bill-amount-help"
                             />
                         </div>
+                        <p id="tip-bill-amount-help" className="form-text small text-muted mb-0">{t('tip-calculator/settings/help/bill')}</p>
                     </div>
                     <div className="col-12">
                         <label className="form-label small mb-1" htmlFor="tip-currency">{t('tip-calculator/settings/currency')}</label>
@@ -62,10 +64,12 @@ const SettingsCard = ({ amount, onAmountChange, paidAmount, onPaidAmountChange, 
                             className="form-select form-select-sm"
                             value={currency}
                             onChange={(e) => onCurrencyChange((e.target as HTMLSelectElement).value as Currency)}
+                            aria-describedby="tip-currency-help"
                         >
                             <option value="USD">{t('tip-calculator/settings/currency_usd')}</option>
                             <option value="EUR">{t('tip-calculator/settings/currency_eur')}</option>
                         </select>
+                        <p id="tip-currency-help" className="form-text small text-muted mb-0">{t('tip-calculator/settings/help/currency')}</p>
                     </div>
                     <div className="col-12">
                         <label className="form-label small mb-1" htmlFor="tip-cash-paid">{t('tip-calculator/settings/paid')}</label>
@@ -81,8 +85,10 @@ const SettingsCard = ({ amount, onAmountChange, paidAmount, onPaidAmountChange, 
                                 placeholder="0.00"
                                 value={paidAmount}
                                 onInput={(e) => onPaidAmountChange((e.target as HTMLInputElement).value)}
+                                aria-describedby="tip-cash-paid-help"
                             />
                         </div>
+                        <p id="tip-cash-paid-help" className="form-text small text-muted mb-0">{t('tip-calculator/settings/help/paid')}</p>
                     </div>
                     <div className="col-12">
                         <label className="form-label small mb-1" htmlFor="tip-rounding-step">{t('tip-calculator/settings/rounding_step')}</label>
@@ -91,6 +97,7 @@ const SettingsCard = ({ amount, onAmountChange, paidAmount, onPaidAmountChange, 
                             className="form-select form-select-sm"
                             value={String(current.step)}
                             onChange={(e) => onRoundingChange({ step: parseStep((e.target as HTMLSelectElement).value) })}
+                            aria-describedby="tip-rounding-step-help"
                         >
                             {ROUNDING_STEPS[currency].map((step) => (
                                 <option key={String(step)} value={String(step)}>
@@ -98,6 +105,7 @@ const SettingsCard = ({ amount, onAmountChange, paidAmount, onPaidAmountChange, 
                                 </option>
                             ))}
                         </select>
+                        <p id="tip-rounding-step-help" className="form-text small text-muted mb-0">{t('tip-calculator/settings/help/step')}</p>
                     </div>
                     <div className="col-12">
                         <label className="form-label small mb-1" htmlFor="tip-rounding-mode">{t('tip-calculator/settings/rounding_mode')}</label>
@@ -107,14 +115,13 @@ const SettingsCard = ({ amount, onAmountChange, paidAmount, onPaidAmountChange, 
                             value={current.mode}
                             disabled={current.step === null}
                             onChange={(e) => onRoundingChange({ mode: (e.target as HTMLSelectElement).value as RoundMode })}
+                            aria-describedby="tip-rounding-mode-help"
                         >
                             <option value="nearest">{t('tip-calculator/settings/mode/nearest')}</option>
                             <option value="up">{t('tip-calculator/settings/mode/up')}</option>
                             <option value="down">{t('tip-calculator/settings/mode/down')}</option>
                         </select>
-                    </div>
-                    <div className="col-12">
-                        <p className="form-text small text-muted mb-0">{t('tip-calculator/settings/rounding/hint')}</p>
+                        <p id="tip-rounding-mode-help" className="form-text small text-muted mb-0">{t('tip-calculator/settings/help/mode')}</p>
                     </div>
                 </div>
             </div>

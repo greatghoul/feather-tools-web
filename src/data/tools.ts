@@ -40,6 +40,7 @@ export const TOOLS: ToolDef[] = [
     { slug: 'qrcode-decode', tags: ['qrcode', 'image'] },
     { slug: 'image-convert', tags: ['image'] },
     { slug: 'image-annotation', tags: ['image'] },
+    { slug: 'image-object-counter', tags: ['image'] },
     { slug: 'gif-cut', tags: ['image'] },
     { slug: 'gif-frames', tags: ['image'] },
     { slug: 'gif-maker', tags: ['image'] },

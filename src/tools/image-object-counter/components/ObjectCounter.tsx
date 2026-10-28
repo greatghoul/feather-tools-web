@@ -26,7 +26,7 @@ const clamp = (value: number, min: number, max: number) => Math.min(max, Math.ma
 
 const DEFAULT_VIEW: View = { zoom: 1, pan: { x: 0, y: 0 } };
 
-const ObjectCounter = ({ image }) => {
+const ObjectCounter = ({ image, onRemove }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     const stageRef = useRef<HTMLDivElement | null>(null);
     const dragRef = useRef<{
@@ -198,12 +198,25 @@ const ObjectCounter = ({ image }) => {
     return (
         <div className="card h-100">
             <div className="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
-                <h5 className="mb-0">{t('image-object-counter/counter/title')}</h5>
+                <h5 className={`mb-0 text-truncate flex-grow-1 pe-2 ${styles.title}`}>
+                    {image ? image.name : t('image-object-counter/counter/title')}
+                </h5>
                 <div className="d-flex align-items-center gap-2">
                     <span className="text-muted small">
                         {t('image-object-counter/counter/label')}
                     </span>
                     <span className={`badge text-bg-danger ${styles.count}`}>{marks.length}</span>
+                    {onRemove && (
+                        <button
+                            type="button"
+                            className="btn btn-sm btn-outline-secondary"
+                            onClick={onRemove}
+                            aria-label={t('image-object-counter/counter/remove')}
+                            title={t('image-object-counter/counter/remove')}
+                        >
+                            <i className="bi bi-x-lg" />
+                        </button>
+                    )}
                 </div>
             </div>
             <div className="card-body pb-2">

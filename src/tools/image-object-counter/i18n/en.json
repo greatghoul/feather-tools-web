@@ -2,6 +2,7 @@
     "image-object-counter/counter/empty": "Upload an image to start counting",
     "image-object-counter/counter/hint": "Click the image to mark an object",
     "image-object-counter/counter/label": "Marked",
+    "image-object-counter/counter/remove": "Remove this image",
     "image-object-counter/counter/title": "Counting",
     "image-object-counter/counter/view_hint": "Drag to pan, scroll or use the zoom buttons to zoom in",
     "image-object-counter/features/accurate": "Red dots stay exactly where you click, so every object can be checked one by one",
@@ -21,6 +22,5 @@
     "image-object-counter/toolbar/undo": "Undo",
     "image-object-counter/toolbar/zoom_in": "Zoom in",
     "image-object-counter/toolbar/zoom_out": "Zoom out",
-    "image-object-counter/upload/note": "If you upload several images, the last one is used for counting",
     "image-object-counter/upload/title": "Upload Image"
 }

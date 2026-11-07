@@ -1,0 +1,113 @@
+.list {
+    max-height: 520px;
+    overflow-y: auto;
+}
+
+.thumb {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    background: transparent;
+    text-align: center;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.thumb:hover {
+    border-color: #9ec5fe;
+}
+
+.thumb.selected {
+    border-color: #0d6efd;
+    box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.15);
+}
+
+.stage {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 110px;
+    padding: 4px;
+    border-radius: 4px;
+    background: #eef1f5;
+    overflow: hidden;
+}
+
+.canvas {
+    display: block;
+    max-width: 100%;
+    max-height: 156px;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+}
+
+.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 64px;
+    height: 84px;
+    color: #adb5bd;
+    font-size: 1.5rem;
+    background: #fff;
+}
+
+.number {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    min-width: 20px;
+    padding: 0 5px;
+    border-radius: 10px;
+    background: rgba(33, 37, 41, 0.8);
+    color: #fff;
+    font-size: 0.7rem;
+    line-height: 18px;
+}
+
+.rotation {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    padding: 0 5px;
+    border-radius: 10px;
+    background: rgba(255, 193, 7, 0.95);
+    color: #212529;
+    font-size: 0.68rem;
+    line-height: 18px;
+}
+
+.mode {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0 6px;
+    border-radius: 10px;
+    background: rgba(13, 110, 253, 0.9);
+    color: #fff;
+    font-size: 0.66rem;
+    line-height: 18px;
+    white-space: nowrap;
+}
+
+.cutHorizontal,
+.cutVertical {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.cutHorizontal {
+    left: 4px;
+    right: 4px;
+    border-top: 1px dashed rgba(220, 53, 69, 0.9);
+}
+
+.cutVertical {
+    top: 4px;
+    bottom: 4px;
+    border-left: 1px dashed rgba(220, 53, 69, 0.9);
+}

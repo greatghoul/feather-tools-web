@@ -53,6 +53,8 @@ export default defineConfig({
                 'jsqr',
                 'jszip',
                 'konva',
+                'pdf-lib',
+                'pdfjs-dist',
                 'qrcode',
                 'upng-js',
             ],

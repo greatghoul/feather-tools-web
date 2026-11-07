@@ -1,7 +1,7 @@
 // Tool registry migrated from the old Flask app/tools.py.
 // A tool gets generated pages once scripts/gen-tool-pages.mjs has created its
 // ToolIsland.tsx (see src/data/migrated-tools.ts).
-export type ToolTag = 'text' | 'image' | 'video' | 'printable' | 'extension' | 'qrcode' | 'audio' | 'calculator';
+export type ToolTag = 'text' | 'image' | 'video' | 'pdf' | 'printable' | 'extension' | 'qrcode' | 'audio' | 'calculator';
 
 export interface ToolDef {
     slug: string;
@@ -14,7 +14,7 @@ export interface ToolDef {
 }
 
 // Display order of tags on the home page and in nav anchors.
-export const TAG_ORDER: ToolTag[] = ['text', 'image', 'video', 'printable', 'extension', 'qrcode', 'audio', 'calculator'];
+export const TAG_ORDER: ToolTag[] = ['text', 'image', 'video', 'pdf', 'printable', 'extension', 'qrcode', 'audio', 'calculator'];
 
 export const TOOLS: ToolDef[] = [
     { slug: 'simple-qrcode', tags: ['qrcode', 'image'] },
@@ -80,6 +80,7 @@ export const TOOLS: ToolDef[] = [
     { slug: 'video-crop', tags: ['video'] },
     { slug: 'video-speed', tags: ['video'] },
     { slug: 'video-volume', tags: ['video'] },
+    { slug: 'pdf-page-splitter', tags: ['pdf'] },
     { slug: 'emoji-picker', tags: ['text'] },
     { slug: 'long-post-splitter', tags: ['text'] },
     { slug: 'random-wheel', tags: ['text'] },

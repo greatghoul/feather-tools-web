@@ -1,0 +1,23 @@
+.stage {
+    display: flex;
+    justify-content: center;
+    background: #eef1f5;
+    border-radius: 8px;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.canvasWrap {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+    line-height: 0;
+}
+
+.canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    background: #fff;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+}
